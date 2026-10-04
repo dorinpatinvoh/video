@@ -25,6 +25,15 @@ body.theme-terminal {
   --font-mono: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", ui-monospace, monospace;
 }
 
+/* lignes de balayage discrètes, façon vieil écran */
+body.theme-terminal .stage {
+  background-image:
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, .16) 0 1px, transparent 1px 3px),
+    radial-gradient(120% 90% at 50% 0%, var(--stage-a), transparent 70%);
+}
+/* légère lueur verte sur tout le texte du terminal */
+body.theme-terminal .term-body { text-shadow: 0 0 10px rgba(46, 232, 137, .14); }
+
 /* ---------- THÈME 2 : ÉDITEUR DE CODE (bleu nuit) ---------- */
 body.theme-editor {
   --bg: #0b1020;

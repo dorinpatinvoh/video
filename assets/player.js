@@ -8,8 +8,9 @@
        * calcule la timeline à partir des scènes (durée "dur")
        * génère le HTML des scènes (terminal, code, titre, grille…)
        * anime la frappe au clavier, synchronisée sur la timeline
-         (donc chercher dans la barre de progression marche parfaitement)
        * affiche les sous-titres ([début, durée, texte] relatifs à la scène)
+       * joue la voix off (champ "audio" d'une scène) + effets sonores
+         (clavier, transitions) générés en direct via WebAudio
    ============================================================ */
 (() => {
   'use strict';
@@ -36,6 +37,10 @@
     playing: false,
     speed: 1,
     cc: true,          // sous-titres activés
+    soundOn: true,     // voix off + effets sonores
+    vol: 0.9,          // volume général
+    audioCache: new Map(),
+    currentAudio: null,
     active: -1,        // index de la scène active
     started: false,    // la lecture a-t-elle commencé ?
     ended: false,
@@ -43,6 +48,138 @@
     lastTs: 0,
   };
   const els = {};      // références DOM des contrôles
+
+  /* ============================================================
+     EFFETS SONORES (synthétisés en WebAudio, aucun fichier)
+     ============================================================ */
+  const FX = {
+    ctx: null, master: null, noiseBuf: null, lastClick: 0,
+
+    ensure() {
+      if (typeof window === 'undefined') return false;
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return false;
+      if (!this.ctx) {
+        this.ctx = new AC();
+        this.master = this.ctx.createGain();
+        this.master.gain.value = S.vol;
+        this.master.connect(this.ctx.destination);
+        const len = Math.floor(this.ctx.sampleRate * 0.5);
+        this.noiseBuf = this.ctx.createBuffer(1, len, this.ctx.sampleRate);
+        const d = this.noiseBuf.getChannelData(0);
+        for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+      }
+      if (this.ctx.state === 'suspended') this.ctx.resume();
+      return true;
+    },
+
+    setVol(v) { if (this.master) this.master.gain.value = v; },
+    ok() { return S.soundOn && this.ensure(); },
+
+    /* clic de touche mécanique */
+    click() {
+      if (!this.ok()) return;
+      const now = performance.now();
+      if (now - this.lastClick < 28) return;   // limite le débit
+      this.lastClick = now;
+      const t = this.ctx.currentTime;
+      const src = this.ctx.createBufferSource();
+      src.buffer = this.noiseBuf;
+      src.playbackRate.value = 0.9 + Math.random() * 0.5;
+      const bp = this.ctx.createBiquadFilter();
+      bp.type = 'bandpass';
+      bp.frequency.value = 1700 + Math.random() * 1700;
+      bp.Q.value = 1.2;
+      const g = this.ctx.createGain();
+      g.gain.setValueAtTime(0.5, t);
+      g.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
+      src.connect(bp); bp.connect(g); g.connect(this.master);
+      src.start(t, Math.random() * 0.3, 0.08);
+    },
+
+    /* "whoosh" de transition entre scènes */
+    whoosh() {
+      if (!this.ok()) return;
+      const t = this.ctx.currentTime, dur = 0.42;
+      const src = this.ctx.createBufferSource();
+      src.buffer = this.noiseBuf; src.loop = true;
+      const bp = this.ctx.createBiquadFilter();
+      bp.type = 'bandpass'; bp.Q.value = 1.1;
+      bp.frequency.setValueAtTime(240, t);
+      bp.frequency.exponentialRampToValueAtTime(1700, t + dur * 0.65);
+      bp.frequency.exponentialRampToValueAtTime(850, t + dur);
+      const g = this.ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.26, t + 0.09);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      src.connect(bp); bp.connect(g); g.connect(this.master);
+      src.start(t); src.stop(t + dur + 0.05);
+    },
+
+    /* petit "pop" quand un résultat apparaît */
+    pop() {
+      if (!this.ok()) return;
+      const t = this.ctx.currentTime;
+      const o = this.ctx.createOscillator();
+      o.type = 'sine';
+      o.frequency.setValueAtTime(520 + Math.random() * 90, t);
+      o.frequency.exponentialRampToValueAtTime(880, t + 0.07);
+      const g = this.ctx.createGain();
+      g.gain.setValueAtTime(0.16, t);
+      g.gain.exponentialRampToValueAtTime(0.001, t + 0.13);
+      o.connect(g); g.connect(this.master);
+      o.start(t); o.stop(t + 0.14);
+    },
+
+    /* petit jingle au lancement */
+    jingle() {
+      if (!this.ok()) return;
+      const t = this.ctx.currentTime;
+      [[440, 0], [660, 0.11]].forEach(([f, dt]) => {
+        const o = this.ctx.createOscillator();
+        o.type = 'triangle';
+        o.frequency.value = f;
+        const g = this.ctx.createGain();
+        g.gain.setValueAtTime(0.0001, t + dt);
+        g.gain.exponentialRampToValueAtTime(0.14, t + dt + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.001, t + dt + 0.22);
+        o.connect(g); g.connect(this.master);
+        o.start(t + dt); o.stop(t + dt + 0.25);
+      });
+    },
+  };
+
+  /* ============================================================
+     VOIX OFF (un fichier audio par scène, champ "audio" du JSON)
+     ============================================================ */
+  function playNarration(sc) {
+    stopNarration();
+    if (!sc || !sc.audio || !S.soundOn || !S.started) return;
+    let a = S.audioCache.get(sc);
+    if (!a) {
+      a = new Audio(sc.audio);
+      a.preload = 'auto';
+      S.audioCache.set(sc, a);
+    }
+    a.volume = S.vol;
+    a.currentTime = 0;
+    S.currentAudio = a;
+    try { a.play().catch(() => {}); } catch (e) { /* environnement sans audio */ }
+  }
+  function pauseNarration() {
+    if (S.currentAudio && !S.currentAudio.paused) {
+      try { S.currentAudio.pause(); } catch (e) {}
+    }
+  }
+  function resumeNarration() {
+    if (S.soundOn && S.currentAudio && S.currentAudio.paused && S.currentAudio.currentTime > 0) {
+      try { S.currentAudio.play().catch(() => {}); } catch (e) {}
+    }
+  }
+  function stopNarration() {
+    pauseNarration();
+    S.currentAudio = null;
+  }
 
   /* ============================================================
      1. CHARGEMENT DES DONNÉES
@@ -103,7 +240,7 @@
                </div>
                ${sc.hint ? `<div class="hint" data-show="0.5">${esc(sc.hint)}</div>` : ''}
              </div>
-             <div class="term" data-show="0.45">
+             <div class="term">
                <div class="term-bar">
                  <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
                  <span class="term-title">${esc(sc.host || 'dorin@linux: ~')}</span>
@@ -132,7 +269,7 @@
                     </div>`;
           at = at + total / CODE_CPS + 0.22;
         });
-        h = `<div class="editor" data-show="0.3">
+        h = `<div class="editor">
                <div class="editor-bar">
                  <span class="filetab">${esc(sc.file || 'fichier')}</span>
                  <span class="ed-dots"><i></i><i></i><i></i></span>
@@ -145,7 +282,7 @@
 
       /* --- anatomie d'une règle CSS --- */
       case 'rule':
-        h = `<div class="rule-card" data-show="0.3">
+        h = `<div class="rule-card">
                <div class="rc-l1"><span class="rc-sel">${esc(sc.sel)}</span><span class="tk-pun">&nbsp;{</span></div>
                <div class="rc-l2">&nbsp;&nbsp;<span class="rc-prop">${esc(sc.prop)}</span><span class="tk-pun">:&nbsp;</span><span class="rc-val">${esc(sc.val)}</span><span class="tk-pun">;</span></div>
                <div class="rc-l3"><span class="tk-pun">}</span></div>
@@ -231,29 +368,37 @@
   function dynamics(el, sc) {
     const local = S.time - sc.start;
 
-    // apparitions programmées
-    el.querySelectorAll('[data-show]').forEach(n =>
-      n.classList.toggle('show', local >= parseFloat(n.dataset.show)));
+    // apparitions programmées (+ "pop" sonore sur les sorties terminal)
+    el.querySelectorAll('[data-show]').forEach(n => {
+      const on = local >= parseFloat(n.dataset.show);
+      if (on && !n.__on && S.started && S.playing && n.classList.contains('tl')) FX.pop();
+      n.__on = on;
+      n.classList.toggle('show', on);
+    });
 
-    // frappe "terminal"
+    // frappe "terminal" (+ clics de clavier)
     el.querySelectorAll('[data-type]').forEach(n => {
       const full = n.dataset.type;
       const delay = parseFloat(n.dataset.typeDelay || '0.6');
       const nch = clamp(Math.floor((local - delay) * TERM_CPS), 0, full.length);
+      const prev = n.__n == null ? 0 : n.__n;
       if (n.__n !== nch) { n.textContent = full.slice(0, nch); n.__n = nch; }
+      if (nch > prev && S.started && S.playing) FX.click();
       n.classList.toggle('typing', nch > 0 && nch < full.length);
       n.classList.toggle('done', nch >= full.length && full.length > 0);
     });
 
-    // frappe "éditeur de code"
+    // frappe "éditeur de code" (+ clics de clavier)
     el.querySelectorAll('.cl-line').forEach(n => {
       if (!n.__parts) return;
       const at = parseFloat(n.dataset.at || '0');
       const nch = clamp(Math.floor((local - at) * CODE_CPS), 0, n.__total);
+      const prev = n.__n;
       if (n.__n !== nch) {
         paintTokens(n.querySelector('.cl-code'), n.__parts, nch);
         n.__n = nch;
       }
+      if (nch > prev && S.started && S.playing) FX.click();
       n.classList.toggle('typing', nch > 0 && nch < n.__total);
       n.classList.toggle('done', nch >= n.__total && n.__total > 0);
     });
@@ -278,8 +423,15 @@
     // scène active
     const idx = sceneAt(S.time);
     if (idx !== S.active) {
+      if (S.active >= 0 && S.started) {
+        FX.whoosh();
+        els.stage.classList.remove('flash');
+        void els.stage.offsetWidth;      // relance l'animation CSS
+        els.stage.classList.add('flash');
+      }
       S.sceneEls.forEach((el, i) => el.classList.toggle('active', i === idx));
       S.active = idx;
+      playNarration(d.scenes[idx]);
     }
     if (idx >= 0) dynamics(S.sceneEls[idx], d.scenes[idx]);
 
@@ -301,14 +453,16 @@
 
   function play() {
     if (S.ended) { S.time = 0; S.ended = false; els.endcard.hidden = true; }
-    S.started = true;
+    if (!S.started) { S.started = true; FX.ensure(); FX.jingle(); }
     S.playing = true;
     els.player.classList.add('playing');
+    resumeNarration();
     syncPlayBtn();
   }
   function pause() {
     S.playing = false;
     els.player.classList.remove('playing');
+    pauseNarration();
     syncPlayBtn();
   }
   const togglePlay = () => (S.playing ? pause() : play());
@@ -321,6 +475,7 @@
 
   function showEnd() {
     S.ended = true;
+    stopNarration();
     els.endcard.hidden = false;
   }
 
@@ -344,6 +499,14 @@
      ============================================================ */
   const ICON_PLAY = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>';
   const ICON_PAUSE = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>';
+  const ICON_SND_ON = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>';
+  const ICON_SND_OFF = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm18.6 3 2.1-2.1-1.4-1.4-2.1 2.1-2.1-2.1-1.4 1.4 2.1 2.1-2.1 2.1 1.4 1.4 2.1-2.1 2.1 2.1 1.4-1.4-2.1-2.1z"/></svg>';
+
+  function syncSoundBtn() {
+    els.btnSnd.innerHTML = S.soundOn ? ICON_SND_ON : ICON_SND_OFF;
+    els.btnSnd.classList.toggle('on', S.soundOn);
+    els.btnSnd.setAttribute('aria-label', S.soundOn ? 'Couper le son' : 'Activer le son');
+  }
 
   function seekFromPointer(e) {
     const r = els.progress.getBoundingClientRect();
@@ -376,6 +539,19 @@
     });
     els.progress.addEventListener('pointermove', e => S.dragging && seekFromPointer(e));
     addEventListener('pointerup', () => S.dragging = false);
+
+    // son (voix off + effets)
+    els.btnSnd.addEventListener('click', () => {
+      S.soundOn = !S.soundOn;
+      if (S.soundOn) { FX.ensure(); if (S.playing) resumeNarration(); }
+      else pauseNarration();
+      syncSoundBtn();
+    });
+    els.vol.addEventListener('input', () => {
+      S.vol = parseFloat(els.vol.value);
+      FX.setVol(S.vol);
+      if (S.currentAudio) S.currentAudio.volume = S.vol;
+    });
 
     // sous-titres
     els.btnCc.addEventListener('click', () => {
@@ -414,6 +590,7 @@
       else if (k === 'l') seek(S.time + 10);
       else if (k === 'j') seek(S.time - 10);
       else if (k === 'c') els.btnCc.click();
+      else if (k === 's') els.btnSnd.click();
       else if (k === 'f') els.btnFull.click();
     });
 
@@ -435,6 +612,8 @@
     els.btnPlay = $('#btn-play');
     els.btnChap = $('#btn-chap');
     els.btnCc = $('#btn-cc');
+    els.btnSnd = $('#btn-snd');
+    els.vol = $('#vol');
     els.btnFull = $('#btn-full');
     els.progress = $('#progress');
     els.fill = $('#fill');
@@ -494,6 +673,7 @@
     els.tDur.textContent = fmt(S.data.duration);
     wire();
     syncPlayBtn();
+    syncSoundBtn();
     update();                       // première image (poster)
     requestAnimationFrame(loop);    // boucle de lecture
   }

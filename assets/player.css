@@ -409,6 +409,110 @@
 .bm-hint { margin: 0; font-size: 1.15em; color: var(--muted); max-width: 40em; }
 
 /* ============================================================
+   ANIMATIONS AVANCÉES
+   ============================================================ */
+
+/* fondu sombre rapide entre deux scènes */
+.stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  pointer-events: none;
+  background: var(--stage-b);
+  opacity: 0;
+}
+.stage.flash::after { animation: stageFlash .5s ease; }
+@keyframes stageFlash {
+  0% { opacity: .85; }
+  100% { opacity: 0; }
+}
+
+/* halos qui dérivent doucement en fond de scène */
+.stage::before {
+  content: '';
+  position: absolute;
+  inset: -22%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(34em 20em at 22% 28%, color-mix(in srgb, var(--accent) 8%, transparent), transparent 70%),
+    radial-gradient(30em 18em at 78% 72%, color-mix(in srgb, var(--accent2, var(--accent)) 6%, transparent), transparent 70%);
+  animation: bgDrift 16s ease-in-out infinite alternate;
+}
+@keyframes bgDrift {
+  to { transform: translate(4%, -3%) scale(1.07) rotate(1deg); }
+}
+#scenes, .subs, .overlay, .chapters { z-index: 1; }
+.subs { z-index: 5; }
+.overlay { z-index: 10; }
+.chapters { z-index: 12; }
+
+/* entrée 3D du terminal / de l'éditeur */
+.scene.active .term {
+  animation: termIn .6s cubic-bezier(.2, .9, .25, 1.15) .3s both;
+}
+@keyframes termIn {
+  from {
+    opacity: 0;
+    transform: perspective(900px) rotateX(8deg) translateY(2em) scale(.94);
+  }
+}
+.scene.active .editor,
+.scene.active .rule-card {
+  animation: riseIn .6s cubic-bezier(.2, .9, .3, 1.12) .25s both;
+}
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(1.6em) scale(.96); }
+}
+
+/* pastille numéro : petit rebond */
+.scene.active .chip.show { animation: chipPop .55s cubic-bezier(.2, .9, .3, 1.4) .1s both; }
+@keyframes chipPop {
+  from { opacity: 0; transform: scale(.5) rotate(-4deg); }
+}
+
+/* le titre brille doucement */
+.sc-title .t-main.show {
+  background: linear-gradient(100deg, var(--text) 42%, var(--accent) 50%, var(--text) 58%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: titleShine 3.2s linear infinite .8s;
+}
+@keyframes titleShine { to { background-position: -220% 0; } }
+
+/* kicker : les lettres se resserrent */
+.sc-title .t-kicker.show { animation: kickerIn .9s ease both; }
+@keyframes kickerIn {
+  from { opacity: 0; letter-spacing: .6em; }
+}
+
+/* badge : arrive en flottant */
+.t-badge.show { animation: badgeFloat 3s ease-in-out infinite alternate 1.8s; }
+@keyframes badgeFloat { to { transform: translateY(-.35em); } }
+
+/* sortie importante : pulse lumineux */
+.tl.out.hl.show { animation: hlPulse 1.3s ease .15s 2; }
+@keyframes hlPulse {
+  0% { text-shadow: none; }
+  35% { text-shadow: 0 0 14px color-mix(in srgb, var(--accent) 80%, transparent); }
+  100% { text-shadow: none; }
+}
+
+/* avertissement : tremble */
+.warn.show { animation: warnShake .5s ease .15s; }
+@keyframes warnShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-.5em); }
+  60% { transform: translateX(.5em); }
+}
+
+/* curseur du terminal plus vivant */
+.term-body .tl:first-child { min-height: 1.75em; }
+
+/* ============================================================
    SOUS-TITRES
    ============================================================ */
 .subs {
@@ -590,6 +694,16 @@
 .ctl.cc { font-size: .78rem; font-weight: 900; letter-spacing: .04em; }
 .ctl.cc:not(.on) { opacity: .4; text-decoration: line-through; }
 
+.ctl.snd:not(.on) { opacity: .4; }
+
+input.vol {
+  flex: none;
+  width: 72px;
+  height: 4px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
 select.speed {
   flex: none;
   height: 34px;
@@ -672,6 +786,7 @@ select.speed {
 @media (max-width: 640px) {
   .controls { gap: .35rem; padding: 0 .5rem; }
   .time { font-size: .72rem; }
+  input.vol { display: none; }
   .s-cols { flex-direction: column; }
   .sc-terminal .head { flex-direction: column; align-items: flex-start; gap: .4em; }
 }

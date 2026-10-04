@@ -31,7 +31,7 @@
           <button class="bp-btn" id="bp-btn" type="button" aria-label="Lancer la vidéo">
             <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
           </button>
-          <p class="bp-hint">Espace : lecture/pause · ← → : naviguer · C : sous-titres · F : plein écran</p>
+          <p class="bp-hint">Espace : lecture/pause · ← → : naviguer · C : sous-titres · S : son · F : plein écran</p>
         </div>
 
         <!-- écran de fin -->
@@ -62,6 +62,8 @@
         <button class="ctl" id="btn-chap" title="Chapitres">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4 6h2v2H4zm4 0h12v2H8zM4 11h2v2H4zm4 0h12v2H8zM4 16h2v2H4zm4 0h12v2H8z"/></svg>
         </button>
+        <button class="ctl snd on" id="btn-snd" title="Son : voix off + effets (S)"></button>
+        <input class="vol" id="vol" type="range" min="0" max="1" step="0.05" value="0.9" title="Volume">
         <button class="ctl cc on" id="btn-cc" title="Sous-titres (C)">CC</button>
         <select class="speed" id="speed" title="Vitesse de lecture">
           <option value="0.75">0.75×</option>
