@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- ============================================================
+       MODÈLE DE VIDÉO — copie ce dossier pour créer un épisode :
+
+         cp -r modele ma-nouvelle-video      (Linux / Mac)
+         xcopy /E /I modele ma-nouvelle-video (Windows PowerShell)
+
+       Puis :
+       1. change le thème sur <body> : theme-terminal ou theme-editor
+       2. modifie le JSON en bas de page (scènes + sous-titres)
+       3. ajoute une carte dans ../index.html si tu veux
+
+       Types de scènes disponibles :
+       - "title"    : écran-titre (kicker, title, sub, badge)
+       - "terminal" : commande tapée dans un terminal
+                      (num, name, hint, cmd, out[], warn)
+       - "code"     : éditeur de code, ligne par ligne
+                      (file, lines: [{parts: [[texte, classe], …]}])
+                      classes : tag attr str kw sel prop val pun txt cmt
+       - "rule"     : anatomie d'une règle CSS (sel, prop, val)
+       - "split"    : deux panneaux (title, left/right {emoji,title,items})
+       - "grid"     : grille de récap (title, items: [[nom, description]])
+       - "boxmodel" : le modèle de boîte CSS (title, hint)
+
+       Chaque scène : "dur" = durée en secondes.
+       "subs" = sous-titres : [début (relatif à la scène), durée, "texte"].
+
+       ⚠️ Le JSON est dans une balise <script> : le seul texte interdit
+          à l'intérieur est "</script>". Le reste (HTML, accents…) passe.
+       ============================================================ -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Titre de ma vidéo — vidéo animée</title>
+  <link rel="stylesheet" href="../assets/core.css">
+  <link rel="stylesheet" href="../assets/player.css">
+  <link rel="stylesheet" href="../assets/themes.css">
+</head>
+<body class="theme-terminal">
+
+  <header class="site-head">
+    <a class="brand" href="../index.html"><span class="brand-dot">▶</span> vidéos<em>.animées</em></a>
+    <a class="back" href="../index.html">← Toutes les vidéos</a>
+  </header>
+
+  <main class="page">
+    <div class="player" id="player">
+      <div class="stage" id="stage">
+        <div id="scenes"></div>
+        <div class="subs" id="subs" hidden></div>
+
+        <div class="overlay bigplay" id="bigplay">
+          <div class="bp-kicker" id="bp-kicker">vidéo animée · avec sous-titres</div>
+          <h1 class="bp-title" id="bp-title"></h1>
+          <p class="bp-meta" id="bp-meta"></p>
+          <button class="bp-btn" id="bp-btn" type="button" aria-label="Lancer la vidéo">
+            <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </button>
+          <p class="bp-hint">Espace : lecture/pause · ← → : naviguer · C : sous-titres · F : plein écran</p>
+        </div>
+
+        <div class="overlay endcard" id="endcard" hidden>
+          <div class="ec-title">Terminé ! 🎉</div>
+          <div class="ec-row">
+            <a class="btn" id="btn-replay" href="#">↺ Revoir</a>
+            <a class="btn primary" id="btn-next" href="#" hidden>→ <span>Vidéo suivante</span></a>
+          </div>
+        </div>
+
+        <div class="chapters" id="chapters" hidden>
+          <div class="chap-head">Chapitres</div>
+          <div id="chap-list"></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="ctl" id="btn-play" title="Lecture / pause (Espace)"></button>
+        <div class="progress" id="progress">
+          <div class="marks" id="marks"></div>
+          <div class="fill" id="fill"></div>
+          <div class="handle" id="handle"></div>
+        </div>
+        <span class="time"><span id="t-now">0:00</span> / <span id="t-dur">0:00</span></span>
+        <button class="ctl" id="btn-chap" title="Chapitres">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4 6h2v2H4zm4 0h12v2H8zM4 11h2v2H4zm4 0h12v2H8zM4 16h2v2H4zm4 0h12v2H8z"/></svg>
+        </button>
+        <button class="ctl cc on" id="btn-cc" title="Sous-titres (C)">CC</button>
+        <select class="speed" id="speed" title="Vitesse de lecture">
+          <option value="0.75">0.75×</option>
+          <option value="1" selected>1×</option>
+          <option value="1.25">1.25×</option>
+          <option value="1.5">1.5×</option>
+          <option value="2">2×</option>
+        </select>
+        <button class="ctl" id="btn-full" title="Plein écran (F)">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4 4h6v2H6v4H4zm10 0h6v6h-2V6h-4zM4 14h2v4h4v2H4zm14 0h2v6h-6v-2h4z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <section class="desc">
+      <h2 id="desc-title"></h2>
+      <p id="desc-text"></p>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    Vidéo web animée · 100 % HTML / CSS · sous-titres intégrés pour la voix off.
+  </footer>
+
+  <script type="application/json" id="video-data">
+  {
+    "title": "Titre de ma vidéo",
+    "tagline": "modèle",
+    "kicker": "Nouvel épisode",
+    "description": "Une phrase de description de la vidéo, affichée sous le lecteur.",
+    "scenes": [
+      {
+        "type": "title", "dur": 6, "chapter": "Intro",
+        "kicker": "ÉPISODE X",
+        "title": "Le grand titre",
+        "sub": "un sous-titre qui explique la promesse",
+        "badge": "⏱️ durée · niveau",
+        "subs": [
+          [0.2, 5.5, "Ici, le texte que tu liras en voix off, affiché en sous-titres."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7, "num": "01", "name": "exemple",
+        "hint": "une petite note en haut à droite",
+        "cmd": "echo \"bonjour le monde\"",
+        "out": ["bonjour le monde"],
+        "subs": [
+          [0.2, 3.2, "Première explication, pendant que la commande se tape."],
+          [3.6, 3.2, "Deuxième explication, pendant que le résultat s'affiche."]
+        ]
+      },
+      {
+        "type": "grid", "dur": 6, "chapter": "Récap",
+        "title": "Récapitulatif",
+        "items": [["élément 1", "détail"], ["élément 2", "détail"], ["élément 3", "détail"]],
+        "subs": [
+          [0.2, 5.5, "Un petit récapitulatif en grille, animé case par case."]
+        ]
+      },
+      {
+        "type": "title", "dur": 5, "chapter": "Outro",
+        "title": "À bientôt !",
+        "badge": "🚀 Abonne-toi",
+        "subs": [
+          [0.2, 4.5, "Merci d'avoir regardé, à bientôt pour un prochain épisode !"]
+        ]
+      }
+    ]
+  }
+  </script>
+  <script src="../assets/player.js"></script>
+</body>
+</html>

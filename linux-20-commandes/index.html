@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>20 commandes Linux — vidéo animée</title>
+  <link rel="stylesheet" href="../assets/core.css">
+  <link rel="stylesheet" href="../assets/player.css">
+  <link rel="stylesheet" href="../assets/themes.css">
+</head>
+<body class="theme-terminal">
+
+  <header class="site-head">
+    <a class="brand" href="../index.html"><span class="brand-dot">▶</span> vidéos<em>.animées</em></a>
+    <a class="back" href="../index.html">← Toutes les vidéos</a>
+  </header>
+
+  <main class="page">
+    <!-- ==================== LECTEUR ==================== -->
+    <div class="player" id="player">
+      <div class="stage" id="stage">
+        <div id="scenes"></div>
+
+        <div class="subs" id="subs" hidden></div>
+
+        <!-- écran de démarrage -->
+        <div class="overlay bigplay" id="bigplay">
+          <div class="bp-kicker" id="bp-kicker">vidéo animée · avec sous-titres</div>
+          <h1 class="bp-title" id="bp-title"></h1>
+          <p class="bp-meta" id="bp-meta"></p>
+          <button class="bp-btn" id="bp-btn" type="button" aria-label="Lancer la vidéo">
+            <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </button>
+          <p class="bp-hint">Espace : lecture/pause · ← → : naviguer · C : sous-titres · F : plein écran</p>
+        </div>
+
+        <!-- écran de fin -->
+        <div class="overlay endcard" id="endcard" hidden>
+          <div class="ec-title">Terminé ! 🎉</div>
+          <div class="ec-row">
+            <a class="btn" id="btn-replay" href="#">↺ Revoir</a>
+            <a class="btn primary" id="btn-next" href="#" hidden>→ <span>Vidéo suivante</span></a>
+          </div>
+        </div>
+
+        <!-- menu des chapitres -->
+        <div class="chapters" id="chapters" hidden>
+          <div class="chap-head">Chapitres</div>
+          <div id="chap-list"></div>
+        </div>
+      </div>
+
+      <!-- barre de contrôles -->
+      <div class="controls">
+        <button class="ctl" id="btn-play" title="Lecture / pause (Espace)"></button>
+        <div class="progress" id="progress">
+          <div class="marks" id="marks"></div>
+          <div class="fill" id="fill"></div>
+          <div class="handle" id="handle"></div>
+        </div>
+        <span class="time"><span id="t-now">0:00</span> / <span id="t-dur">0:00</span></span>
+        <button class="ctl" id="btn-chap" title="Chapitres">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4 6h2v2H4zm4 0h12v2H8zM4 11h2v2H4zm4 0h12v2H8zM4 16h2v2H4zm4 0h12v2H8z"/></svg>
+        </button>
+        <button class="ctl cc on" id="btn-cc" title="Sous-titres (C)">CC</button>
+        <select class="speed" id="speed" title="Vitesse de lecture">
+          <option value="0.75">0.75×</option>
+          <option value="1" selected>1×</option>
+          <option value="1.25">1.25×</option>
+          <option value="1.5">1.5×</option>
+          <option value="2">2×</option>
+        </select>
+        <button class="ctl" id="btn-full" title="Plein écran (F)">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4 4h6v2H6v4H4zm10 0h6v6h-2V6h-4zM4 14h2v4h4v2H4zm14 0h2v6h-6v-2h4z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- description sous le lecteur -->
+    <section class="desc">
+      <h2 id="desc-title"></h2>
+      <p id="desc-text"></p>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    Vidéo web animée · 100 % HTML / CSS · sous-titres intégrés pour la voix off.
+  </footer>
+
+  <!-- ============================================================
+       DONNÉES DE LA VIDÉO
+       - chaque scène a un type + une durée "dur" (secondes)
+       - "subs" = sous-titres [début (relatif à la scène), durée, texte]
+       ============================================================ -->
+  <script type="application/json" id="video-data">
+  {
+    "title": "20 commandes Linux à connaître",
+    "tagline": "épisode 1",
+    "kicker": "Épisode 1 · Tuto débutant",
+    "description": "Les 20 commandes Linux indispensables quand on débute dans le terminal : se déplacer, manipuler des fichiers, chercher, surveiller… Chaque commande est tapée à l'écran avec son résultat et expliquée en sous-titres.",
+    "next": { "href": "../html-css-bases/index.html", "label": "HTML & CSS : les bases" },
+    "scenes": [
+      {
+        "type": "title", "dur": 7, "chapter": "Intro",
+        "kicker": "Épisode 1 · Le terminal",
+        "title": "20 commandes Linux",
+        "sub": "les indispensables, expliquées simplement",
+        "badge": "⏱️ 3 minutes · aucun prérequis",
+        "subs": [
+          [0.2, 3.2, "Salut ! Dans cette vidéo, on découvre 20 commandes Linux"],
+          [3.5, 3.3, "indispensables quand on débute dans le terminal. C'est parti !"]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "01", "name": "pwd",
+        "hint": "Print Working Directory",
+        "cmd": "pwd",
+        "out": ["/home/dorin"],
+        "subs": [
+          [0.2, 3.4, "Numéro 1 : pwd. Elle affiche le dossier où tu te trouves actuellement."],
+          [3.9, 3.3, "C'est ton point de repère : pwd répond à la question « je suis où ? »."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "02", "name": "ls",
+        "hint": "List — lister",
+        "cmd": "ls -l",
+        "out": [
+          "total 12",
+          "drwxr-xr-x 2 dorin dorin 4096 Documents",
+          {"t": "-rw-r--r-- 1 dorin dorin  512 notes.txt", "c": "hl"}
+        ],
+        "subs": [
+          [0.2, 3.4, "Numéro 2 : ls. Elle liste les fichiers et dossiers du répertoire courant."],
+          [3.9, 3.3, "Avec l'option -l, on voit les permissions, le propriétaire et la taille."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "03", "name": "cd",
+        "hint": "Change Directory",
+        "cmd": "cd Documents",
+        "out": [{"t": "➜ tu es maintenant dans ~/Documents", "c": "dim"}],
+        "subs": [
+          [0.2, 3.4, "Numéro 3 : cd, pour « change directory » : se déplacer."],
+          [3.9, 3.3, "cd Documents entre dans le dossier, et cd .. remonte d'un niveau."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "04", "name": "mkdir",
+        "hint": "Make Directory",
+        "cmd": "mkdir projets",
+        "out": [{"t": "dossier « projets » créé ✔", "c": "ok"}],
+        "subs": [
+          [0.2, 3.4, "Numéro 4 : mkdir crée un nouveau dossier."],
+          [3.9, 3.3, "mkdir projets crée le dossier projets, là où tu te trouves."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "05", "name": "touch",
+        "hint": "créer un fichier vide",
+        "cmd": "touch notes.txt",
+        "out": [{"t": "fichier « notes.txt » créé ✔", "c": "ok"}],
+        "subs": [
+          [0.2, 3.4, "Numéro 5 : touch crée un fichier vide en une seconde."],
+          [3.9, 3.3, "Pratique pour démarrer un fichier sans ouvrir d'éditeur."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "06", "name": "cp",
+        "hint": "Copy — copier",
+        "cmd": "cp notes.txt sauvegarde.txt",
+        "out": [{"t": "notes.txt → sauvegarde.txt ✔", "c": "ok"}],
+        "subs": [
+          [0.2, 3.4, "Numéro 6 : cp copie des fichiers ou des dossiers."],
+          [3.9, 3.3, "Avec l'option -r, on copie un dossier entier, récursivement."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "07", "name": "mv",
+        "hint": "Move — déplacer",
+        "cmd": "mv sauvegarde.txt projets/",
+        "out": [{"t": "fichier déplacé vers projets/ ✔", "c": "ok"}],
+        "subs": [
+          [0.2, 3.4, "Numéro 7 : mv déplace des fichiers d'un dossier à l'autre."],
+          [3.9, 3.3, "mv sert aussi à renommer : mv ancien.txt nouveau.txt."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "08", "name": "rm",
+        "hint": "Remove — supprimer",
+        "cmd": "rm vieux-fichier.txt",
+        "out": [{"t": "fichier supprimé ✗", "c": "dim"}],
+        "warn": "Suppression définitive : pas de corbeille dans le terminal !",
+        "warnAt": 4.4,
+        "subs": [
+          [0.2, 3.4, "Numéro 8 : rm supprime des fichiers ou des dossiers."],
+          [3.9, 3.3, "Attention : c'est définitif, il n'y a pas de corbeille !"]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "09", "name": "cat",
+        "hint": "Concatenate — afficher",
+        "cmd": "cat notes.txt",
+        "out": ["Bonjour ! Ceci est mon fichier de notes.", "Deuxième ligne du fichier."],
+        "subs": [
+          [0.2, 3.4, "Numéro 9 : cat affiche le contenu d'un fichier, directement."],
+          [3.9, 3.3, "Astuce : cat fichier1 fichier2 affiche les deux à la suite."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "10", "name": "tail",
+        "hint": "la fin d'un fichier",
+        "cmd": "tail -n 3 app.log",
+        "out": [
+          "[10:02] connexion réussie",
+          "[10:05] sauvegarde terminée",
+          {"t": "[10:09] aucune erreur détectée", "c": "ok"}
+        ],
+        "subs": [
+          [0.2, 3.4, "Numéro 10 : tail affiche la fin d'un fichier, parfait pour les logs."],
+          [3.9, 3.3, "Avec tail -f, l'affichage se met à jour en temps réel."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "11", "name": "grep",
+        "hint": "chercher un texte",
+        "cmd": "grep \"erreur\" app.log",
+        "out": [{"t": "[09:47] erreur de connexion au serveur", "c": "hl"}],
+        "subs": [
+          [0.2, 3.4, "Numéro 11 : grep cherche un mot dans un fichier ou une sortie."],
+          [3.9, 3.3, "Ultra puissante combinée à d'autres commandes avec le pipe |."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "12", "name": "find",
+        "hint": "trouver des fichiers",
+        "cmd": "find . -name \"*.txt\"",
+        "out": ["./notes.txt", "./projets/idees.txt"],
+        "subs": [
+          [0.2, 3.4, "Numéro 12 : find retrouve des fichiers par nom, taille, date…"],
+          [3.9, 3.3, "Le point signifie : chercher ici, dans le dossier courant."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "13", "name": "echo",
+        "hint": "afficher du texte",
+        "cmd": "echo \"Bonjour\" > hello.txt",
+        "out": [{"t": "texte écrit dans hello.txt ✔", "c": "ok"}],
+        "subs": [
+          [0.2, 3.4, "Numéro 13 : echo affiche du texte dans le terminal."],
+          [3.9, 3.3, "Avec le chevron >, on redirige ce texte dans un fichier."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "14", "name": "man",
+        "hint": "Manual — le mode d'emploi",
+        "cmd": "man ls",
+        "out": [
+          {"t": "LS(1) — affiche la liste des fichiers", "c": "dim"},
+          {"t": "(appuie sur q pour quitter le manuel)", "c": "dim"}
+        ],
+        "subs": [
+          [0.2, 3.4, "Numéro 14 : man, c'est le mode d'emploi de n'importe quelle commande."],
+          [3.9, 3.3, "En cas de doute : man nom-de-la-commande, puis q pour quitter."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "15", "name": "sudo",
+        "hint": "SuperUser DO",
+        "cmd": "sudo apt update",
+        "out": [{"t": "[sudo] Mot de passe de dorin :", "c": "dim"}],
+        "warn": "sudo donne tous les droits : à utiliser avec prudence",
+        "warnAt": 4.4,
+        "subs": [
+          [0.2, 3.4, "Numéro 15 : sudo exécute une commande en administrateur."],
+          [3.9, 3.3, "On te demande ton mot de passe, et la commande a tous les droits."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "16", "name": "chmod",
+        "hint": "Change Mode — permissions",
+        "cmd": "chmod +x script.sh",
+        "out": [{"t": "script.sh est maintenant exécutable ✔", "c": "ok"}],
+        "subs": [
+          [0.2, 3.4, "Numéro 16 : chmod modifie les permissions d'un fichier."],
+          [3.9, 3.3, "Ici, +x rend le script exécutable, pour pouvoir le lancer."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "17", "name": "df",
+        "hint": "Disk Free — espace disque",
+        "cmd": "df -h",
+        "out": [
+          {"t": "Sys. fichiers  Taille  Utilisé  Dispo  Use%", "c": "dim"},
+          {"t": "/dev/sda1         40G      18G    20G   48%", "c": "hl"}
+        ],
+        "subs": [
+          [0.2, 3.4, "Numéro 17 : df affiche l'espace disque libre de tes partitions."],
+          [3.9, 3.3, "L'option -h rend l'affichage lisible : en giga ou méga octets."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "18", "name": "du",
+        "hint": "Disk Usage — taille occupée",
+        "cmd": "du -sh projets",
+        "out": ["256M    projets"],
+        "subs": [
+          [0.2, 3.4, "Numéro 18 : du mesure la place prise par un dossier."],
+          [3.9, 3.3, "-s pour le total, -h pour un affichage lisible."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "19", "name": "ps",
+        "hint": "Processes — les processus",
+        "cmd": "ps aux | grep nginx",
+        "out": [{"t": "root  412  0.0  0.1  nginx: master process", "c": "hl"}],
+        "subs": [
+          [0.2, 3.4, "Numéro 19 : ps liste les programmes en cours d'exécution."],
+          [3.9, 3.3, "Le pipe | envoie le résultat vers grep pour filtrer."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 7.5, "num": "20", "name": "tar",
+        "hint": "archiver et compresser",
+        "cmd": "tar -czf backup.tar.gz projets/",
+        "out": [{"t": "archive backup.tar.gz créée ✔", "c": "ok"}],
+        "subs": [
+          [0.2, 3.4, "Numéro 20 : tar crée des archives compressées."],
+          [3.9, 3.3, "-czf pour compresser, -xzf pour extraire. Bravo, c'est fini !"]
+        ]
+      },
+      {
+        "type": "grid", "dur": 12, "chapter": "Récap",
+        "title": "Le récap des 20 commandes",
+        "items": [
+          ["pwd", "je suis où ?"], ["ls", "lister"], ["cd", "se déplacer"],
+          ["mkdir", "créer un dossier"], ["touch", "créer un fichier"], ["cp", "copier"],
+          ["mv", "déplacer / renommer"], ["rm", "supprimer ⚠"], ["cat", "afficher"],
+          ["tail", "fin d'un fichier"], ["grep", "chercher"], ["find", "trouver"],
+          ["echo", "afficher / écrire"], ["man", "l'aide"], ["sudo", "administrateur"],
+          ["chmod", "permissions"], ["df", "disque libre"], ["du", "taille occupée"],
+          ["ps", "processus"], ["tar", "archiver"]
+        ],
+        "subs": [
+          [0.2, 4, "Petit récap : garde cette liste sous la main,"],
+          [4.3, 4, "elle couvre 90 % de ce que tu feras dans un terminal."],
+          [8.5, 3.3, "Le secret, c'est la pratique : ouvre un terminal et essaie !"]
+        ]
+      },
+      {
+        "type": "title", "dur": 7, "chapter": "Outro",
+        "kicker": "Merci d'avoir regardé",
+        "title": "À toi de jouer !",
+        "sub": "prochain épisode : les permissions Linux en détail",
+        "badge": "🚀 Abonne-toi pour ne pas rater la suite",
+        "subs": [
+          [0.2, 3.2, "Voilà, tu connais maintenant 20 commandes essentielles."],
+          [3.5, 3.3, "Si cette vidéo t'a aidé, lâche un pouce bleu et abonne-toi. À bientôt !"]
+        ]
+      }
+    ]
+  }
+  </script>
+  <script src="../assets/player.js"></script>
+</body>
+</html>

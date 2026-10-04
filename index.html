@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vidéos web animées — épisodes</title>
+  <link rel="stylesheet" href="assets/core.css">
+</head>
+<body class="gallery">
+
+  <header class="site-head">
+    <a class="brand" href="index.html"><span class="brand-dot">▶</span> vidéos<em>.animées</em></a>
+    <a class="back" href="#creer">+ Créer une vidéo</a>
+  </header>
+
+  <main class="page">
+    <!-- ==================== HERO ==================== -->
+    <section class="hero">
+      <span class="hero-badge">Série pédagogique animée</span>
+      <h1>Des vidéos web animées,<br>avec <span>sous-titres</span> intégrés.</h1>
+      <p>
+        Chaque « vidéo » est une page web : tu lances la lecture, les scènes s'animent
+        (terminal qui tape les commandes, code qui s'écrit tout seul…) et les sous-titres
+        te donnent le texte exact à dire en voix off. 100 % HTML / CSS / JS, aucune dépendance.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-hero primary" href="linux-20-commandes/index.html">▶&nbsp; Regarder l'épisode 1</a>
+        <a class="btn-hero ghost" href="#creer">Créer ma propre vidéo ↓</a>
+      </div>
+    </section>
+
+    <!-- ==================== ÉPISODES ==================== -->
+    <section class="cards">
+
+      <a class="card" href="linux-20-commandes/index.html">
+        <div class="thumb th-term">
+          <div class="mini-term">
+            <div class="mt-bar"><i></i><i></i><i></i></div>
+            <div class="mt-body">
+              <div><span class="p">➜ ~</span> ls -l</div>
+              <div class="dim">drwxr-xr-x Documents</div>
+              <div class="dim">-rw-r--r-- notes.txt</div>
+              <div><span class="p">➜ ~</span> <span class="cursor"></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="ep">ÉPISODE 01</span><span class="dur">▶ 2:56</span></div>
+          <h3>20 commandes Linux</h3>
+          <p>Le terminal expliqué simplement : pwd, ls, cd, grep, chmod… chaque commande tapée à l'écran avec son résultat.</p>
+          <span class="tag">Thème terminal</span>
+        </div>
+      </a>
+
+      <a class="card" href="html-css-bases/index.html">
+        <div class="thumb th-edit">
+          <div class="mini-edit">
+            <div class="me-bar">style.css</div>
+            <div class="me-body">
+              <div class="ln a"></div>
+              <div class="ln b"></div>
+              <div class="ln c"></div>
+              <div class="ln d"></div>
+              <div class="ln b"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="ep">ÉPISODE 02</span><span class="dur">▶ 1:49</span></div>
+          <h3>HTML &amp; CSS : les bases</h3>
+          <p>Deux langages, deux rôles : la structure d'une page, une règle CSS, le box model et le flexbox.</p>
+          <span class="tag">Thème éditeur</span>
+        </div>
+      </a>
+
+      <div class="card locked" title="Copie le dossier 'modele' pour créer cet épisode !">
+        <div class="thumb th-lock">
+          <div class="lock-note">
+            <span class="big">🎬</span>
+            <span class="small">Épisode 03 — bientôt</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="ep">ÉPISODE 03</span><span class="dur">ton thème ici</span></div>
+          <h3>Ta prochaine vidéo</h3>
+          <p>Git, Docker, les permissions, le réseau… copie le dossier <b>modele</b> et c'est parti.</p>
+          <span class="tag">À créer</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== CRÉER UNE VIDÉO ==================== -->
+    <h2 class="section-title" id="creer">Créer une nouvelle vidéo en 3 étapes</h2>
+    <p class="section-sub">
+      Pas besoin de savoir coder : chaque vidéo n'est qu'un fichier de texte (JSON) qui décrit
+      les scènes et les sous-titres. Le lecteur fait le reste.
+    </p>
+    <section class="steps">
+      <div class="step">
+        <span class="n">1</span>
+        <h3>Copie le modèle</h3>
+        <p>Duplique le dossier <code>modele</code> et renomme-le, par exemple :
+        <code>xcopy /E /I modele git-bases</code> (PowerShell) ou
+        <code>cp -r modele git-bases</code> (Linux).</p>
+      </div>
+      <div class="step">
+        <span class="n">2</span>
+        <h3>Écris ton script</h3>
+        <p>Dans <code>index.html</code>, modifie le bloc JSON : une entrée par scène
+        (terminal, code, titre, grille…) et tes sous-titres <code>[début, durée, "texte"]</code>.
+        Tout est commenté dans le fichier.</p>
+      </div>
+      <div class="step">
+        <span class="n">3</span>
+        <h3>Ouvre et enregistre l'écran</h3>
+        <p>Double-clique sur <code>index.html</code>, lance la lecture, et capture l'écran
+        (OBS, Xbox Game Bar…) en lisant les sous-titres comme prompteur.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    Fait avec ❤️ · pages 100 % statiques, aucune dépendance, fonctionne même hors ligne.
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+/* ============================================================
+   themes.css — palettes des vidéos.
+   Chaque page vidéo met une classe sur <body> :
+     <body class="theme-terminal">  → style terminal vert
+     <body class="theme-editor">    → style éditeur de code bleu
+   Ajoute ton propre thème en copiant un bloc.
+   ============================================================ */
+
+/* ---------- THÈME 1 : TERMINAL (vert sur fond sombre) ---------- */
+body.theme-terminal {
+  --bg: #050b08;
+  --panel: rgba(46, 232, 137, .05);
+  --line: rgba(46, 232, 137, .18);
+  --text: #e8f6ee;
+  --muted: #7fa392;
+  --accent: #2ee889;
+  --accent2: #a3f7bf;
+  --accent-soft: rgba(46, 232, 137, .12);
+  --stage-a: #0a1a10;
+  --stage-b: #040a07;
+  --win: #0b1712;
+  --win-bar: #122319;
+  --term-out: #cfe8d8;
+  --warn: #ffc857;
+  --font-mono: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", ui-monospace, monospace;
+}
+
+/* ---------- THÈME 2 : ÉDITEUR DE CODE (bleu nuit) ---------- */
+body.theme-editor {
+  --bg: #0b1020;
+  --panel: rgba(125, 211, 252, .06);
+  --line: rgba(125, 211, 252, .2);
+  --text: #eef2ff;
+  --muted: #8b96b8;
+  --accent: #7dd3fc;
+  --accent2: #a78bfa;
+  --accent-soft: rgba(125, 211, 252, .12);
+  --stage-a: #101a3d;
+  --stage-b: #080c1d;
+  --win: #0f172e;
+  --win-bar: #16213f;
+  --term-out: #c7d2fe;
+  --warn: #fca5a5;
+  --font-mono: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", ui-monospace, monospace;
+}
+
+/* ---------- (exemple) THÈME 3 : ARDOISE CLAIRES ----------
+body.theme-light {
+  --bg: #f3f5f9;
+  --panel: #ffffff;
+  --line: rgba(15, 23, 42, .12);
+  --text: #0f172a;
+  --muted: #64748b;
+  --accent: #2563eb;
+  --accent2: #06b6d4;
+  --accent-soft: rgba(37, 99, 235, .1);
+  --stage-a: #e7ecf6;
+  --stage-b: #f8fafc;
+  --win: #ffffff;
+  --win-bar: #eef2f8;
+  --term-out: #334155;
+  --warn: #b45309;
+  --font-mono: Consolas, ui-monospace, monospace;
+}
+------------------------------------------------------------ */
