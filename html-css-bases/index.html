@@ -89,21 +89,37 @@
     "tagline": "épisode 2",
     "kicker": "Épisode 2 · Tuto débutant",
     "description": "Comprendre enfin le HTML et le CSS : à quoi sert chaque langage, la structure d'une page, l'anatomie d'une règle CSS, le box model et le flexbox. Le code se tape tout seul à l'écran, avec sous-titres.",
-    "next": { "href": "../linux-20-commandes/index.html", "label": "20 commandes Linux" },
+    "next": {
+      "href": "../linux-20-commandes/index.html",
+      "label": "20 commandes Linux"
+    },
     "scenes": [
       {
-        "type": "title", "dur": 7, "chapter": "Intro",
+        "type": "title",
+        "dur": 8.33,
+        "chapter": "Intro",
         "kicker": "Épisode 2 · Web",
         "title": "HTML & CSS : les bases",
         "sub": "ta première page web, expliquée simplement",
         "badge": "⏱️ 2 minutes · aucun prérequis",
         "subs": [
-          [0.2, 3.1, "Deuxième épisode ! Aujourd'hui, les bases du HTML et du CSS,"],
-          [3.4, 3.4, "les deux langages qui fabriquent toutes les pages web."]
-        ]
+          [
+            0.2,
+            3.96,
+            "Deuxième épisode ! Aujourd'hui, les bases du HTML et du CSS,"
+          ],
+          [
+            4.31,
+            3.32,
+            "les deux langages qui fabriquent toutes les pages web."
+          ]
+        ],
+        "audio": "audio/s01.mp3"
       },
       {
-        "type": "split", "dur": 13, "chapter": "Deux langages, deux rôles",
+        "type": "split",
+        "dur": 16.5,
+        "chapter": "Deux langages, deux rôles",
         "title": "Deux langages, deux rôles",
         "left": {
           "emoji": "🦴",
@@ -124,109 +140,630 @@
           ]
         },
         "subs": [
-          [0.2, 4.1, "Le HTML décrit la structure : c'est le squelette de la page."],
-          [4.5, 4, "Le CSS décrit l'apparence : couleurs, tailles, animations."],
-          [8.8, 4, "Du HTML sans CSS, c'est moche. Du CSS sans HTML, ça ne sert à rien !"]
-        ]
+          [
+            0.2,
+            7.98,
+            "Le HTML décrit la structure : c'est le squelette de la page."
+          ],
+          [
+            8.33,
+            7.47,
+            "Le CSS décrit l'apparence : couleurs, tailles, animations."
+          ]
+        ],
+        "audio": "audio/s02.mp3"
       },
       {
-        "type": "code", "dur": 16, "chapter": "Une page HTML complète",
+        "type": "code",
+        "dur": 17.63,
+        "chapter": "Une page HTML complète",
         "file": "index.html",
         "lines": [
-          { "parts": [["<!DOCTYPE html>", "kw"]] },
-          { "parts": [["<", "pun"], ["html", "tag"], [" lang", "attr"], ["=", "pun"], ["\"fr\"", "str"], [">", "pun"]] },
-          { "parts": [["  ", ""], ["<", "pun"], ["head", "tag"], [">", "pun"]] },
-          { "parts": [["    ", ""], ["<", "pun"], ["title", "tag"], [">", "pun"], ["Ma première page", "txt"], ["</", "pun"], ["title", "tag"], [">", "pun"]] },
-          { "parts": [["  ", ""], ["</", "pun"], ["head", "tag"], [">", "pun"]] },
-          { "parts": [["  ", ""], ["<", "pun"], ["body", "tag"], [">", "pun"]] },
-          { "parts": [["    ", ""], ["<", "pun"], ["h1", "tag"], [">", "pun"], ["Salut ! 👋", "txt"], ["</", "pun"], ["h1", "tag"], [">", "pun"]] },
-          { "parts": [["    ", ""], ["<", "pun"], ["p", "tag"], [">", "pun"], ["Bienvenue sur ma page.", "txt"], ["</", "pun"], ["p", "tag"], [">", "pun"]] },
-          { "parts": [["  ", ""], ["</", "pun"], ["body", "tag"], [">", "pun"]] },
-          { "parts": [["</", "pun"], ["html", "tag"], [">", "pun"]] }
+          {
+            "parts": [
+              [
+                "<!DOCTYPE html>",
+                "kw"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "<",
+                "pun"
+              ],
+              [
+                "html",
+                "tag"
+              ],
+              [
+                " lang",
+                "attr"
+              ],
+              [
+                "=",
+                "pun"
+              ],
+              [
+                "\"fr\"",
+                "str"
+              ],
+              [
+                ">",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "<",
+                "pun"
+              ],
+              [
+                "head",
+                "tag"
+              ],
+              [
+                ">",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "    ",
+                ""
+              ],
+              [
+                "<",
+                "pun"
+              ],
+              [
+                "title",
+                "tag"
+              ],
+              [
+                ">",
+                "pun"
+              ],
+              [
+                "Ma première page",
+                "txt"
+              ],
+              [
+                "</",
+                "pun"
+              ],
+              [
+                "title",
+                "tag"
+              ],
+              [
+                ">",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "</",
+                "pun"
+              ],
+              [
+                "head",
+                "tag"
+              ],
+              [
+                ">",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "<",
+                "pun"
+              ],
+              [
+                "body",
+                "tag"
+              ],
+              [
+                ">",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "    ",
+                ""
+              ],
+              [
+                "<",
+                "pun"
+              ],
+              [
+                "h1",
+                "tag"
+              ],
+              [
+                ">",
+                "pun"
+              ],
+              [
+                "Salut ! 👋",
+                "txt"
+              ],
+              [
+                "</",
+                "pun"
+              ],
+              [
+                "h1",
+                "tag"
+              ],
+              [
+                ">",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "    ",
+                ""
+              ],
+              [
+                "<",
+                "pun"
+              ],
+              [
+                "p",
+                "tag"
+              ],
+              [
+                ">",
+                "pun"
+              ],
+              [
+                "Bienvenue sur ma page.",
+                "txt"
+              ],
+              [
+                "</",
+                "pun"
+              ],
+              [
+                "p",
+                "tag"
+              ],
+              [
+                ">",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "</",
+                "pun"
+              ],
+              [
+                "body",
+                "tag"
+              ],
+              [
+                ">",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "</",
+                "pun"
+              ],
+              [
+                "html",
+                "tag"
+              ],
+              [
+                ">",
+                "pun"
+              ]
+            ]
+          }
         ],
         "subs": [
-          [0.2, 4.1, "Voici une page HTML complète. Il n'y a rien de plus."],
-          [4.5, 4, "Chaque élément est entouré de balises : h1 pour le titre, p pour le texte."],
-          [8.8, 4, "Le head contient les informations, le body contient ce qu'on affiche."]
-        ]
+          [
+            0.2,
+            6.96,
+            "Voici une page HTML complète. Il n'y a rien de plus."
+          ],
+          [
+            7.31,
+            9.62,
+            "Chaque élément est entouré de balises : h1 pour le titre, p pour le texte."
+          ]
+        ],
+        "audio": "audio/s03.mp3"
       },
       {
-        "type": "rule", "dur": 13, "chapter": "Anatomie d'une règle CSS",
-        "sel": "h1", "prop": "color", "val": "tomato",
+        "type": "rule",
+        "dur": 17.13,
+        "chapter": "Anatomie d'une règle CSS",
+        "sel": "h1",
+        "prop": "color",
+        "val": "tomato",
         "subs": [
-          [0.2, 4.1, "Une règle CSS, c'est trois choses : un sélecteur, une propriété, une valeur."],
-          [4.5, 4, "Le sélecteur choisit l'élément visé : ici, tous les titres h1."],
-          [8.8, 4, "La propriété dit quoi changer, la valeur dit comment. Ici : en rouge tomate."]
-        ]
+          [
+            0.2,
+            8.98,
+            "Une règle CSS, c'est trois choses : un sélecteur, une propriété, une valeur."
+          ],
+          [
+            9.33,
+            7.1,
+            "Le sélecteur choisit l'élément visé : ici, tous les titres h1."
+          ]
+        ],
+        "audio": "audio/s04.mp3"
       },
       {
-        "type": "code", "dur": 13, "chapter": "Exemple concret",
+        "type": "code",
+        "dur": 12.32,
+        "chapter": "Exemple concret",
         "file": "style.css",
         "lines": [
-          { "parts": [["h1", "sel"], [" {", "pun"]] },
-          { "parts": [["  ", ""], ["color", "prop"], [": ", "pun"], ["#22d3ee", "val"], [";", "pun"]] },
-          { "parts": [["  ", ""], ["font-size", "prop"], [": ", "pun"], ["42px", "val"], [";", "pun"]] },
-          { "parts": [["  ", ""], ["text-align", "prop"], [": ", "pun"], ["center", "val"], [";", "pun"]] },
-          { "parts": [["}", "pun"]] }
+          {
+            "parts": [
+              [
+                "h1",
+                "sel"
+              ],
+              [
+                " {",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "color",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "#22d3ee",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "font-size",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "42px",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "text-align",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "center",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "}",
+                "pun"
+              ]
+            ]
+          }
         ],
         "subs": [
-          [0.2, 4.1, "Un exemple concret : on stylise notre titre h1."],
-          [4.5, 4, "En trois lignes, il devient bleu, très grand, et centré."],
-          [8.8, 4, "C'est ça, le CSS : des petites règles qui s'empilent."]
-        ]
+          [
+            0.2,
+            5.27,
+            "Un exemple concret : on stylise notre titre h1."
+          ],
+          [
+            5.62,
+            6.01,
+            "En trois lignes, il devient bleu, très grand, et centré."
+          ]
+        ],
+        "audio": "audio/s05.mp3"
       },
       {
-        "type": "boxmodel", "dur": 13, "chapter": "Le box model",
+        "type": "boxmodel",
+        "dur": 14.6,
+        "chapter": "Le box model",
         "title": "Le modèle de boîte",
         "hint": "Chaque élément HTML est une boîte : contenu → padding → bordure → marge.",
         "subs": [
-          [0.2, 4.1, "Concept clé : chaque élément HTML est une boîte."],
-          [4.5, 4.4, "De l'intérieur vers l'extérieur : le contenu, le padding, la bordure, la marge."],
-          [9.2, 3.6, "Comprendre ça, c'est déjà 50 % du CSS maîtrisé !"]
-        ]
+          [
+            0.2,
+            5.24,
+            "Concept clé : chaque élément HTML est une boîte."
+          ],
+          [
+            5.59,
+            8.31,
+            "De l'intérieur vers l'extérieur : le contenu, le padding, la bordure, la marge."
+          ]
+        ],
+        "audio": "audio/s06.mp3"
       },
       {
-        "type": "code", "dur": 14, "chapter": "Le flexbox",
+        "type": "code",
+        "dur": 14.68,
+        "chapter": "Le flexbox",
         "file": "style.css",
         "lines": [
-          { "parts": [[".menu", "sel"], [" {", "pun"]] },
-          { "parts": [["  ", ""], ["display", "prop"], [": ", "pun"], ["flex", "val"], [";", "pun"]] },
-          { "parts": [["  ", ""], ["gap", "prop"], [": ", "pun"], ["16px", "val"], [";", "pun"]] },
-          { "parts": [["  ", ""], ["justify-content", "prop"], [": ", "pun"], ["center", "val"], [";", "pun"]] },
-          { "parts": [["}", "pun"]] }
+          {
+            "parts": [
+              [
+                ".menu",
+                "sel"
+              ],
+              [
+                " {",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "display",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "flex",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "gap",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "16px",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "justify-content",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "center",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "}",
+                "pun"
+              ]
+            ]
+          }
         ],
         "note": "→ les enfants du .menu s'alignent tout seuls, avec un espace de 16px",
         "subs": [
-          [0.2, 4.1, "Le flexbox permet d'aligner des éléments sans prise de tête."],
-          [4.5, 4.4, "display flex, et les enfants du conteneur s'alignent tout seuls."],
-          [9.2, 4.4, "gap gère l'espace entre eux, justify-content les centre."]
-        ]
+          [
+            0.2,
+            6.72,
+            "Le flexbox permet d'aligner des éléments sans prise de tête."
+          ],
+          [
+            7.07,
+            6.91,
+            "display flex, et les enfants du conteneur s'alignent tout seuls."
+          ]
+        ],
+        "audio": "audio/s07.mp3"
       },
       {
-        "type": "grid", "dur": 13, "chapter": "Récap",
+        "type": "grid",
+        "dur": 11.44,
+        "chapter": "Récap",
         "title": "L'essentiel à retenir",
         "items": [
-          ["<h1> à <h6>", "les titres"], ["<p>", "paragraphe"], ["<a href>", "lien"],
-          ["<img>", "image"], ["<ul> + <li>", "liste"], ["color", "couleur du texte"],
-          ["background", "fond"], ["padding", "espace intérieur"], ["margin", "espace extérieur"],
-          ["display: flex", "alignement"]
+          [
+            "<h1> à <h6>",
+            "les titres"
+          ],
+          [
+            "<p>",
+            "paragraphe"
+          ],
+          [
+            "<a href>",
+            "lien"
+          ],
+          [
+            "<img>",
+            "image"
+          ],
+          [
+            "<ul> + <li>",
+            "liste"
+          ],
+          [
+            "color",
+            "couleur du texte"
+          ],
+          [
+            "background",
+            "fond"
+          ],
+          [
+            "padding",
+            "espace intérieur"
+          ],
+          [
+            "margin",
+            "espace extérieur"
+          ],
+          [
+            "display: flex",
+            "alignement"
+          ]
         ],
         "subs": [
-          [0.2, 4.1, "Le récap : dix notions qui couvrent déjà énormément de situations."],
-          [4.5, 4.4, "Le meilleur exercice : modifier les valeurs et regarder ce qui change."],
-          [9.2, 3.6, "C'est comme ça qu'on apprend le plus vite."]
-        ]
+          [
+            0.2,
+            5.16,
+            "Le récap : dix notions qui couvrent déjà énormément de situations."
+          ],
+          [
+            5.51,
+            5.22,
+            "Le meilleur exercice : modifier les valeurs et regarder ce qui change."
+          ]
+        ],
+        "audio": "audio/s08.mp3"
       },
       {
-        "type": "title", "dur": 7, "chapter": "Outro",
+        "type": "title",
+        "dur": 8.41,
+        "chapter": "Outro",
         "kicker": "Merci d'avoir regardé",
         "title": "À toi de jouer !",
         "sub": "crée index.html + style.css et lance-toi",
         "badge": "📱 Prochain épisode : rendre ta page responsive",
         "subs": [
-          [0.2, 3.2, "Voilà, tu as les bases du HTML et du CSS."],
-          [3.5, 3.3, "Crée ta première page dès aujourd'hui. À bientôt pour l'épisode 3 !"]
-        ]
+          [
+            0.2,
+            2.91,
+            "Voilà, tu as les bases du HTML et du CSS."
+          ],
+          [
+            3.26,
+            4.44,
+            "Crée ta première page dès aujourd'hui. À bientôt pour l'épisode 3 !"
+          ]
+        ],
+        "audio": "audio/s09.mp3"
       }
     ]
   }

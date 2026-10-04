@@ -100,265 +100,701 @@
     "tagline": "épisode 1",
     "kicker": "Épisode 1 · Tuto débutant",
     "description": "Les 20 commandes Linux indispensables quand on débute dans le terminal : se déplacer, manipuler des fichiers, chercher, surveiller… Chaque commande est tapée à l'écran avec son résultat et expliquée en sous-titres.",
-    "next": { "href": "../html-css-bases/index.html", "label": "HTML & CSS : les bases" },
+    "next": {
+      "href": "../html-css-bases/index.html",
+      "label": "HTML & CSS : les bases"
+    },
     "scenes": [
       {
-        "type": "title", "dur": 7, "chapter": "Intro",
+        "type": "title",
+        "dur": 8.2,
+        "chapter": "Intro",
         "kicker": "Épisode 1 · Le terminal",
         "title": "20 commandes Linux",
         "sub": "les indispensables, expliquées simplement",
         "badge": "⏱️ 3 minutes · aucun prérequis",
         "subs": [
-          [0.2, 3.2, "Salut ! Dans cette vidéo, on découvre 20 commandes Linux"],
-          [3.5, 3.3, "indispensables quand on débute dans le terminal. C'est parti !"]
-        ]
+          [
+            0.2,
+            3.52,
+            "Salut ! Dans cette vidéo, on découvre 20 commandes Linux"
+          ],
+          [
+            3.87,
+            3.63,
+            "indispensables quand on débute dans le terminal. C'est parti !"
+          ]
+        ],
+        "audio": "audio/s01.mp3"
       },
       {
-        "type": "terminal", "dur": 7.5, "num": "01", "name": "pwd",
+        "type": "terminal",
+        "dur": 11.78,
+        "num": "01",
+        "name": "pwd",
         "hint": "Print Working Directory",
         "cmd": "pwd",
-        "out": ["/home/dorin"],
+        "out": [
+          "/home/dorin"
+        ],
         "subs": [
-          [0.2, 3.4, "Numéro 1 : pwd. Elle affiche le dossier où tu te trouves actuellement."],
-          [3.9, 3.3, "C'est ton point de repère : pwd répond à la question « je suis où ? »."]
-        ]
+          [
+            0.2,
+            5.49,
+            "Numéro 1 : pwd. Elle affiche le dossier où tu te trouves actuellement."
+          ],
+          [
+            5.84,
+            5.24,
+            "C'est ton point de repère : pwd répond à la question « je suis où ? »."
+          ]
+        ],
+        "audio": "audio/s02.mp3"
       },
       {
-        "type": "terminal", "dur": 7.5, "num": "02", "name": "ls",
+        "type": "terminal",
+        "dur": 11.15,
+        "num": "02",
+        "name": "ls",
         "hint": "List — lister",
         "cmd": "ls -l",
         "out": [
           "total 12",
           "drwxr-xr-x 2 dorin dorin 4096 Documents",
-          {"t": "-rw-r--r-- 1 dorin dorin  512 notes.txt", "c": "hl"}
+          {
+            "t": "-rw-r--r-- 1 dorin dorin  512 notes.txt",
+            "c": "hl"
+          }
         ],
         "subs": [
-          [0.2, 3.4, "Numéro 2 : ls. Elle liste les fichiers et dossiers du répertoire courant."],
-          [3.9, 3.3, "Avec l'option -l, on voit les permissions, le propriétaire et la taille."]
-        ]
+          [
+            0.2,
+            5.21,
+            "Numéro 2 : ls. Elle liste les fichiers et dossiers du répertoire courant."
+          ],
+          [
+            5.56,
+            4.89,
+            "Avec l'option -l, on voit les permissions, le propriétaire et la taille."
+          ]
+        ],
+        "audio": "audio/s03.mp3"
       },
       {
-        "type": "terminal", "dur": 7.5, "num": "03", "name": "cd",
+        "type": "terminal",
+        "dur": 12.17,
+        "num": "03",
+        "name": "cd",
         "hint": "Change Directory",
         "cmd": "cd Documents",
-        "out": [{"t": "➜ tu es maintenant dans ~/Documents", "c": "dim"}],
+        "out": [
+          {
+            "t": "➜ tu es maintenant dans ~/Documents",
+            "c": "dim"
+          }
+        ],
         "subs": [
-          [0.2, 3.4, "Numéro 3 : cd, pour « change directory » : se déplacer."],
-          [3.9, 3.3, "cd Documents entre dans le dossier, et cd .. remonte d'un niveau."]
-        ]
+          [
+            0.2,
+            5.22,
+            "Numéro 3 : cd, pour « change directory » : se déplacer."
+          ],
+          [
+            5.57,
+            5.9,
+            "cd Documents entre dans le dossier, et cd .. remonte d'un niveau."
+          ]
+        ],
+        "audio": "audio/s04.mp3"
       },
       {
-        "type": "terminal", "dur": 7.5, "num": "04", "name": "mkdir",
+        "type": "terminal",
+        "dur": 9.95,
+        "num": "04",
+        "name": "mkdir",
         "hint": "Make Directory",
         "cmd": "mkdir projets",
-        "out": [{"t": "dossier « projets » créé ✔", "c": "ok"}],
+        "out": [
+          {
+            "t": "dossier « projets » créé ✔",
+            "c": "ok"
+          }
+        ],
         "subs": [
-          [0.2, 3.4, "Numéro 4 : mkdir crée un nouveau dossier."],
-          [3.9, 3.3, "mkdir projets crée le dossier projets, là où tu te trouves."]
-        ]
+          [
+            0.2,
+            3.77,
+            "Numéro 4 : mkdir crée un nouveau dossier."
+          ],
+          [
+            4.12,
+            5.13,
+            "mkdir projets crée le dossier projets, là où tu te trouves."
+          ]
+        ],
+        "audio": "audio/s05.mp3"
       },
       {
-        "type": "terminal", "dur": 7.5, "num": "05", "name": "touch",
+        "type": "terminal",
+        "dur": 9.06,
+        "num": "05",
+        "name": "touch",
         "hint": "créer un fichier vide",
         "cmd": "touch notes.txt",
-        "out": [{"t": "fichier « notes.txt » créé ✔", "c": "ok"}],
+        "out": [
+          {
+            "t": "fichier « notes.txt » créé ✔",
+            "c": "ok"
+          }
+        ],
         "subs": [
-          [0.2, 3.4, "Numéro 5 : touch crée un fichier vide en une seconde."],
-          [3.9, 3.3, "Pratique pour démarrer un fichier sans ouvrir d'éditeur."]
-        ]
+          [
+            0.2,
+            4.02,
+            "Numéro 5 : touch crée un fichier vide en une seconde."
+          ],
+          [
+            4.37,
+            3.99,
+            "Pratique pour démarrer un fichier sans ouvrir d'éditeur."
+          ]
+        ],
+        "audio": "audio/s06.mp3"
       },
       {
-        "type": "terminal", "dur": 7.5, "num": "06", "name": "cp",
+        "type": "terminal",
+        "dur": 10.44,
+        "num": "06",
+        "name": "cp",
         "hint": "Copy — copier",
         "cmd": "cp notes.txt sauvegarde.txt",
-        "out": [{"t": "notes.txt → sauvegarde.txt ✔", "c": "ok"}],
+        "out": [
+          {
+            "t": "notes.txt → sauvegarde.txt ✔",
+            "c": "ok"
+          }
+        ],
         "subs": [
-          [0.2, 3.4, "Numéro 6 : cp copie des fichiers ou des dossiers."],
-          [3.9, 3.3, "Avec l'option -r, on copie un dossier entier, récursivement."]
-        ]
+          [
+            0.2,
+            4.35,
+            "Numéro 6 : cp copie des fichiers ou des dossiers."
+          ],
+          [
+            4.7,
+            5.05,
+            "Avec l'option -r, on copie un dossier entier, récursivement."
+          ]
+        ],
+        "audio": "audio/s07.mp3"
       },
       {
-        "type": "terminal", "dur": 7.5, "num": "07", "name": "mv",
+        "type": "terminal",
+        "dur": 11.51,
+        "num": "07",
+        "name": "mv",
         "hint": "Move — déplacer",
         "cmd": "mv sauvegarde.txt projets/",
-        "out": [{"t": "fichier déplacé vers projets/ ✔", "c": "ok"}],
+        "out": [
+          {
+            "t": "fichier déplacé vers projets/ ✔",
+            "c": "ok"
+          }
+        ],
         "subs": [
-          [0.2, 3.4, "Numéro 7 : mv déplace des fichiers d'un dossier à l'autre."],
-          [3.9, 3.3, "mv sert aussi à renommer : mv ancien.txt nouveau.txt."]
-        ]
+          [
+            0.2,
+            5.59,
+            "Numéro 7 : mv déplace des fichiers d'un dossier à l'autre."
+          ],
+          [
+            5.94,
+            4.87,
+            "mv sert aussi à renommer : mv ancien.txt nouveau.txt."
+          ]
+        ],
+        "audio": "audio/s08.mp3"
       },
       {
-        "type": "terminal", "dur": 7.5, "num": "08", "name": "rm",
+        "type": "terminal",
+        "dur": 8.46,
+        "num": "08",
+        "name": "rm",
         "hint": "Remove — supprimer",
         "cmd": "rm vieux-fichier.txt",
-        "out": [{"t": "fichier supprimé ✗", "c": "dim"}],
+        "out": [
+          {
+            "t": "fichier supprimé ✗",
+            "c": "dim"
+          }
+        ],
         "warn": "Suppression définitive : pas de corbeille dans le terminal !",
         "warnAt": 4.4,
         "subs": [
-          [0.2, 3.4, "Numéro 8 : rm supprime des fichiers ou des dossiers."],
-          [3.9, 3.3, "Attention : c'est définitif, il n'y a pas de corbeille !"]
-        ]
+          [
+            0.2,
+            3.69,
+            "Numéro 8 : rm supprime des fichiers ou des dossiers."
+          ],
+          [
+            4.04,
+            3.72,
+            "Attention : c'est définitif, il n'y a pas de corbeille !"
+          ]
+        ],
+        "audio": "audio/s09.mp3"
       },
       {
-        "type": "terminal", "dur": 7.5, "num": "09", "name": "cat",
+        "type": "terminal",
+        "dur": 11.02,
+        "num": "09",
+        "name": "cat",
         "hint": "Concatenate — afficher",
         "cmd": "cat notes.txt",
-        "out": ["Bonjour ! Ceci est mon fichier de notes.", "Deuxième ligne du fichier."],
+        "out": [
+          "Bonjour ! Ceci est mon fichier de notes.",
+          "Deuxième ligne du fichier."
+        ],
         "subs": [
-          [0.2, 3.4, "Numéro 9 : cat affiche le contenu d'un fichier, directement."],
-          [3.9, 3.3, "Astuce : cat fichier1 fichier2 affiche les deux à la suite."]
-        ]
+          [
+            0.2,
+            5.15,
+            "Numéro 9 : cat affiche le contenu d'un fichier, directement."
+          ],
+          [
+            5.5,
+            4.82,
+            "Astuce : cat fichier1 fichier2 affiche les deux à la suite."
+          ]
+        ],
+        "audio": "audio/s10.mp3"
       },
       {
-        "type": "terminal", "dur": 7.5, "num": "10", "name": "tail",
+        "type": "terminal",
+        "dur": 11.44,
+        "num": "10",
+        "name": "tail",
         "hint": "la fin d'un fichier",
         "cmd": "tail -n 3 app.log",
         "out": [
           "[10:02] connexion réussie",
           "[10:05] sauvegarde terminée",
-          {"t": "[10:09] aucune erreur détectée", "c": "ok"}
+          {
+            "t": "[10:09] aucune erreur détectée",
+            "c": "ok"
+          }
         ],
         "subs": [
-          [0.2, 3.4, "Numéro 10 : tail affiche la fin d'un fichier, parfait pour les logs."],
-          [3.9, 3.3, "Avec tail -f, l'affichage se met à jour en temps réel."]
-        ]
+          [
+            0.2,
+            5.92,
+            "Numéro 10 : tail affiche la fin d'un fichier, parfait pour les logs."
+          ],
+          [
+            6.27,
+            4.47,
+            "Avec tail -f, l'affichage se met à jour en temps réel."
+          ]
+        ],
+        "audio": "audio/s11.mp3"
       },
       {
-        "type": "terminal", "dur": 7.5, "num": "11", "name": "grep",
+        "type": "terminal",
+        "dur": 10.97,
+        "num": "11",
+        "name": "grep",
         "hint": "chercher un texte",
         "cmd": "grep \"erreur\" app.log",
-        "out": [{"t": "[09:47] erreur de connexion au serveur", "c": "hl"}],
+        "out": [
+          {
+            "t": "[09:47] erreur de connexion au serveur",
+            "c": "hl"
+          }
+        ],
         "subs": [
-          [0.2, 3.4, "Numéro 11 : grep cherche un mot dans un fichier ou une sortie."],
-          [3.9, 3.3, "Ultra puissante combinée à d'autres commandes avec le pipe |."]
-        ]
+          [
+            0.2,
+            5.12,
+            "Numéro 11 : grep cherche un mot dans un fichier ou une sortie."
+          ],
+          [
+            5.47,
+            4.79,
+            "Ultra puissante combinée à d'autres commandes avec le pipe |."
+          ]
+        ],
+        "audio": "audio/s12.mp3"
       },
       {
-        "type": "terminal", "dur": 7.5, "num": "12", "name": "find",
+        "type": "terminal",
+        "dur": 10.63,
+        "num": "12",
+        "name": "find",
         "hint": "trouver des fichiers",
         "cmd": "find . -name \"*.txt\"",
-        "out": ["./notes.txt", "./projets/idees.txt"],
+        "out": [
+          "./notes.txt",
+          "./projets/idees.txt"
+        ],
         "subs": [
-          [0.2, 3.4, "Numéro 12 : find retrouve des fichiers par nom, taille, date…"],
-          [3.9, 3.3, "Le point signifie : chercher ici, dans le dossier courant."]
-        ]
+          [
+            0.2,
+            5.03,
+            "Numéro 12 : find retrouve des fichiers par nom, taille, date…"
+          ],
+          [
+            5.38,
+            4.54,
+            "Le point signifie : chercher ici, dans le dossier courant."
+          ]
+        ],
+        "audio": "audio/s13.mp3"
       },
       {
-        "type": "terminal", "dur": 7.5, "num": "13", "name": "echo",
+        "type": "terminal",
+        "dur": 8.33,
+        "num": "13",
+        "name": "echo",
         "hint": "afficher du texte",
         "cmd": "echo \"Bonjour\" > hello.txt",
-        "out": [{"t": "texte écrit dans hello.txt ✔", "c": "ok"}],
+        "out": [
+          {
+            "t": "texte écrit dans hello.txt ✔",
+            "c": "ok"
+          }
+        ],
         "subs": [
-          [0.2, 3.4, "Numéro 13 : echo affiche du texte dans le terminal."],
-          [3.9, 3.3, "Avec le chevron >, on redirige ce texte dans un fichier."]
-        ]
+          [
+            0.2,
+            3.59,
+            "Numéro 13 : echo affiche du texte dans le terminal."
+          ],
+          [
+            3.94,
+            3.69,
+            "Avec le chevron >, on redirige ce texte dans un fichier."
+          ]
+        ],
+        "audio": "audio/s14.mp3"
       },
       {
-        "type": "terminal", "dur": 7.5, "num": "14", "name": "man",
+        "type": "terminal",
+        "dur": 10.29,
+        "num": "14",
+        "name": "man",
         "hint": "Manual — le mode d'emploi",
         "cmd": "man ls",
         "out": [
-          {"t": "LS(1) — affiche la liste des fichiers", "c": "dim"},
-          {"t": "(appuie sur q pour quitter le manuel)", "c": "dim"}
+          {
+            "t": "LS(1) — affiche la liste des fichiers",
+            "c": "dim"
+          },
+          {
+            "t": "(appuie sur q pour quitter le manuel)",
+            "c": "dim"
+          }
         ],
         "subs": [
-          [0.2, 3.4, "Numéro 14 : man, c'est le mode d'emploi de n'importe quelle commande."],
-          [3.9, 3.3, "En cas de doute : man nom-de-la-commande, puis q pour quitter."]
-        ]
+          [
+            0.2,
+            4.99,
+            "Numéro 14 : man, c'est le mode d'emploi de n'importe quelle commande."
+          ],
+          [
+            5.34,
+            4.25,
+            "En cas de doute : man nom-de-la-commande, puis q pour quitter."
+          ]
+        ],
+        "audio": "audio/s15.mp3"
       },
       {
-        "type": "terminal", "dur": 7.5, "num": "15", "name": "sudo",
+        "type": "terminal",
+        "dur": 9.48,
+        "num": "15",
+        "name": "sudo",
         "hint": "SuperUser DO",
         "cmd": "sudo apt update",
-        "out": [{"t": "[sudo] Mot de passe de dorin :", "c": "dim"}],
+        "out": [
+          {
+            "t": "[sudo] Mot de passe de dorin :",
+            "c": "dim"
+          }
+        ],
         "warn": "sudo donne tous les droits : à utiliser avec prudence",
         "warnAt": 4.4,
         "subs": [
-          [0.2, 3.4, "Numéro 15 : sudo exécute une commande en administrateur."],
-          [3.9, 3.3, "On te demande ton mot de passe, et la commande a tous les droits."]
-        ]
+          [
+            0.2,
+            4.02,
+            "Numéro 15 : sudo exécute une commande en administrateur."
+          ],
+          [
+            4.37,
+            4.4,
+            "On te demande ton mot de passe, et la commande a tous les droits."
+          ]
+        ],
+        "audio": "audio/s16.mp3"
       },
       {
-        "type": "terminal", "dur": 7.5, "num": "16", "name": "chmod",
+        "type": "terminal",
+        "dur": 9.87,
+        "num": "16",
+        "name": "chmod",
         "hint": "Change Mode — permissions",
         "cmd": "chmod +x script.sh",
-        "out": [{"t": "script.sh est maintenant exécutable ✔", "c": "ok"}],
+        "out": [
+          {
+            "t": "script.sh est maintenant exécutable ✔",
+            "c": "ok"
+          }
+        ],
         "subs": [
-          [0.2, 3.4, "Numéro 16 : chmod modifie les permissions d'un fichier."],
-          [3.9, 3.3, "Ici, +x rend le script exécutable, pour pouvoir le lancer."]
-        ]
+          [
+            0.2,
+            4.42,
+            "Numéro 16 : chmod modifie les permissions d'un fichier."
+          ],
+          [
+            4.77,
+            4.4,
+            "Ici, +x rend le script exécutable, pour pouvoir le lancer."
+          ]
+        ],
+        "audio": "audio/s17.mp3"
       },
       {
-        "type": "terminal", "dur": 7.5, "num": "17", "name": "df",
+        "type": "terminal",
+        "dur": 10.57,
+        "num": "17",
+        "name": "df",
         "hint": "Disk Free — espace disque",
         "cmd": "df -h",
         "out": [
-          {"t": "Sys. fichiers  Taille  Utilisé  Dispo  Use%", "c": "dim"},
-          {"t": "/dev/sda1         40G      18G    20G   48%", "c": "hl"}
+          {
+            "t": "Sys. fichiers  Taille  Utilisé  Dispo  Use%",
+            "c": "dim"
+          },
+          {
+            "t": "/dev/sda1         40G      18G    20G   48%",
+            "c": "hl"
+          }
         ],
         "subs": [
-          [0.2, 3.4, "Numéro 17 : df affiche l'espace disque libre de tes partitions."],
-          [3.9, 3.3, "L'option -h rend l'affichage lisible : en giga ou méga octets."]
-        ]
+          [
+            0.2,
+            4.93,
+            "Numéro 17 : df affiche l'espace disque libre de tes partitions."
+          ],
+          [
+            5.28,
+            4.6,
+            "L'option -h rend l'affichage lisible : en giga ou méga octets."
+          ]
+        ],
+        "audio": "audio/s18.mp3"
       },
       {
-        "type": "terminal", "dur": 7.5, "num": "18", "name": "du",
+        "type": "terminal",
+        "dur": 9.53,
+        "num": "18",
+        "name": "du",
         "hint": "Disk Usage — taille occupée",
         "cmd": "du -sh projets",
-        "out": ["256M    projets"],
-        "subs": [
-          [0.2, 3.4, "Numéro 18 : du mesure la place prise par un dossier."],
-          [3.9, 3.3, "-s pour le total, -h pour un affichage lisible."]
-        ]
-      },
-      {
-        "type": "terminal", "dur": 7.5, "num": "19", "name": "ps",
-        "hint": "Processes — les processus",
-        "cmd": "ps aux | grep nginx",
-        "out": [{"t": "root  412  0.0  0.1  nginx: master process", "c": "hl"}],
-        "subs": [
-          [0.2, 3.4, "Numéro 19 : ps liste les programmes en cours d'exécution."],
-          [3.9, 3.3, "Le pipe | envoie le résultat vers grep pour filtrer."]
-        ]
-      },
-      {
-        "type": "terminal", "dur": 7.5, "num": "20", "name": "tar",
-        "hint": "archiver et compresser",
-        "cmd": "tar -czf backup.tar.gz projets/",
-        "out": [{"t": "archive backup.tar.gz créée ✔", "c": "ok"}],
-        "subs": [
-          [0.2, 3.4, "Numéro 20 : tar crée des archives compressées."],
-          [3.9, 3.3, "-czf pour compresser, -xzf pour extraire. Bravo, c'est fini !"]
-        ]
-      },
-      {
-        "type": "grid", "dur": 12, "chapter": "Récap",
-        "title": "Le récap des 20 commandes",
-        "items": [
-          ["pwd", "je suis où ?"], ["ls", "lister"], ["cd", "se déplacer"],
-          ["mkdir", "créer un dossier"], ["touch", "créer un fichier"], ["cp", "copier"],
-          ["mv", "déplacer / renommer"], ["rm", "supprimer ⚠"], ["cat", "afficher"],
-          ["tail", "fin d'un fichier"], ["grep", "chercher"], ["find", "trouver"],
-          ["echo", "afficher / écrire"], ["man", "l'aide"], ["sudo", "administrateur"],
-          ["chmod", "permissions"], ["df", "disque libre"], ["du", "taille occupée"],
-          ["ps", "processus"], ["tar", "archiver"]
+        "out": [
+          "256M    projets"
         ],
         "subs": [
-          [0.2, 4, "Petit récap : garde cette liste sous la main,"],
-          [4.3, 4, "elle couvre 90 % de ce que tu feras dans un terminal."],
-          [8.5, 3.3, "Le secret, c'est la pratique : ouvre un terminal et essaie !"]
-        ]
+          [
+            0.2,
+            4.58,
+            "Numéro 18 : du mesure la place prise par un dossier."
+          ],
+          [
+            4.93,
+            3.9,
+            "-s pour le total, -h pour un affichage lisible."
+          ]
+        ],
+        "audio": "audio/s19.mp3"
       },
       {
-        "type": "title", "dur": 7, "chapter": "Outro",
+        "type": "terminal",
+        "dur": 9.27,
+        "num": "19",
+        "name": "ps",
+        "hint": "Processes — les processus",
+        "cmd": "ps aux | grep nginx",
+        "out": [
+          {
+            "t": "root  412  0.0  0.1  nginx: master process",
+            "c": "hl"
+          }
+        ],
+        "subs": [
+          [
+            0.2,
+            4.42,
+            "Numéro 19 : ps liste les programmes en cours d'exécution."
+          ],
+          [
+            4.77,
+            3.79,
+            "Le pipe | envoie le résultat vers grep pour filtrer."
+          ]
+        ],
+        "audio": "audio/s20.mp3"
+      },
+      {
+        "type": "terminal",
+        "dur": 10.5,
+        "num": "20",
+        "name": "tar",
+        "hint": "archiver et compresser",
+        "cmd": "tar -czf backup.tar.gz projets/",
+        "out": [
+          {
+            "t": "archive backup.tar.gz créée ✔",
+            "c": "ok"
+          }
+        ],
+        "subs": [
+          [
+            0.2,
+            4.18,
+            "Numéro 20 : tar crée des archives compressées."
+          ],
+          [
+            4.53,
+            5.26,
+            "-czf pour compresser, -xzf pour extraire. Bravo, c'est fini !"
+          ]
+        ],
+        "audio": "audio/s21.mp3"
+      },
+      {
+        "type": "grid",
+        "dur": 13.32,
+        "chapter": "Récap",
+        "title": "Le récap des 20 commandes",
+        "items": [
+          [
+            "pwd",
+            "je suis où ?"
+          ],
+          [
+            "ls",
+            "lister"
+          ],
+          [
+            "cd",
+            "se déplacer"
+          ],
+          [
+            "mkdir",
+            "créer un dossier"
+          ],
+          [
+            "touch",
+            "créer un fichier"
+          ],
+          [
+            "cp",
+            "copier"
+          ],
+          [
+            "mv",
+            "déplacer / renommer"
+          ],
+          [
+            "rm",
+            "supprimer ⚠"
+          ],
+          [
+            "cat",
+            "afficher"
+          ],
+          [
+            "tail",
+            "fin d'un fichier"
+          ],
+          [
+            "grep",
+            "chercher"
+          ],
+          [
+            "find",
+            "trouver"
+          ],
+          [
+            "echo",
+            "afficher / écrire"
+          ],
+          [
+            "man",
+            "l'aide"
+          ],
+          [
+            "sudo",
+            "administrateur"
+          ],
+          [
+            "chmod",
+            "permissions"
+          ],
+          [
+            "df",
+            "disque libre"
+          ],
+          [
+            "du",
+            "taille occupée"
+          ],
+          [
+            "ps",
+            "processus"
+          ],
+          [
+            "tar",
+            "archiver"
+          ]
+        ],
+        "subs": [
+          [
+            0.2,
+            5.76,
+            "Petit récap : garde cette liste sous la main,"
+          ],
+          [
+            6.11,
+            6.51,
+            "elle couvre 90 % de ce que tu feras dans un terminal."
+          ]
+        ],
+        "audio": "audio/s22.mp3"
+      },
+      {
+        "type": "title",
+        "dur": 9.29,
+        "chapter": "Outro",
         "kicker": "Merci d'avoir regardé",
         "title": "À toi de jouer !",
         "sub": "prochain épisode : les permissions Linux en détail",
         "badge": "🚀 Abonne-toi pour ne pas rater la suite",
         "subs": [
-          [0.2, 3.2, "Voilà, tu connais maintenant 20 commandes essentielles."],
-          [3.5, 3.3, "Si cette vidéo t'a aidé, lâche un pouce bleu et abonne-toi. À bientôt !"]
-        ]
+          [
+            0.2,
+            3.72,
+            "Voilà, tu connais maintenant 20 commandes essentielles."
+          ],
+          [
+            4.07,
+            4.52,
+            "Si cette vidéo t'a aidé, lâche un pouce bleu et abonne-toi. À bientôt !"
+          ]
+        ],
+        "audio": "audio/s23.mp3"
       }
     ]
   }

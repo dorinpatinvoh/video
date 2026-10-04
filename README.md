@@ -49,8 +49,8 @@ cliquable, écran de fin avec rediffusion.
 
 | # | Vidéo | Durée | Thème |
 |---|---|---|---|
-| 1 | **20 commandes Linux à connaître** | 2:56 | terminal vert |
-| 2 | **HTML & CSS : les bases** | 1:49 | éditeur de code |
+| 1 | **20 commandes Linux à connaître** | 3:57 | terminal vert |
+| 2 | **HTML & CSS : les bases** | 2:01 | éditeur de code |
 
 ## ➕ Créer une nouvelle vidéo
 
