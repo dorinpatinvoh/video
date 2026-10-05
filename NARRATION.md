@@ -97,16 +97,6 @@ l'animation.
 
 ---
 
-## ÉPISODE 5 — « Clip cinématique : Bénin »
-
-| Scène | Fichier | Texte à faire lire |
-|---|---|---|
-| Logo | s01.mp3 | Regarde bien : ce logo se dessine tout seul, plan par plan, comme dans After Effects. Sauf qu'ici, tout est du code. |
-| Clip | — | (pas de voix : laisse la musique porter le clip, calée sur 96 BPM) |
-| Outro | s02.mp3 | Chaque plan est calé sur le beat, avec son mouvement de caméra et sa transition. Remplace les images par tes photos, choisis une musique, et le montage suit. À toi ! |
-
----
-
 ## Conseils pour la génération externe
 
 - Voix : française, masculine ou feminine selon ton goût, ton « jeune / pédagogue ».
