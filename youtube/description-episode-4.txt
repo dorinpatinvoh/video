@@ -1,0 +1,28 @@
+EXERCICE PRATIQUE : crée ta CARTE DE PROFIL en HTML/CSS (code avec moi)
+
+Un exercice complet à faire chez toi, en même temps que la vidéo :
+structure HTML, feuille de style, carte centrée, avatar rond, bouton
+avec effet au survol… et les 3 erreurs classiques avec leurs fixes.
+
+📺 VIDÉO ANIMÉE : chaque scène est une page web (HTML/CSS), enregistrée
+avec les sous-titres en prompteur. Dépôt : github.com/dorinpatinvoh/video
+
+⏱️ CHAPITRES
+00:00 Intro
+00:10 01 · préparation
+00:23 La structure HTML
+00:44 Relier le CSS
+00:55 Le fond de page
+01:08 Styliser la carte
+01:19 L'avatar rond
+01:32 Le bouton + hover
+01:45 Erreur 1 : l'image
+01:56 Erreur 2 : CSS ignoré
+02:07 Erreur 3 : tout casse
+02:19 Défi final
+02:31 Outro
+
+🛠️ CE QU'IL TE FAUT : un dossier exo-carte, index.html, style.css,
+VS Code et un navigateur. C'est tout !
+
+#html #css #exercice #pratique #debutant #tuto #code

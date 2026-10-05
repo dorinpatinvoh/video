@@ -88,193 +88,1061 @@
     "tagline": "épisode 4 · exercice",
     "kicker": "Épisode 4 · Exercice pratique",
     "description": "Un exercice complet à faire chez toi, en même temps que la vidéo : créer une carte de profil en HTML/CSS. On tape chaque ligne ensemble, on voit le résultat en direct, et on passe en revue les 3 erreurs que tout le monde rencontre (image cassée, CSS ignoré, accolade oubliée).",
-    "next": { "href": "../html-css-bases/index.html", "label": "Revoir les bases (ép. 2)" },
+    "next": {
+      "href": "../html-css-bases/index.html",
+      "label": "Revoir les bases (ép. 2)"
+    },
     "scenes": [
       {
-        "type": "title", "dur": 7, "chapter": "Intro", "bg": "img/intro-bg.jpg",
+        "type": "title",
+        "dur": 10.23,
+        "chapter": "Intro",
+        "bg": "img/intro-bg.jpg",
         "kicker": "Épisode 4 · À faire chez toi",
         "title": "Exercice : ta carte de profil",
         "sub": "code avec moi, en même temps, de zéro",
         "badge": "💻 Ouvre ton éditeur, c'est parti",
         "subs": [
-          [0.2, 3.2, "Épisode 4, spécial exercice ! On construit ensemble une carte de profil,"],
-          [3.5, 3.3, "de zéro, chez toi, en même temps que moi."]
-        ]
+          [
+            0.2,
+            5.98,
+            "Épisode 4, spécial exercice ! On construit ensemble une carte de profil,"
+          ],
+          [
+            6.33,
+            3.2,
+            "de zéro, chez toi, en même temps que moi."
+          ]
+        ],
+        "audio": "audio/s01.mp3"
       },
       {
-        "type": "terminal", "dur": 12, "num": "01", "name": "préparation",
+        "type": "terminal",
+        "dur": 12.95,
+        "num": "01",
+        "name": "préparation",
         "hint": "ton espace de travail",
         "cmd": "mkdir exo-carte && cd exo-carte",
         "out": [
-          {"t": "touch index.html style.css", "c": "dim"},
-          {"t": "code .   → VS Code s'ouvre, navigateur à côté ✔", "c": "ok"}
+          {
+            "t": "touch index.html style.css",
+            "c": "dim"
+          },
+          {
+            "t": "code .   → VS Code s'ouvre, navigateur à côté ✔",
+            "c": "ok"
+          }
         ],
         "subs": [
-          [0.2, 4, "Crée un dossier exo-carte, avec deux fichiers : index.html et style.css."],
-          [4.4, 4, "Ouvre le dossier dans VS Code, et garde ton navigateur juste à côté."],
-          [8.6, 3, "Tu tapes tout en même temps que moi, sans copier-coller."]
-        ]
+          [
+            0.2,
+            6.25,
+            "Crée un dossier exo-carte, avec deux fichiers : index.html et style.css."
+          ],
+          [
+            6.6,
+            5.65,
+            "Ouvre le dossier dans VS Code, et garde ton navigateur juste à côté."
+          ]
+        ],
+        "audio": "audio/s02.mp3"
       },
       {
-        "type": "lab", "dur": 15, "step": 1, "file": "index.html", "chapter": "La structure HTML",
+        "type": "lab",
+        "dur": 21.36,
+        "step": 1,
+        "file": "index.html",
+        "chapter": "La structure HTML",
         "lines": [
-          { "parts": [["<div ", "pun"], ["class", "attr"], ["=", "pun"], ["\"carte\"", "str"], [">", "pun"]] },
-          { "parts": [["  ", ""], ["<img ", "pun"], ["src", "attr"], ["=", "pun"], ["\"avatar.png\"", "str"], [" alt", "attr"], ["=", "pun"], ["\"photo\"", "str"], [">", "pun"]] },
-          { "parts": [["  ", ""], ["<h2>", "tag"], ["Amélia", "txt"], ["</h2>", "tag"]] },
-          { "parts": [["  ", ""], ["<p>", "tag"], ["Développeuse web", "txt"], ["</p>", "tag"]] },
-          { "parts": [["  ", ""], ["<button>", "tag"], ["Me contacter", "txt"], ["</button>", "tag"]] },
-          { "parts": [["</div>", "pun"]] }
+          {
+            "parts": [
+              [
+                "<div ",
+                "pun"
+              ],
+              [
+                "class",
+                "attr"
+              ],
+              [
+                "=",
+                "pun"
+              ],
+              [
+                "\"carte\"",
+                "str"
+              ],
+              [
+                ">",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "<img ",
+                "pun"
+              ],
+              [
+                "src",
+                "attr"
+              ],
+              [
+                "=",
+                "pun"
+              ],
+              [
+                "\"avatar.png\"",
+                "str"
+              ],
+              [
+                " alt",
+                "attr"
+              ],
+              [
+                "=",
+                "pun"
+              ],
+              [
+                "\"photo\"",
+                "str"
+              ],
+              [
+                ">",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "<h2>",
+                "tag"
+              ],
+              [
+                "Amélia",
+                "txt"
+              ],
+              [
+                "</h2>",
+                "tag"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "<p>",
+                "tag"
+              ],
+              [
+                "Développeuse web",
+                "txt"
+              ],
+              [
+                "</p>",
+                "tag"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "<button>",
+                "tag"
+              ],
+              [
+                "Me contacter",
+                "txt"
+              ],
+              [
+                "</button>",
+                "tag"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "</div>",
+                "pun"
+              ]
+            ]
+          }
         ],
         "note": "résultat : brut et moche → normal, pas encore de CSS !",
         "subs": [
-          [0.2, 4.2, "Dans index.html, tape la structure : une div classe carte, une image,"],
-          [4.6, 4.2, "un titre, un paragraphe, et un bouton."],
-          [9, 4, "À droite, le résultat : c'est brut. Normal, il n'y a pas encore de CSS !"]
-        ]
+          [
+            0.2,
+            13.23,
+            "Dans index.html, tape la structure : une div classe carte, une image,"
+          ],
+          [
+            13.58,
+            7.08,
+            "un titre, un paragraphe, et un bouton."
+          ]
+        ],
+        "audio": "audio/s03.mp3"
       },
       {
-        "type": "lab", "dur": 13, "step": 1, "file": "index.html", "chapter": "Relier le CSS",
+        "type": "lab",
+        "dur": 10.63,
+        "step": 1,
+        "file": "index.html",
+        "chapter": "Relier le CSS",
         "lines": [
-          { "parts": [["<link ", "pun"], ["rel", "attr"], ["=", "pun"], ["\"stylesheet\"", "str"]] },
-          { "parts": [["      href", "attr"], ["=", "pun"], ["\"style.css\"", "str"], [">", "pun"]] }
+          {
+            "parts": [
+              [
+                "<link ",
+                "pun"
+              ],
+              [
+                "rel",
+                "attr"
+              ],
+              [
+                "=",
+                "pun"
+              ],
+              [
+                "\"stylesheet\"",
+                "str"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "      href",
+                "attr"
+              ],
+              [
+                "=",
+                "pun"
+              ],
+              [
+                "\"style.css\"",
+                "str"
+              ],
+              [
+                ">",
+                "pun"
+              ]
+            ]
+          }
         ],
         "note": "rien ne change encore ? normal : style.css est vide !",
         "subs": [
-          [0.2, 4.2, "Relie ta feuille de style avec la balise link, dans le head."],
-          [4.6, 4.2, "Rien ne change encore ? C'est normal : style.css est vide pour l'instant."],
-          [9, 3.5, "Mais sans cette ligne, aucun CSS ne pourra jamais s'appliquer."]
-        ]
+          [
+            0.2,
+            4.44,
+            "Relie ta feuille de style avec la balise link, dans le head."
+          ],
+          [
+            4.79,
+            5.13,
+            "Rien ne change encore ? C'est normal : style.css est vide pour l'instant."
+          ]
+        ],
+        "audio": "audio/s04.mp3"
       },
       {
-        "type": "lab", "dur": 15, "step": 2, "file": "style.css", "chapter": "Le fond de page",
+        "type": "lab",
+        "dur": 13.19,
+        "step": 2,
+        "file": "style.css",
+        "chapter": "Le fond de page",
         "lines": [
-          { "parts": [["body", "sel"], [" {", "pun"]] },
-          { "parts": [["  ", ""], ["background", "prop"], [": ", "pun"], ["linear-gradient(135deg, #7c5cff, #22d3ee)", "val"], [";", "pun"]] },
-          { "parts": [["  ", ""], ["font-family", "prop"], [": ", "pun"], ["system-ui", "val"], [";", "pun"]] },
-          { "parts": [["}", "pun"]] }
+          {
+            "parts": [
+              [
+                "body",
+                "sel"
+              ],
+              [
+                " {",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "background",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "linear-gradient(135deg, #7c5cff, #22d3ee)",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "font-family",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "system-ui",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "}",
+                "pun"
+              ]
+            ]
+          }
         ],
         "subs": [
-          [0.2, 4.2, "Premier CSS : un dégradé sur le body, et une police moderne."],
-          [4.6, 4.2, "Sauve avec Ctrl S… et regarde à droite :"],
-          [9, 4, "la page change de couleur en direct. Ça commence !"]
-        ]
+          [
+            0.2,
+            7.41,
+            "Premier CSS : un dégradé sur le body, et une police moderne."
+          ],
+          [
+            7.76,
+            4.72,
+            "Sauve avec Ctrl S… et regarde à droite :"
+          ]
+        ],
+        "audio": "audio/s05.mp3"
       },
       {
-        "type": "lab", "dur": 16, "step": 3, "file": "style.css", "chapter": "Styliser la carte",
+        "type": "lab",
+        "dur": 10.7,
+        "step": 3,
+        "file": "style.css",
+        "chapter": "Styliser la carte",
         "lines": [
-          { "parts": [[".carte", "sel"], [" {", "pun"]] },
-          { "parts": [["  ", ""], ["background", "prop"], [": ", "pun"], ["white", "val"], [";", "pun"]] },
-          { "parts": [["  ", ""], ["border-radius", "prop"], [": ", "pun"], ["20px", "val"], [";", "pun"]] },
-          { "parts": [["  ", ""], ["box-shadow", "prop"], [": ", "pun"], ["0 20px 40px rgba(0,0,0,.3)", "val"], [";", "pun"]] },
-          { "parts": [["  ", ""], ["padding", "prop"], [": ", "pun"], ["30px", "val"], [";", "pun"]] },
-          { "parts": [["  ", ""], ["width", "prop"], [": ", "pun"], ["300px", "val"], [";", "pun"]] },
-          { "parts": [["  ", ""], ["margin", "prop"], [": ", "pun"], ["80px auto", "val"], [";", "pun"]] },
-          { "parts": [["  ", ""], ["text-align", "prop"], [": ", "pun"], ["center", "val"], [";", "pun"]] },
-          { "parts": [["}", "pun"]] }
+          {
+            "parts": [
+              [
+                ".carte",
+                "sel"
+              ],
+              [
+                " {",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "background",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "white",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "border-radius",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "20px",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "box-shadow",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "0 20px 40px rgba(0,0,0,.3)",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "padding",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "30px",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "width",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "300px",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "margin",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "80px auto",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "text-align",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "center",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "}",
+                "pun"
+              ]
+            ]
+          }
         ],
         "subs": [
-          [0.2, 4.2, "Ensuite la carte : fond blanc, coins arrondis, une ombre portée,"],
-          [4.6, 4.2, "du padding, et margin auto pour la centrer."],
-          [9, 4.5, "Là, tu vois la carte prendre forme. C'est le box model en action !"]
-        ]
+          [
+            0.2,
+            5.9,
+            "Ensuite la carte : fond blanc, coins arrondis, une ombre portée,"
+          ],
+          [
+            6.25,
+            3.75,
+            "du padding, et margin auto pour la centrer."
+          ]
+        ],
+        "audio": "audio/s06.mp3"
       },
       {
-        "type": "lab", "dur": 14, "step": 4, "file": "style.css", "chapter": "L'avatar rond",
+        "type": "lab",
+        "dur": 13.26,
+        "step": 4,
+        "file": "style.css",
+        "chapter": "L'avatar rond",
         "lines": [
-          { "parts": [[".carte img", "sel"], [" {", "pun"]] },
-          { "parts": [["  ", ""], ["width", "prop"], [": ", "pun"], ["110px", "val"], [";", "pun"]] },
-          { "parts": [["  ", ""], ["border-radius", "prop"], [": ", "pun"], ["50%", "val"], [";", "pun"]] },
-          { "parts": [["  ", ""], ["border", "prop"], [": ", "pun"], ["4px solid #7c5cff", "val"], [";", "pun"]] },
-          { "parts": [["}", "pun"]] }
+          {
+            "parts": [
+              [
+                ".carte img",
+                "sel"
+              ],
+              [
+                " {",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "width",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "110px",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "border-radius",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "50%",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "border",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "4px solid #7c5cff",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "}",
+                "pun"
+              ]
+            ]
+          }
         ],
         "subs": [
-          [0.2, 4.2, "L'avatar : 110 pixels de large, et border-radius 50 %"],
-          [4.6, 4.2, "pour transformer le carré en rond, avec une bordure colorée."],
-          [9, 4, "C'est LA astuce à retenir pour toutes les photos de profil."]
-        ]
+          [
+            0.2,
+            5.85,
+            "L'avatar : 110 pixels de large, et border-radius 50 %"
+          ],
+          [
+            6.2,
+            6.36,
+            "pour transformer le carré en rond, avec une bordure colorée."
+          ]
+        ],
+        "audio": "audio/s07.mp3"
       },
       {
-        "type": "lab", "dur": 16, "step": 5, "file": "style.css", "chapter": "Le bouton + hover",
+        "type": "lab",
+        "dur": 12.95,
+        "step": 5,
+        "file": "style.css",
+        "chapter": "Le bouton + hover",
         "lines": [
-          { "parts": [[".carte button", "sel"], [" {", "pun"]] },
-          { "parts": [["  ", ""], ["background", "prop"], [": ", "pun"], ["#7c5cff", "val"], [";", "pun"]] },
-          { "parts": [["  ", ""], ["color", "prop"], [": ", "pun"], ["white", "val"], [";", "pun"]] },
-          { "parts": [["  ", ""], ["border", "prop"], [": ", "pun"], ["none", "val"], [";", "pun"]] },
-          { "parts": [["  ", ""], ["padding", "prop"], [": ", "pun"], ["10px 24px", "val"], [";", "pun"]] },
-          { "parts": [["  ", ""], ["border-radius", "prop"], [": ", "pun"], ["999px", "val"], [";", "pun"]] },
-          { "parts": [["  ", ""], ["cursor", "prop"], [": ", "pun"], ["pointer", "val"], [";", "pun"]] },
-          { "parts": [["}", "pun"]] },
-          { "parts": [[".carte button:hover", "sel"], [" {", "pun"]] },
-          { "parts": [["  ", ""], ["transform", "prop"], [": ", "pun"], ["scale(1.06)", "val"], [";", "pun"]] },
-          { "parts": [["}", "pun"]] }
+          {
+            "parts": [
+              [
+                ".carte button",
+                "sel"
+              ],
+              [
+                " {",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "background",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "#7c5cff",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "color",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "white",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "border",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "none",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "padding",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "10px 24px",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "border-radius",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "999px",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "cursor",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "pointer",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "}",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                ".carte button:hover",
+                "sel"
+              ],
+              [
+                " {",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "  ",
+                ""
+              ],
+              [
+                "transform",
+                "prop"
+              ],
+              [
+                ": ",
+                "pun"
+              ],
+              [
+                "scale(1.06)",
+                "val"
+              ],
+              [
+                ";",
+                "pun"
+              ]
+            ]
+          },
+          {
+            "parts": [
+              [
+                "}",
+                "pun"
+              ]
+            ]
+          }
         ],
         "subs": [
-          [0.2, 4.2, "Et le bouton : fond violet, texte blanc, coins arrondis, cursor pointer."],
-          [4.6, 4.2, "Bonus pro : un effet au survol avec transform scale."],
-          [9, 4.5, "Passe ta souris dessus… ta carte est terminée, elle est vivante !"]
-        ]
+          [
+            0.2,
+            7.04,
+            "Et le bouton : fond violet, texte blanc, coins arrondis, cursor pointer."
+          ],
+          [
+            7.39,
+            4.86,
+            "Bonus pro : un effet au survol avec transform scale."
+          ]
+        ],
+        "audio": "audio/s08.mp3"
       },
       {
-        "type": "error", "dur": 13, "chapter": "Erreur 1 : l'image",
+        "type": "error",
+        "dur": 10.89,
+        "chapter": "Erreur 1 : l'image",
         "title": "L'image ne s'affiche pas",
         "see": "Un cadre vide ou une icône d'image cassée à la place de l'avatar.",
         "why": "Le nom dans src ne correspond pas au fichier : Avatar.PNG n'est pas avatar.png, ou l'image est dans un autre dossier.",
         "fix": "Renomme le fichier exactement avatar.png, et pose-le à côté de index.html.",
         "subs": [
-          [0.2, 4.2, "Erreur classique numéro 1 : l'image ne s'affiche pas."],
-          [4.6, 4.2, "Presque toujours un nom de fichier différent : majuscule, extension…"],
-          [9, 3.8, "Vérifie la casse et l'orthographe au pixel près."]
-        ]
+          [
+            0.2,
+            4.43,
+            "Erreur classique numéro 1 : l'image ne s'affiche pas."
+          ],
+          [
+            4.78,
+            5.41,
+            "Presque toujours un nom de fichier différent : majuscule, extension…"
+          ]
+        ],
+        "audio": "audio/s09.mp3"
       },
       {
-        "type": "error", "dur": 13, "chapter": "Erreur 2 : CSS ignoré",
+        "type": "error",
+        "dur": 11.51,
+        "chapter": "Erreur 2 : CSS ignoré",
         "title": "Le CSS ne s'applique pas",
         "see": "Ta page reste toute blanche, comme si style.css n'existait pas.",
         "why": "Fichier non sauvegardé, ou balise link absente, ou href mal écrit.",
         "fix": "Ctrl + S dans VS Code, puis vérifie : link, rel stylesheet, href style.css, dans le head.",
         "subs": [
-          [0.2, 4.2, "Erreur numéro 2 : ton CSS ne s'applique pas du tout."],
-          [4.6, 4.2, "Deux réflexes : as-tu sauvegardé avec Ctrl S ?"],
-          [9, 3.8, "Et la balise link est-elle bien là, bien écrite, dans le head ?"]
-        ]
+          [
+            0.2,
+            5.68,
+            "Erreur numéro 2 : ton CSS ne s'applique pas du tout."
+          ],
+          [
+            6.03,
+            4.79,
+            "Deux réflexes : as-tu sauvegardé avec Ctrl S ?"
+          ]
+        ],
+        "audio": "audio/s10.mp3"
       },
       {
-        "type": "error", "dur": 13, "chapter": "Erreur 3 : tout casse",
+        "type": "error",
+        "dur": 11.65,
+        "chapter": "Erreur 3 : tout casse",
         "title": "Tout est cassé d'un coup",
         "see": "Depuis une ligne, plus rien ne s'affiche comme avant.",
         "why": "Une accolade fermante oubliée : tout le CSS qui suit est avalé par la règle ouverte.",
         "fix": "Compte les accolades de la règle, ou cherche la ligne surlignée en rouge dans VS Code.",
         "subs": [
-          [0.2, 4.2, "Erreur numéro 3 : tout casse d'un coup, sans raison apparente."],
-          [4.6, 4.2, "Souvent, c'est une accolade fermante oubliée."],
-          [9, 3.8, "VS Code te la montre en rouge : ferme la règle, et tout revient."]
-        ]
+          [
+            0.2,
+            6.27,
+            "Erreur numéro 3 : tout casse d'un coup, sans raison apparente."
+          ],
+          [
+            6.62,
+            4.33,
+            "Souvent, c'est une accolade fermante oubliée."
+          ]
+        ],
+        "audio": "audio/s11.mp3"
       },
       {
-        "type": "grid", "dur": 13, "chapter": "Défi final",
+        "type": "grid",
+        "dur": 12.43,
+        "chapter": "Défi final",
         "title": "À toi : 3 améliorations",
         "items": [
-          ["1. couleurs", "change le dégradé"], ["2. réseaux", "ajoute deux liens <a>"],
-          ["3. hover", "anime la carte au survol"], ["bonus", "dark mode avec @media"],
-          ["astuce", "F12 = inspecteur"], ["réflexe", "Ctrl + S toujours"]
+          [
+            "1. couleurs",
+            "change le dégradé"
+          ],
+          [
+            "2. réseaux",
+            "ajoute deux liens <a>"
+          ],
+          [
+            "3. hover",
+            "anime la carte au survol"
+          ],
+          [
+            "bonus",
+            "dark mode avec @media"
+          ],
+          [
+            "astuce",
+            "F12 = inspecteur"
+          ],
+          [
+            "réflexe",
+            "Ctrl + S toujours"
+          ]
         ],
         "subs": [
-          [0.2, 4.2, "À toi de jouer : une couleur de ton choix, deux liens réseaux sociaux,"],
-          [4.6, 4.2, "et une animation au survol de la carte."],
-          [9, 3.8, "Tu as tout ce qu'il faut. Ouvre ton éditeur, et cherche, casse, recommence !"]
-        ]
+          [
+            0.2,
+            7.44,
+            "À toi de jouer : une couleur de ton choix, deux liens réseaux sociaux,"
+          ],
+          [
+            7.79,
+            3.94,
+            "et une animation au survol de la carte."
+          ]
+        ],
+        "audio": "audio/s12.mp3"
       },
       {
-        "type": "title", "dur": 7, "chapter": "Outro", "bg": "img/intro-bg.jpg",
+        "type": "title",
+        "dur": 9.74,
+        "chapter": "Outro",
+        "bg": "img/intro-bg.jpg",
         "img": "../assets/img/robot.png",
         "kicker": "Bien joué !",
         "title": "Carte terminée ✔",
         "sub": "refais-la de mémoire demain, sans la vidéo",
         "badge": "🚀 Le vrai progrès, c'est la répétition",
         "subs": [
-          [0.2, 3.2, "Bravo si tu as suivi jusqu'ici ! Ta carte de profil est en ligne."],
-          [3.5, 3.3, "Demain, refais-la de mémoire, sans la vidéo. À bientôt !"]
-        ]
+          [
+            0.2,
+            4.79,
+            "Bravo si tu as suivi jusqu'ici ! Ta carte de profil est en ligne."
+          ],
+          [
+            5.14,
+            3.89,
+            "Demain, refais-la de mémoire, sans la vidéo. À bientôt !"
+          ]
+        ],
+        "audio": "audio/s13.mp3"
       }
     ]
   }

@@ -52,7 +52,7 @@ cliquable, écran de fin avec rediffusion.
 | 1 | **20 commandes Linux à connaître** | 3:57 | terminal vert |
 | 2 | **HTML & CSS : les bases** | 2:01 | éditeur de code |
 | 3 | **Travailler en équipe sur GitHub** | 2:05 | violet GitHub |
-| 4 | **Exercice : ta carte de profil HTML/CSS** | 4:00 | rose créatif |
+| 4 | **Exercice : ta carte de profil HTML/CSS** | 2:41 | rose créatif |
 
 ## ➕ Créer une nouvelle vidéo
 
