@@ -1,0 +1,27 @@
+TRAVAILLER EN ÉQUIPE SUR GITHUB : le flux complet (tuto débutant)
+
+Clone, branches, commits, push, pull request, code review, merge et
+gestion des conflits : le flux de travail utilisé par presque toutes
+les équipes, expliqué simplement en 3 minutes.
+
+📺 VIDÉO ANIMÉE : chaque scène est une page web (HTML/CSS), enregistrée
+avec les sous-titres en prompteur. Dépôt : github.com/dorinpatinvoh/video
+
+⏱️ CHAPITRES
+00:00 Intro
+00:09 Pourquoi des branches ?
+00:20 01 · clone
+00:30 02 · checkout -b
+00:40 03 · commit
+00:50 04 · push
+01:00 La pull request
+01:14 Le code review
+01:22 07 · merge
+01:33 Et les conflits ?
+01:42 Récap
+01:56 Outro
+
+🔁 LE FLUX : git clone → git checkout -b → git commit → git push
+→ pull request → code review → merge → et git pull chaque matin !
+
+#github #git #equipe #pullrequest #collaboration #tuto #code

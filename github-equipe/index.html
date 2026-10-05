@@ -88,21 +88,38 @@
     "tagline": "épisode 3",
     "kicker": "Épisode 3 · Git & GitHub",
     "description": "Le flux de travail en équipe sur GitHub, expliqué simplement : clone, branches, commits, push, pull request, code review, merge et gestion des conflits. Chaque commande est tapée à l'écran, avec sous-titres et voix off.",
-    "next": { "href": "../linux-20-commandes/index.html", "label": "Revoir l'épisode 1" },
+    "next": {
+      "href": "../linux-20-commandes/index.html",
+      "label": "Revoir l'épisode 1"
+    },
     "scenes": [
       {
-        "type": "title", "dur": 7, "chapter": "Intro", "bg": "img/intro-bg.jpg",
+        "type": "title",
+        "dur": 9.01,
+        "chapter": "Intro",
+        "bg": "img/intro-bg.jpg",
         "kicker": "Épisode 3 · Git & GitHub",
         "title": "Travailler en équipe sur GitHub",
         "sub": "le flux complet, expliqué simplement",
         "badge": "⏱️ 3 minutes · débutant bienvenu",
         "subs": [
-          [0.2, 3.2, "Épisode 3 ! Aujourd'hui, le vrai sujet : travailler en équipe sur GitHub,"],
-          [3.5, 3.3, "sans jamais écraser le travail des autres."]
-        ]
+          [
+            0.2,
+            5.18,
+            "Épisode 3 ! Aujourd'hui, le vrai sujet : travailler en équipe sur GitHub,"
+          ],
+          [
+            5.53,
+            2.77,
+            "sans jamais écraser le travail des autres."
+          ]
+        ],
+        "audio": "audio/s01.mp3"
       },
       {
-        "type": "split", "dur": 13, "chapter": "Pourquoi des branches ?",
+        "type": "split",
+        "dur": 11.88,
+        "chapter": "Pourquoi des branches ?",
         "title": "Coder à plusieurs : le problème",
         "left": {
           "emoji": "💥",
@@ -123,59 +140,133 @@
           ]
         },
         "subs": [
-          [0.2, 4.1, "Sans méthode, coder à plusieurs, c'est le chaos : fichiers écrasés, versions partout."],
-          [4.5, 4.2, "Avec GitHub, chacun travaille dans sa branche, et tout fusionne proprement."],
-          [9, 3.8, "Voici le flux en 7 étapes, celui utilisé par presque toutes les équipes."]
-        ]
+          [
+            0.2,
+            5.88,
+            "Sans méthode, coder à plusieurs, c'est le chaos : fichiers écrasés, versions partout."
+          ],
+          [
+            6.23,
+            4.95,
+            "Avec GitHub, chacun travaille dans sa branche, et tout fusionne proprement."
+          ]
+        ],
+        "audio": "audio/s02.mp3"
       },
       {
-        "type": "terminal", "dur": 10, "num": "01", "name": "clone",
+        "type": "terminal",
+        "dur": 9.48,
+        "num": "01",
+        "name": "clone",
         "hint": "récupère le dépôt sur ton PC",
         "cmd": "git clone https://github.com/equipe/projet.git",
         "out": [
           "Cloning into 'projet'...",
-          {"t": "✔ projet complet + historique, sur ton PC", "c": "ok"}
+          {
+            "t": "✔ projet complet + historique, sur ton PC",
+            "c": "ok"
+          }
         ],
         "subs": [
-          [0.2, 4.4, "Étape 1 : git clone. Ça télécharge tout le projet sur ton ordinateur,"],
-          [4.8, 4.6, "avec tout l'historique. Une seule fois, au début."]
-        ]
+          [
+            0.2,
+            5.06,
+            "Étape 1 : git clone. Ça télécharge tout le projet sur ton ordinateur,"
+          ],
+          [
+            5.41,
+            3.37,
+            "avec tout l'historique. Une seule fois, au début."
+          ]
+        ],
+        "audio": "audio/s03.mp3"
       },
       {
-        "type": "terminal", "dur": 10, "num": "02", "name": "checkout -b",
+        "type": "terminal",
+        "dur": 9.82,
+        "num": "02",
+        "name": "checkout -b",
         "hint": "ta bulle de travail",
         "cmd": "git checkout -b amelie/login",
-        "out": [{"t": "Switched to a new branch 'amelie/login'", "c": "hl"}],
+        "out": [
+          {
+            "t": "Switched to a new branch 'amelie/login'",
+            "c": "hl"
+          }
+        ],
         "subs": [
-          [0.2, 4.4, "Étape 2 : crée ta branche avec git checkout moins b."],
-          [4.8, 4.6, "Une branche, c'est ta bulle : tu peux tout casser sans rien abîmer."]
-        ]
+          [
+            0.2,
+            3.95,
+            "Étape 2 : crée ta branche avec git checkout moins b."
+          ],
+          [
+            4.3,
+            4.81,
+            "Une branche, c'est ta bulle : tu peux tout casser sans rien abîmer."
+          ]
+        ],
+        "audio": "audio/s04.mp3"
       },
       {
-        "type": "terminal", "dur": 10, "num": "03", "name": "commit",
+        "type": "terminal",
+        "dur": 10.23,
+        "num": "03",
+        "name": "commit",
         "hint": "une photo de ton travail",
         "cmd": "git commit -am \"ajoute la page login\"",
         "out": [
           "[amelie/login 3f2a1c9] ajoute la page login",
-          {"t": "1 file changed, 42 insertions(+)", "c": "dim"}
+          {
+            "t": "1 file changed, 42 insertions(+)",
+            "c": "dim"
+          }
         ],
         "subs": [
-          [0.2, 4.4, "Étape 3 : commit. Chaque commit est une photo de ton travail,"],
-          [4.8, 4.6, "avec un petit message qui explique ce que tu as fait."]
-        ]
+          [
+            0.2,
+            5.04,
+            "Étape 3 : commit. Chaque commit est une photo de ton travail,"
+          ],
+          [
+            5.39,
+            4.14,
+            "avec un petit message qui explique ce que tu as fait."
+          ]
+        ],
+        "audio": "audio/s05.mp3"
       },
       {
-        "type": "terminal", "dur": 10, "num": "04", "name": "push",
+        "type": "terminal",
+        "dur": 10.5,
+        "num": "04",
+        "name": "push",
         "hint": "envoie ta branche en ligne",
         "cmd": "git push origin amelie/login",
-        "out": [{"t": "✔ branche en ligne, visible par toute l'équipe", "c": "ok"}],
+        "out": [
+          {
+            "t": "✔ branche en ligne, visible par toute l'équipe",
+            "c": "ok"
+          }
+        ],
         "subs": [
-          [0.2, 4.4, "Étape 4 : push. Ta branche part sur GitHub, en sécurité,"],
-          [4.8, 4.6, "visible par toute l'équipe. Ton PC peut brûler, rien n'est perdu."]
-        ]
+          [
+            0.2,
+            4.49,
+            "Étape 4 : push. Ta branche part sur GitHub, en sécurité,"
+          ],
+          [
+            4.84,
+            4.95,
+            "visible par toute l'équipe. Ton PC peut brûler, rien n'est perdu."
+          ]
+        ],
+        "audio": "audio/s06.mp3"
       },
       {
-        "type": "split", "dur": 13, "chapter": "La pull request",
+        "type": "split",
+        "dur": 13.26,
+        "chapter": "La pull request",
         "title": "Étape 5 : la pull request",
         "left": {
           "emoji": "📬",
@@ -196,13 +287,23 @@
           ]
         },
         "subs": [
-          [0.2, 4.1, "Étape 5 : la pull request, ou PR. C'est ta demande officielle :"],
-          [4.5, 4.2, "« venez voir mon travail, et fusionnez-le ». Tout se passe sur GitHub,"],
-          [8.9, 3.9, "dans le navigateur : on voit les différences, on discute, on valide."]
-        ]
+          [
+            0.2,
+            5.91,
+            "Étape 5 : la pull request, ou PR. C'est ta demande officielle :"
+          ],
+          [
+            6.26,
+            6.31,
+            "« venez voir mon travail, et fusionnez-le ». Tout se passe sur GitHub,"
+          ]
+        ],
+        "audio": "audio/s07.mp3"
       },
       {
-        "type": "split", "dur": 13, "chapter": "Le code review",
+        "type": "split",
+        "dur": 8.8,
+        "chapter": "Le code review",
         "title": "Étape 6 : le code review",
         "left": {
           "emoji": "🧐",
@@ -223,26 +324,51 @@
           ]
         },
         "subs": [
-          [0.2, 4.1, "Étape 6 : le code review. Un collègue lit ton code, commente, propose."],
-          [4.5, 4.2, "Tu améliores, il approuve. Ce n'est pas une critique de toi :"],
-          [8.9, 3.9, "c'est comme ça que toute l'équipe progresse, et que le code reste propre."]
-        ]
+          [
+            0.2,
+            4.27,
+            "Étape 6 : le code review. Un collègue lit ton code, commente, propose."
+          ],
+          [
+            4.62,
+            3.48,
+            "Tu améliores, il approuve. Ce n'est pas une critique de toi :"
+          ]
+        ],
+        "audio": "audio/s08.mp3"
       },
       {
-        "type": "terminal", "dur": 10, "num": "07", "name": "merge",
+        "type": "terminal",
+        "dur": 10.81,
+        "num": "07",
+        "name": "merge",
         "hint": "sur GitHub : un bouton vert",
         "cmd": "git merge amelie/login",
         "out": [
           "Merge made by the 'ort' strategy.",
-          {"t": "✔ le travail rejoint la branche main", "c": "ok"}
+          {
+            "t": "✔ le travail rejoint la branche main",
+            "c": "ok"
+          }
         ],
         "subs": [
-          [0.2, 4.4, "Étape 7 : merge. Le travail validé rejoint la branche principale."],
-          [4.8, 4.6, "Dans le terminal, ou d'un clic sur le bouton vert de GitHub."]
-        ]
+          [
+            0.2,
+            5.2,
+            "Étape 7 : merge. Le travail validé rejoint la branche principale."
+          ],
+          [
+            5.55,
+            4.56,
+            "Dans le terminal, ou d'un clic sur le bouton vert de GitHub."
+          ]
+        ],
+        "audio": "audio/s09.mp3"
       },
       {
-        "type": "split", "dur": 13, "chapter": "Et les conflits ?",
+        "type": "split",
+        "dur": 8.98,
+        "chapter": "Et les conflits ?",
         "title": "Un conflit ? Pas de panique",
         "left": {
           "emoji": "⚡",
@@ -263,37 +389,95 @@
           ]
         },
         "subs": [
-          [0.2, 4.1, "Et si deux personnes modifient la même ligne ? C'est un conflit."],
-          [4.5, 4.2, "Git te montre les deux versions, tu choisis la bonne,"],
-          [8.9, 3.9, "tu commit, et c'est réglé. Ça arrive à tout le monde, même aux pros."]
-        ]
+          [
+            0.2,
+            4.47,
+            "Et si deux personnes modifient la même ligne ? C'est un conflit."
+          ],
+          [
+            4.82,
+            3.47,
+            "Git te montre les deux versions, tu choisis la bonne,"
+          ]
+        ],
+        "audio": "audio/s10.mp3"
       },
       {
-        "type": "grid", "dur": 12, "chapter": "Récap",
+        "type": "grid",
+        "dur": 14.18,
+        "chapter": "Récap",
         "title": "Le flux d'équipe, en un coup d'œil",
         "items": [
-          ["git clone", "récupère le projet"], ["git checkout -b", "ta branche"],
-          ["git commit", "photo du travail"], ["git push", "envoie en ligne"],
-          ["pull request", "propose ton travail"], ["code review", "relecture d'équipe"],
-          ["merge", "fusionne dans main"], ["git pull", "reste à jour chaque matin"]
+          [
+            "git clone",
+            "récupère le projet"
+          ],
+          [
+            "git checkout -b",
+            "ta branche"
+          ],
+          [
+            "git commit",
+            "photo du travail"
+          ],
+          [
+            "git push",
+            "envoie en ligne"
+          ],
+          [
+            "pull request",
+            "propose ton travail"
+          ],
+          [
+            "code review",
+            "relecture d'équipe"
+          ],
+          [
+            "merge",
+            "fusionne dans main"
+          ],
+          [
+            "git pull",
+            "reste à jour chaque matin"
+          ]
         ],
         "subs": [
-          [0.2, 4.1, "Le récap : clone, branche, commit, push, pull request, review, merge."],
-          [4.5, 4.2, "Et le réflexe à prendre : git pull chaque matin,"],
-          [8.9, 2.9, "pour toujours partir du travail le plus récent."]
-        ]
+          [
+            0.2,
+            7.87,
+            "Le récap : clone, branche, commit, push, pull request, review, merge."
+          ],
+          [
+            8.22,
+            5.26,
+            "Et le réflexe à prendre : git pull chaque matin,"
+          ]
+        ],
+        "audio": "audio/s11.mp3"
       },
       {
-        "type": "title", "dur": 7, "chapter": "Outro", "bg": "img/intro-bg.jpg",
+        "type": "title",
+        "dur": 8.14,
+        "chapter": "Outro",
+        "bg": "img/intro-bg.jpg",
         "img": "../assets/img/robot.png",
         "kicker": "Merci d'avoir regardé",
         "title": "À toi de jouer !",
         "sub": "lance-toi sur un vrai projet d'équipe dès cette semaine",
         "badge": "🚀 Abonne-toi pour la suite",
         "subs": [
-          [0.2, 3.2, "Voilà, tu sais maintenant travailler en équipe sur GitHub."],
-          [3.5, 3.3, "Le meilleur moyen d'apprendre : un vrai projet, à plusieurs. À bientôt !"]
-        ]
+          [
+            0.2,
+            3.29,
+            "Voilà, tu sais maintenant travailler en équipe sur GitHub."
+          ],
+          [
+            3.64,
+            3.81,
+            "Le meilleur moyen d'apprendre : un vrai projet, à plusieurs. À bientôt !"
+          ]
+        ],
+        "audio": "audio/s12.mp3"
       }
     ]
   }
