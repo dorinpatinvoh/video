@@ -1,0 +1,18 @@
+CLIP CINÉMATIQUE : BÉNIN (monté à 100 % par du code)
+
+Logo qui se dessine, 8 plans calés sur le beat, mouvements de caméra
+virtuels, transitions whip-pan et zoom, typo cinétique, grain et
+vignette cinéma. Remplace les images par tes photos : le montage suit.
+
+📺 VIDÉO ANIMÉE : chaque scène est une page web (HTML/CSS), enregistrée
+avec les sous-titres en prompteur. Dépôt : github.com/dorinpatinvoh/video
+
+⏱️ CHAPITRES
+00:00 Logo
+00:08 Le clip
+00:22 Outro
+
+🎛️ BPM DU MONTAGE : 96 — choisis une musique à 96 BPM dans la
+bibliothèque audio YouTube pour que tes cuts tombent sur le beat !
+
+#benin #clip #motiondesign #cinematique #travel #montage

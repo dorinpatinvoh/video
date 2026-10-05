@@ -91,7 +91,26 @@ body.theme-creative {
   --font-mono: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", ui-monospace, monospace;
 }
 
-/* ---------- (exemple) THÈME 5 : ARDOISE CLAIRE ----------
+/* ---------- THÈME 5 : CINÉMA (noir & or) ---------- */
+body.theme-cinema {
+  --bg: #0a0908;
+  --panel: rgba(251, 191, 36, .06);
+  --line: rgba(251, 191, 36, .22);
+  --text: #faf7f0;
+  --muted: #a89f8d;
+  --accent: #fbbf24;
+  --accent2: #f472b6;
+  --accent-soft: rgba(251, 191, 36, .12);
+  --stage-a: #171310;
+  --stage-b: #050403;
+  --win: #14110d;
+  --win-bar: #211c15;
+  --term-out: #e8e0d0;
+  --warn: #fb7185;
+  --font-mono: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", ui-monospace, monospace;
+}
+
+/* ---------- (exemple) THÈME 6 : ARDOISE CLAIRE ----------
 body.theme-light {
   --bg: #f3f5f9;
   --panel: #ffffff;

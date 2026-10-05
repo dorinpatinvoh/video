@@ -61,6 +61,7 @@ cliquable, écran de fin avec rediffusion.
 | 2 | **HTML & CSS : les bases** | 2:01 | éditeur de code |
 | 3 | **Travailler en équipe sur GitHub** | 2:05 | violet GitHub |
 | 4 | **Exercice : ta carte de profil HTML/CSS** | 2:41 | rose créatif |
+| 5 | **Clip cinématique : Bénin** | 0:30 | noir & or |
 
 ## ➕ Créer une nouvelle vidéo
 
@@ -136,6 +137,45 @@ JSON (`../assets/music.mp3`) en boucle, à volume réduit, sous la voix off.
   écran-titre) dans le JSON de la scène.
 - Les **descriptions YouTube prêtes à coller** (titre + chapitres minutés)
   sont dans le dossier `youtube/`.
+
+## 🎞️ Clips « niveau After Effects » (slideshow + logo)
+
+Deux nouveaux types de scènes font le travail de Remotion / FFmpeg,
+directement dans le navigateur (puis export via le bouton ⬇) :
+
+```json
+{ "type": "logo", "word": "ta marque", "tagline": "ton slogan", "dur": 6 }
+```
+→ logo **SVG qui se dessine** (stroke-dashoffset) + lettres en stagger.
+
+```json
+{ "type": "slideshow", "bpm": 96, "shots": [
+    { "img": "img/photo1.jpg", "beats": 4, "kb": "in",       "tr": "whip", "text": "TITRE" },
+    { "img": "img/photo2.jpg", "beats": 2, "kb": "in-left",  "tr": "cut"  },
+    { "img": "img/photo3.jpg", "beats": 2, "kb": "in-right", "tr": "zoom" },
+    { "img": "img/photo4.jpg", "beats": 4, "kb": "up",       "tr": "fade" }
+] }
+```
+- `bpm` : tempo du montage → **choisis une musique au même BPM**
+  (la bibliothèque audio YouTube affiche le BPM de chaque morceau)
+- `beats` : durée du plan en temps forts (varie 2 et 4 = dynamique, pas diaporama)
+- `kb` : mouvement de caméra virtuel (Ken Burns) : `in`, `in-left`, `in-right`, `up`
+- `tr` : transition vers le plan suivant : `cut`, `fade`, `whip` (whip-pan +
+  motion blur), `zoom` (zoom-through)
+- `text` : typo cinétique, lettre par lettre
+- Le tout avec grain de film, vignette et bandes cinéma.
+
+Voir `cinema-benin/index.html` pour l'exemple complet (épisode 5).
+
+### 🤝 Comment tu peux aider / personnaliser
+
+1. **Tes photos** : dépose-les dans `<dossier>/img/` et liste-les dans `shots`
+   (prends-les en paysage 16:9, assez grandes pour que le zoom reste net).
+2. **Ta musique** : un morceau de la bibliothèque audio YouTube, renommé
+   `assets/music.mp3`, avec `"bpm"` calé dessus.
+3. **Ton logo** : envoie-moi ton logo (ou décris-le) et je te le branche en
+   scène `logo` ; un SVG avec des `id` propres s'anime encore mieux.
+4. **Tes textes** : change `text`, `word`, `tagline`, les sous-titres.
 
 ## 🎥 Astuce pour transformer en vraie vidéo
 

@@ -191,6 +191,20 @@
     if (!raw) throw new Error('Bloc #video-data introuvable dans la page.');
     const data = JSON.parse(raw.textContent);
 
+    // slideshow : durées dérivées du BPM avant le cumul de la timeline
+    data.scenes.forEach(sc => {
+      if (sc.type === 'slideshow') {
+        const beat = 60 / (sc.bpm || 120);
+        let x = 0;
+        sc.__shots = (sc.shots || []).map(sh => {
+          const o = Object.assign({}, sh);
+          o.start = x; o.dur = (sh.beats || 2) * beat; x += o.dur; o.end = x;
+          return o;
+        });
+        sc.dur = Math.max(sc.dur || 0, +(x + 0.4).toFixed(2));
+      }
+    });
+
     // starts/ends cumulatifs + sous-titres aplatis en temps absolu
     let t = 0;
     data.scenes.forEach(sc => { sc.start = t; t += sc.dur; sc.end = t; });
@@ -320,6 +334,36 @@
         break;
       }
 
+      /* --- slideshow pro : images calées sur le beat, Ken Burns, transitions --- */
+      case 'slideshow': {
+        h = `<div class="ss">` +
+          sc.__shots.map((sh, i) => `
+            <div class="ss-shot" data-i="${i}">
+              <img src="${esc(sh.img)}" alt="">
+              ${sh.text ? `<div class="ss-text">${[...sh.text].map((c, j) =>
+                c === ' ' ? '<i></i>' : `<span data-at="${(sh.start + 0.3 + j * 0.055).toFixed(2)}">${esc(c)}</span>`).join('')}</div>` : ''}
+            </div>`).join('') +
+          `<div class="ss-bars"></div><div class="ss-vignette"></div><div class="ss-grain"></div>
+         </div>`;
+        break;
+      }
+
+      /* --- logo SVG qui se dessine + wordmark en stagger --- */
+      case 'logo': {
+        const word = sc.word || 'vidéos.animées';
+        h = `<div class="lg-wrap">
+               <svg class="lg-svg" viewBox="0 0 120 120" aria-hidden="true">
+                 <rect class="draw" data-win="0.1,1.1" x="12" y="12" width="96" height="96" rx="26" fill="none" stroke="var(--accent)" stroke-width="5"/>
+                 <path class="draw" data-win="0.6,1.6" d="M48 40 L84 60 L48 80 Z" fill="none" stroke="var(--text)" stroke-width="5" stroke-linejoin="round"/>
+                 <circle class="draw" data-win="1.0,2.4" cx="60" cy="60" r="55" fill="none" stroke="var(--accent2, var(--accent))" stroke-width="2" opacity=".55"/>
+               </svg>
+               <div class="lg-word">${[...word].map((c, i) =>
+                 c === ' ' ? '<i></i>' : `<span data-at="${(1.1 + i * 0.06).toFixed(2)}">${esc(c)}</span>`).join('')}</div>
+               ${sc.tagline ? `<div class="lg-tag" data-show="2.5">${esc(sc.tagline)}</div>` : ''}
+             </div>`;
+        break;
+      }
+
       /* --- erreur fréquente : symptôme / cause / fix --- */
       case 'error':
         h = `<h2 class="g-title err-title" data-show="0.15">⚠️ ${esc(sc.title || '')}</h2>
@@ -394,6 +438,18 @@
 
     el.innerHTML = h;
 
+    // logo : prépare le "tracé qui se dessine" (longueur de chaque path)
+    if (sc.type === 'logo') {
+      el.querySelectorAll('.draw').forEach(n => {
+        let len = 400;
+        try { len = n.getTotalLength(); } catch (e) { /* env. sans SVG complet */ }
+        n.__len = len;
+        n.style.strokeDasharray = len;
+        n.style.strokeDashoffset = len;
+        n.__win = (n.dataset.win || '0,1').split(',').map(parseFloat);
+      });
+    }
+
     // mémorise les tokens des lignes de code pour la frappe animée
     if (sc.type === 'code' || sc.type === 'lab') {
       let i = 0;
@@ -458,6 +514,85 @@
       n.classList.toggle('typing', nch > 0 && nch < n.__total);
       n.classList.toggle('done', nch >= n.__total && n.__total > 0);
     });
+
+    // scènes pilotées image par image (seek-proof)
+    if (sc.type === 'slideshow') ssUpdate(el, sc, local);
+    if (sc.type === 'logo') logoUpdate(el, sc, local);
+  }
+
+  /* ---------- easing "pro" ---------- */
+  const easeIO = p => (p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2);
+
+  /* ---------- mouvements de caméra virtuels (Ken Burns) ---------- */
+  const KB = {
+    'in':       { x0: 0,   y0: 0, s0: 1.05, x1: 0,   y1: 0,   s1: 1.22 },
+    'in-left':  { x0: -2.5, y0: 0, s0: 1.12, x1: 1.5, y1: 0,   s1: 1.2 },
+    'in-right': { x0: 2.5, y0: 0, s0: 1.12, x1: -1.5, y1: 0,  s1: 1.2 },
+    'up':       { x0: 0,   y0: 2, s0: 1.12, x1: 0,   y1: -1.5, s1: 1.2 },
+  };
+
+  function ssUpdate(el, sc, local) {
+    const shots = sc.__shots || [];
+    const T = 0.5; // durée des transitions
+    let k = shots.length - 1;
+    for (let i = 0; i < shots.length; i++) { if (local < shots[i].end) { k = i; break; } }
+    if (k !== el.__shot) {
+      if (el.__shot != null && S.started && S.playing) FX.whoosh();
+      el.__shot = k;
+    }
+    el.querySelectorAll('.ss-shot').forEach((n, i) => {
+      const sh = shots[i];
+      if (!sh) return;
+      const kb = KB[sh.kb] || KB['in'];
+      let op = 0, x = 0, y = 0, s = 1, blur = 0, vis = false;
+
+      if (i === k) {
+        // plan actif : mouvement de caméra + transition sortante
+        vis = true;
+        const p = easeIO(clamp((local - sh.start) / sh.dur, 0, 1));
+        x = kb.x0 + (kb.x1 - kb.x0) * p;
+        y = kb.y0 + (kb.y1 - kb.y0) * p;
+        s = kb.s0 + (kb.s1 - kb.s0) * p;
+        op = 1;
+        const nxt = shots[i + 1];
+        if (nxt && sh.tr && sh.tr !== 'cut' && local > sh.end - T) {
+          const q = easeIO(clamp((local - (sh.end - T)) / T, 0, 1));
+          if (sh.tr === 'fade') op = 1 - q;
+          else if (sh.tr === 'whip') { x -= 14 * q; blur = 10 * q; }
+          else if (sh.tr === 'zoom') { s += .4 * q; op = 1 - q; }
+        }
+      } else if (i === k + 1) {
+        // plan entrant pendant la transition du plan précédent
+        const prev = shots[k];
+        if (prev && prev.tr && prev.tr !== 'cut' && local >= prev.end - T) {
+          vis = true;
+          const q = easeIO(clamp((local - (prev.end - T)) / T, 0, 1));
+          x = kb.x0; y = kb.y0; s = kb.s0;
+          if (prev.tr === 'fade') { op = q; s = 1.08 - .03 * q; }
+          else if (prev.tr === 'whip') { x = 14 * (1 - q); blur = 10 * (1 - q); op = 1; }
+          else if (prev.tr === 'zoom') { s = .8 + .25 * q; op = q; }
+        }
+      }
+
+      n.style.opacity = op.toFixed(3);
+      n.style.visibility = vis ? 'visible' : 'hidden';
+      n.style.transform = `translate(${x.toFixed(2)}%, ${y.toFixed(2)}%) scale(${s.toFixed(3)})`;
+      n.style.filter = blur > 0.1 ? `blur(${blur.toFixed(1)}px)` : '';
+
+      // typo cinétique : lettres révélées une à une
+      n.querySelectorAll('.ss-text span').forEach(sp =>
+        sp.classList.toggle('in', local >= parseFloat(sp.dataset.at)));
+    });
+  }
+
+  function logoUpdate(el, sc, local) {
+    el.querySelectorAll('.draw').forEach(n => {
+      const [t0, t1] = n.__win;
+      const p = easeIO(clamp((local - t0) / (t1 - t0), 0, 1));
+      n.style.strokeDashoffset = (n.__len * (1 - p)).toFixed(1);
+    });
+    el.querySelectorAll('.lg-word span').forEach(sp =>
+      sp.classList.toggle('in', local >= parseFloat(sp.dataset.at)));
   }
 
   /* ============================================================
