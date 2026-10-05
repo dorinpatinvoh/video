@@ -72,7 +72,26 @@ body.theme-github {
   --font-mono: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", ui-monospace, monospace;
 }
 
-/* ---------- (exemple) THÈME 4 : ARDOISE CLAIRES ----------
+/* ---------- THÈME 4 : CRÉATIF (rose/violet, ambiance studio) ---------- */
+body.theme-creative {
+  --bg: #14090f;
+  --panel: rgba(244, 114, 182, .07);
+  --line: rgba(244, 114, 182, .24);
+  --text: #fdf2f8;
+  --muted: #b39aa8;
+  --accent: #f472b6;
+  --accent2: #a78bfa;
+  --accent-soft: rgba(244, 114, 182, .13);
+  --stage-a: #26101f;
+  --stage-b: #0f070c;
+  --win: #1c1017;
+  --win-bar: #2a1a23;
+  --term-out: #e9d5e1;
+  --warn: #fbbf24;
+  --font-mono: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", ui-monospace, monospace;
+}
+
+/* ---------- (exemple) THÈME 5 : ARDOISE CLAIRE ----------
 body.theme-light {
   --bg: #f3f5f9;
   --panel: #ffffff;

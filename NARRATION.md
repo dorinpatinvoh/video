@@ -77,6 +77,26 @@ l'animation.
 
 ---
 
+## ÉPISODE 4 — « Exercice : ta carte de profil HTML/CSS »
+
+| Scène | Fichier | Texte à faire lire |
+|---|---|---|
+| Intro | s01.mp3 | Épisode 4, spécial exercice ! On construit ensemble une carte de profil, de zéro, chez toi, en même temps que moi. |
+| Préparation | s02.mp3 | Crée un dossier exo-carte, avec deux fichiers : index.html et style.css. Ouvre le dossier dans VS Code, et garde ton navigateur juste à côté. |
+| Structure | s03.mp3 | Dans index.html, tape la structure : une div classe carte, une image, un titre, un paragraphe, et un bouton. À droite, le résultat : c'est brut. Normal, il n'y a pas encore de CSS ! |
+| Link CSS | s04.mp3 | Relie ta feuille de style avec la balise link, dans le head. Rien ne change encore ? C'est normal : style.css est vide pour l'instant. |
+| Fond | s05.mp3 | Premier CSS : un dégradé sur le body, et une police moderne. Sauve avec Ctrl S, et regarde à droite : la page change de couleur en direct. |
+| Carte | s06.mp3 | Ensuite la carte : fond blanc, coins arrondis, une ombre portée, du padding, et margin auto pour la centrer. Là, tu vois la carte prendre forme. |
+| Avatar | s07.mp3 | L'avatar : 110 pixels de large, et border-radius 50 % pour transformer le carré en rond, avec une bordure colorée. C'est LA astuce des photos de profil. |
+| Bouton | s08.mp3 | Et le bouton : fond violet, texte blanc, coins arrondis, cursor pointer. Bonus pro : un effet au survol avec transform scale. Ta carte est terminée, elle est vivante ! |
+| Erreur 1 | s09.mp3 | Erreur classique numéro 1 : l'image ne s'affiche pas. Presque toujours un nom de fichier différent : majuscule, extension. Vérifie la casse au pixel près. |
+| Erreur 2 | s10.mp3 | Erreur numéro 2 : ton CSS ne s'applique pas du tout. Deux réflexes : as-tu sauvegardé avec Ctrl S ? Et la balise link est-elle bien là, bien écrite, dans le head ? |
+| Erreur 3 | s11.mp3 | Erreur numéro 3 : tout casse d'un coup, sans raison apparente. Souvent, c'est une accolade fermante oubliée. VS Code te la montre en rouge : ferme la règle, et tout revient. |
+| Défi | s12.mp3 | À toi de jouer : une couleur de ton choix, deux liens réseaux sociaux, et une animation au survol de la carte. Tu as tout ce qu'il faut. |
+| Outro | s13.mp3 | Bravo si tu as suivi jusqu'ici ! Ta carte de profil est en ligne. Demain, refais-la de mémoire, sans la vidéo. À bientôt ! |
+
+---
+
 ## Conseils pour la génération externe
 
 - Voix : française, masculine ou feminine selon ton goût, ton « jeune / pédagogue ».

@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exercice : ta carte de profil HTML/CSS — vidéo animée</title>
+  <link rel="stylesheet" href="../assets/core.css">
+  <link rel="stylesheet" href="../assets/player.css">
+  <link rel="stylesheet" href="../assets/themes.css">
+</head>
+<body class="theme-creative">
+
+  <header class="site-head">
+    <a class="brand" href="../index.html"><span class="brand-dot">▶</span> vidéos<em>.animées</em></a>
+    <a class="back" href="../index.html">← Toutes les vidéos</a>
+  </header>
+
+  <main class="page">
+    <div class="player" id="player">
+      <div class="stage" id="stage">
+        <div id="scenes"></div>
+        <div class="subs" id="subs" hidden></div>
+
+        <div class="overlay bigplay" id="bigplay">
+          <div class="bp-kicker" id="bp-kicker">vidéo animée · avec sous-titres</div>
+          <h1 class="bp-title" id="bp-title"></h1>
+          <p class="bp-meta" id="bp-meta"></p>
+          <button class="bp-btn" id="bp-btn" type="button" aria-label="Lancer la vidéo">
+            <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </button>
+          <p class="bp-hint">Espace : lecture/pause · ← → : naviguer · C : sous-titres · S : son · F : plein écran</p>
+        </div>
+
+        <div class="overlay endcard" id="endcard" hidden>
+          <div class="ec-title">Terminé ! 🎉</div>
+          <div class="ec-row">
+            <a class="btn" id="btn-replay" href="#">↺ Revoir</a>
+            <a class="btn primary" id="btn-next" href="#" hidden>→ <span>Vidéo suivante</span></a>
+          </div>
+        </div>
+
+        <div class="chapters" id="chapters" hidden>
+          <div class="chap-head">Chapitres</div>
+          <div id="chap-list"></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="ctl" id="btn-play" title="Lecture / pause (Espace)"></button>
+        <div class="progress" id="progress">
+          <div class="marks" id="marks"></div>
+          <div class="fill" id="fill"></div>
+          <div class="handle" id="handle"></div>
+        </div>
+        <span class="time"><span id="t-now">0:00</span> / <span id="t-dur">0:00</span></span>
+        <button class="ctl" id="btn-chap" title="Chapitres">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4 6h2v2H4zm4 0h12v2H8zM4 11h2v2H4zm4 0h12v2H8zM4 16h2v2H4zm4 0h12v2H8z"/></svg>
+        </button>
+        <button class="ctl snd on" id="btn-snd" title="Son : voix off + effets (S)"></button>
+        <input class="vol" id="vol" type="range" min="0" max="1" step="0.05" value="0.9" title="Volume">
+        <button class="ctl cc on" id="btn-cc" title="Sous-titres (C)">CC</button>
+        <select class="speed" id="speed" title="Vitesse de lecture">
+          <option value="0.75">0.75×</option>
+          <option value="1" selected>1×</option>
+          <option value="1.25">1.25×</option>
+          <option value="1.5">1.5×</option>
+          <option value="2">2×</option>
+        </select>
+        <button class="ctl" id="btn-full" title="Plein écran (F)">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4 4h6v2H6v4H4zm10 0h6v6h-2V6h-4zM4 14h2v4h4v2H4zm14 0h2v6h-6v-2h4z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <section class="desc">
+      <h2 id="desc-title"></h2>
+      <p id="desc-text"></p>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    Vidéo web animée · 100 % HTML / CSS · sous-titres intégrés pour la voix off.
+  </footer>
+
+  <script type="application/json" id="video-data">
+  {
+    "title": "Exercice : ta carte de profil HTML/CSS",
+    "tagline": "épisode 4 · exercice",
+    "kicker": "Épisode 4 · Exercice pratique",
+    "description": "Un exercice complet à faire chez toi, en même temps que la vidéo : créer une carte de profil en HTML/CSS. On tape chaque ligne ensemble, on voit le résultat en direct, et on passe en revue les 3 erreurs que tout le monde rencontre (image cassée, CSS ignoré, accolade oubliée).",
+    "next": { "href": "../html-css-bases/index.html", "label": "Revoir les bases (ép. 2)" },
+    "scenes": [
+      {
+        "type": "title", "dur": 7, "chapter": "Intro", "bg": "img/intro-bg.jpg",
+        "kicker": "Épisode 4 · À faire chez toi",
+        "title": "Exercice : ta carte de profil",
+        "sub": "code avec moi, en même temps, de zéro",
+        "badge": "💻 Ouvre ton éditeur, c'est parti",
+        "subs": [
+          [0.2, 3.2, "Épisode 4, spécial exercice ! On construit ensemble une carte de profil,"],
+          [3.5, 3.3, "de zéro, chez toi, en même temps que moi."]
+        ]
+      },
+      {
+        "type": "terminal", "dur": 12, "num": "01", "name": "préparation",
+        "hint": "ton espace de travail",
+        "cmd": "mkdir exo-carte && cd exo-carte",
+        "out": [
+          {"t": "touch index.html style.css", "c": "dim"},
+          {"t": "code .   → VS Code s'ouvre, navigateur à côté ✔", "c": "ok"}
+        ],
+        "subs": [
+          [0.2, 4, "Crée un dossier exo-carte, avec deux fichiers : index.html et style.css."],
+          [4.4, 4, "Ouvre le dossier dans VS Code, et garde ton navigateur juste à côté."],
+          [8.6, 3, "Tu tapes tout en même temps que moi, sans copier-coller."]
+        ]
+      },
+      {
+        "type": "lab", "dur": 15, "step": 1, "file": "index.html", "chapter": "La structure HTML",
+        "lines": [
+          { "parts": [["<div ", "pun"], ["class", "attr"], ["=", "pun"], ["\"carte\"", "str"], [">", "pun"]] },
+          { "parts": [["  ", ""], ["<img ", "pun"], ["src", "attr"], ["=", "pun"], ["\"avatar.png\"", "str"], [" alt", "attr"], ["=", "pun"], ["\"photo\"", "str"], [">", "pun"]] },
+          { "parts": [["  ", ""], ["<h2>", "tag"], ["Amélia", "txt"], ["</h2>", "tag"]] },
+          { "parts": [["  ", ""], ["<p>", "tag"], ["Développeuse web", "txt"], ["</p>", "tag"]] },
+          { "parts": [["  ", ""], ["<button>", "tag"], ["Me contacter", "txt"], ["</button>", "tag"]] },
+          { "parts": [["</div>", "pun"]] }
+        ],
+        "note": "résultat : brut et moche → normal, pas encore de CSS !",
+        "subs": [
+          [0.2, 4.2, "Dans index.html, tape la structure : une div classe carte, une image,"],
+          [4.6, 4.2, "un titre, un paragraphe, et un bouton."],
+          [9, 4, "À droite, le résultat : c'est brut. Normal, il n'y a pas encore de CSS !"]
+        ]
+      },
+      {
+        "type": "lab", "dur": 13, "step": 1, "file": "index.html", "chapter": "Relier le CSS",
+        "lines": [
+          { "parts": [["<link ", "pun"], ["rel", "attr"], ["=", "pun"], ["\"stylesheet\"", "str"]] },
+          { "parts": [["      href", "attr"], ["=", "pun"], ["\"style.css\"", "str"], [">", "pun"]] }
+        ],
+        "note": "rien ne change encore ? normal : style.css est vide !",
+        "subs": [
+          [0.2, 4.2, "Relie ta feuille de style avec la balise link, dans le head."],
+          [4.6, 4.2, "Rien ne change encore ? C'est normal : style.css est vide pour l'instant."],
+          [9, 3.5, "Mais sans cette ligne, aucun CSS ne pourra jamais s'appliquer."]
+        ]
+      },
+      {
+        "type": "lab", "dur": 15, "step": 2, "file": "style.css", "chapter": "Le fond de page",
+        "lines": [
+          { "parts": [["body", "sel"], [" {", "pun"]] },
+          { "parts": [["  ", ""], ["background", "prop"], [": ", "pun"], ["linear-gradient(135deg, #7c5cff, #22d3ee)", "val"], [";", "pun"]] },
+          { "parts": [["  ", ""], ["font-family", "prop"], [": ", "pun"], ["system-ui", "val"], [";", "pun"]] },
+          { "parts": [["}", "pun"]] }
+        ],
+        "subs": [
+          [0.2, 4.2, "Premier CSS : un dégradé sur le body, et une police moderne."],
+          [4.6, 4.2, "Sauve avec Ctrl S… et regarde à droite :"],
+          [9, 4, "la page change de couleur en direct. Ça commence !"]
+        ]
+      },
+      {
+        "type": "lab", "dur": 16, "step": 3, "file": "style.css", "chapter": "Styliser la carte",
+        "lines": [
+          { "parts": [[".carte", "sel"], [" {", "pun"]] },
+          { "parts": [["  ", ""], ["background", "prop"], [": ", "pun"], ["white", "val"], [";", "pun"]] },
+          { "parts": [["  ", ""], ["border-radius", "prop"], [": ", "pun"], ["20px", "val"], [";", "pun"]] },
+          { "parts": [["  ", ""], ["box-shadow", "prop"], [": ", "pun"], ["0 20px 40px rgba(0,0,0,.3)", "val"], [";", "pun"]] },
+          { "parts": [["  ", ""], ["padding", "prop"], [": ", "pun"], ["30px", "val"], [";", "pun"]] },
+          { "parts": [["  ", ""], ["width", "prop"], [": ", "pun"], ["300px", "val"], [";", "pun"]] },
+          { "parts": [["  ", ""], ["margin", "prop"], [": ", "pun"], ["80px auto", "val"], [";", "pun"]] },
+          { "parts": [["  ", ""], ["text-align", "prop"], [": ", "pun"], ["center", "val"], [";", "pun"]] },
+          { "parts": [["}", "pun"]] }
+        ],
+        "subs": [
+          [0.2, 4.2, "Ensuite la carte : fond blanc, coins arrondis, une ombre portée,"],
+          [4.6, 4.2, "du padding, et margin auto pour la centrer."],
+          [9, 4.5, "Là, tu vois la carte prendre forme. C'est le box model en action !"]
+        ]
+      },
+      {
+        "type": "lab", "dur": 14, "step": 4, "file": "style.css", "chapter": "L'avatar rond",
+        "lines": [
+          { "parts": [[".carte img", "sel"], [" {", "pun"]] },
+          { "parts": [["  ", ""], ["width", "prop"], [": ", "pun"], ["110px", "val"], [";", "pun"]] },
+          { "parts": [["  ", ""], ["border-radius", "prop"], [": ", "pun"], ["50%", "val"], [";", "pun"]] },
+          { "parts": [["  ", ""], ["border", "prop"], [": ", "pun"], ["4px solid #7c5cff", "val"], [";", "pun"]] },
+          { "parts": [["}", "pun"]] }
+        ],
+        "subs": [
+          [0.2, 4.2, "L'avatar : 110 pixels de large, et border-radius 50 %"],
+          [4.6, 4.2, "pour transformer le carré en rond, avec une bordure colorée."],
+          [9, 4, "C'est LA astuce à retenir pour toutes les photos de profil."]
+        ]
+      },
+      {
+        "type": "lab", "dur": 16, "step": 5, "file": "style.css", "chapter": "Le bouton + hover",
+        "lines": [
+          { "parts": [[".carte button", "sel"], [" {", "pun"]] },
+          { "parts": [["  ", ""], ["background", "prop"], [": ", "pun"], ["#7c5cff", "val"], [";", "pun"]] },
+          { "parts": [["  ", ""], ["color", "prop"], [": ", "pun"], ["white", "val"], [";", "pun"]] },
+          { "parts": [["  ", ""], ["border", "prop"], [": ", "pun"], ["none", "val"], [";", "pun"]] },
+          { "parts": [["  ", ""], ["padding", "prop"], [": ", "pun"], ["10px 24px", "val"], [";", "pun"]] },
+          { "parts": [["  ", ""], ["border-radius", "prop"], [": ", "pun"], ["999px", "val"], [";", "pun"]] },
+          { "parts": [["  ", ""], ["cursor", "prop"], [": ", "pun"], ["pointer", "val"], [";", "pun"]] },
+          { "parts": [["}", "pun"]] },
+          { "parts": [[".carte button:hover", "sel"], [" {", "pun"]] },
+          { "parts": [["  ", ""], ["transform", "prop"], [": ", "pun"], ["scale(1.06)", "val"], [";", "pun"]] },
+          { "parts": [["}", "pun"]] }
+        ],
+        "subs": [
+          [0.2, 4.2, "Et le bouton : fond violet, texte blanc, coins arrondis, cursor pointer."],
+          [4.6, 4.2, "Bonus pro : un effet au survol avec transform scale."],
+          [9, 4.5, "Passe ta souris dessus… ta carte est terminée, elle est vivante !"]
+        ]
+      },
+      {
+        "type": "error", "dur": 13, "chapter": "Erreur 1 : l'image",
+        "title": "L'image ne s'affiche pas",
+        "see": "Un cadre vide ou une icône d'image cassée à la place de l'avatar.",
+        "why": "Le nom dans src ne correspond pas au fichier : Avatar.PNG n'est pas avatar.png, ou l'image est dans un autre dossier.",
+        "fix": "Renomme le fichier exactement avatar.png, et pose-le à côté de index.html.",
+        "subs": [
+          [0.2, 4.2, "Erreur classique numéro 1 : l'image ne s'affiche pas."],
+          [4.6, 4.2, "Presque toujours un nom de fichier différent : majuscule, extension…"],
+          [9, 3.8, "Vérifie la casse et l'orthographe au pixel près."]
+        ]
+      },
+      {
+        "type": "error", "dur": 13, "chapter": "Erreur 2 : CSS ignoré",
+        "title": "Le CSS ne s'applique pas",
+        "see": "Ta page reste toute blanche, comme si style.css n'existait pas.",
+        "why": "Fichier non sauvegardé, ou balise link absente, ou href mal écrit.",
+        "fix": "Ctrl + S dans VS Code, puis vérifie : link, rel stylesheet, href style.css, dans le head.",
+        "subs": [
+          [0.2, 4.2, "Erreur numéro 2 : ton CSS ne s'applique pas du tout."],
+          [4.6, 4.2, "Deux réflexes : as-tu sauvegardé avec Ctrl S ?"],
+          [9, 3.8, "Et la balise link est-elle bien là, bien écrite, dans le head ?"]
+        ]
+      },
+      {
+        "type": "error", "dur": 13, "chapter": "Erreur 3 : tout casse",
+        "title": "Tout est cassé d'un coup",
+        "see": "Depuis une ligne, plus rien ne s'affiche comme avant.",
+        "why": "Une accolade fermante oubliée : tout le CSS qui suit est avalé par la règle ouverte.",
+        "fix": "Compte les accolades de la règle, ou cherche la ligne surlignée en rouge dans VS Code.",
+        "subs": [
+          [0.2, 4.2, "Erreur numéro 3 : tout casse d'un coup, sans raison apparente."],
+          [4.6, 4.2, "Souvent, c'est une accolade fermante oubliée."],
+          [9, 3.8, "VS Code te la montre en rouge : ferme la règle, et tout revient."]
+        ]
+      },
+      {
+        "type": "grid", "dur": 13, "chapter": "Défi final",
+        "title": "À toi : 3 améliorations",
+        "items": [
+          ["1. couleurs", "change le dégradé"], ["2. réseaux", "ajoute deux liens <a>"],
+          ["3. hover", "anime la carte au survol"], ["bonus", "dark mode avec @media"],
+          ["astuce", "F12 = inspecteur"], ["réflexe", "Ctrl + S toujours"]
+        ],
+        "subs": [
+          [0.2, 4.2, "À toi de jouer : une couleur de ton choix, deux liens réseaux sociaux,"],
+          [4.6, 4.2, "et une animation au survol de la carte."],
+          [9, 3.8, "Tu as tout ce qu'il faut. Ouvre ton éditeur, et cherche, casse, recommence !"]
+        ]
+      },
+      {
+        "type": "title", "dur": 7, "chapter": "Outro", "bg": "img/intro-bg.jpg",
+        "img": "../assets/img/robot.png",
+        "kicker": "Bien joué !",
+        "title": "Carte terminée ✔",
+        "sub": "refais-la de mémoire demain, sans la vidéo",
+        "badge": "🚀 Le vrai progrès, c'est la répétition",
+        "subs": [
+          [0.2, 3.2, "Bravo si tu as suivi jusqu'ici ! Ta carte de profil est en ligne."],
+          [3.5, 3.3, "Demain, refais-la de mémoire, sans la vidéo. À bientôt !"]
+        ]
+      }
+    ]
+  }
+  </script>
+  <script src="../assets/player.js"></script>
+  <script src="../assets/recorder.js"></script>
+</body>
+</html>

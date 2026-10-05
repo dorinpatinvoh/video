@@ -206,6 +206,21 @@
      2. CONSTRUCTION DES SCÈNES
      ============================================================ */
 
+  // lignes de code typées (partagé par les scènes "code" et "lab")
+  function codeLinesHTML(sc) {
+    let at = sc.startAt != null ? sc.startAt : 0.8;
+    let lines = '';
+    (sc.lines || []).forEach((ln, i) => {
+      const parts = ln.parts || [];
+      const total = parts.reduce((n, p) => n + p[0].length, 0);
+      lines += `<div class="cl-line" data-at="${at.toFixed(2)}">
+                  <span class="cl-num">${i + 1}</span><span class="cl-code"></span>
+                </div>`;
+      at = at + total / CODE_CPS + 0.22;
+    });
+    return { lines, at };
+  }
+
   // lignes de sortie du terminal (délais calculés après la frappe)
   function termOutputs(sc) {
     const typedEnd = 1.0 + (sc.cmd || '').length / TERM_CPS;
@@ -262,16 +277,7 @@
 
       /* --- éditeur de code avec frappe ligne par ligne --- */
       case 'code': {
-        let at = sc.startAt != null ? sc.startAt : 0.8;
-        let lines = '';
-        (sc.lines || []).forEach((ln, i) => {
-          const parts = ln.parts || [];
-          const total = parts.reduce((n, p) => n + p[0].length, 0);
-          lines += `<div class="cl-line" data-at="${at.toFixed(2)}">
-                      <span class="cl-num">${i + 1}</span><span class="cl-code"></span>
-                    </div>`;
-          at = at + total / CODE_CPS + 0.22;
-        });
+        const { lines, at } = codeLinesHTML(sc);
         h = `<div class="editor">
                <div class="editor-bar">
                  <span class="filetab">${esc(sc.file || 'fichier')}</span>
@@ -282,6 +288,53 @@
              ${sc.note ? `<div class="hint codenote" data-show="${(at + 0.3).toFixed(2)}">${esc(sc.note)}</div>` : ''}`;
         break;
       }
+
+      /* --- lab : code tapé + aperçu live qui se transforme --- */
+      case 'lab': {
+        const { lines, at } = codeLinesHTML(sc);
+        h = `<div class="lab">
+               <div class="editor lab-editor">
+                 <div class="editor-bar">
+                   <span class="filetab">${esc(sc.file || 'fichier')}</span>
+                   <span class="ed-dots"><i></i><i></i><i></i></span>
+                 </div>
+                 <div class="editor-body">${lines}</div>
+               </div>
+               <div class="pv-wrap" data-show="0.4">
+                 <div class="pv-bar">
+                   <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+                   <span class="pv-url">localhost:8000</span>
+                   <span class="pv-live">● aperçu live</span>
+                 </div>
+                 <div class="pv" data-step="${sc.step || 1}">
+                   <div class="pv-carte">
+                     <div class="pv-avatar"></div>
+                     <div class="pv-h2">Amélia</div>
+                     <div class="pv-p">Développeuse web</div>
+                     <div class="pv-btn">Me contacter</div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+             ${sc.note ? `<div class="hint codenote" data-show="${(at + 0.3).toFixed(2)}">${esc(sc.note)}</div>` : ''}`;
+        break;
+      }
+
+      /* --- erreur fréquente : symptôme / cause / fix --- */
+      case 'error':
+        h = `<h2 class="g-title err-title" data-show="0.15">⚠️ ${esc(sc.title || '')}</h2>
+             <div class="err-grid">
+               <div class="err-card bad" data-show="0.6">
+                 <div class="err-h">❌ Ce que tu vois</div><p>${esc(sc.see || '')}</p>
+               </div>
+               <div class="err-card mid" data-show="1.8">
+                 <div class="err-h">🔍 La cause</div><p>${esc(sc.why || '')}</p>
+               </div>
+               <div class="err-card good" data-show="3.0">
+                 <div class="err-h">✅ Le fix</div><p>${esc(sc.fix || '')}</p>
+               </div>
+             </div>`;
+        break;
 
       /* --- anatomie d'une règle CSS --- */
       case 'rule':
@@ -342,7 +395,7 @@
     el.innerHTML = h;
 
     // mémorise les tokens des lignes de code pour la frappe animée
-    if (sc.type === 'code') {
+    if (sc.type === 'code' || sc.type === 'lab') {
       let i = 0;
       el.querySelectorAll('.cl-line').forEach(n => {
         const ln = (sc.lines || [])[i++] || { parts: [] };
@@ -478,11 +531,13 @@
     update();
   }
 
+  const endCbs = new Set();
   function showEnd() {
     S.ended = true;
     stopNarration();
     if (S.music) { try { S.music.pause(); } catch (e) {} }
     els.endcard.hidden = false;
+    endCbs.forEach(cb => { try { cb(); } catch (e) {} });
   }
 
   function loop(ts) {
@@ -699,6 +754,16 @@
     syncSoundBtn();
     update();                       // première image (poster)
     requestAnimationFrame(loop);    // boucle de lecture
+
+    // petite API publique (utilisée par recorder.js pour l'export MP4)
+    window.VPlayer = {
+      get time() { return S.time; },
+      get duration() { return S.data.duration; },
+      get playing() { return S.playing; },
+      get title() { return S.data.title; },
+      play, pause, seek,
+      onEnded(cb) { endCbs.add(cb); },
+    };
   }
 
   try {

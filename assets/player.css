@@ -571,6 +571,170 @@
 .term-body .tl:first-child { min-height: 1.75em; }
 
 /* ============================================================
+   SCÈNE : lab (code + aperçu live)
+   ============================================================ */
+.lab {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 1.2em;
+  width: min(96%, 60em);
+  align-items: stretch;
+  text-align: left;
+}
+.lab-editor { width: 100%; }
+.lab-editor .editor-body { min-height: 13em; }
+
+.pv-wrap {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1em;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, .9);
+}
+.pv-bar {
+  display: flex;
+  align-items: center;
+  gap: .45em;
+  padding: .6em .9em;
+  background: #2a2f3a;
+}
+.pv-bar .dot { width: .75em; height: .75em; border-radius: 50%; }
+.pv-bar .dot.r { background: #ff5f57; }
+.pv-bar .dot.y { background: #febc2e; }
+.pv-bar .dot.g { background: #28c840; }
+.pv-url {
+  flex: 1;
+  margin-left: .5em;
+  font-family: var(--font-mono);
+  font-size: .8em;
+  color: #aab2c0;
+  background: #1d222b;
+  border-radius: .5em;
+  padding: .25em .8em;
+}
+.pv-live {
+  font-size: .72em;
+  font-weight: 800;
+  color: #ff5f57;
+  animation: recBlink 1.6s steps(1) infinite;
+}
+
+.pv {
+  flex: 1;
+  min-height: 13em;
+  padding: 1.1em;
+  background: #ffffff;
+  color: #111;
+  display: flex;
+  align-items: flex-start;
+  transition: background .6s ease;
+}
+.pv-carte { transition: all .6s ease; }
+
+/* étape 1 : HTML brut, volontairement moche */
+.pv-avatar { width: 4.2em; height: 4.2em; background: #cbd5e1; }
+.pv-h2 { font-family: "Times New Roman", serif; font-size: 1.5em; font-weight: 700; margin: .3em 0 .1em; }
+.pv-p { font-family: "Times New Roman", serif; margin: 0 0 .6em; }
+.pv-btn {
+  display: inline-block;
+  border: 1px solid #767676;
+  background: #efefef;
+  color: #000;
+  padding: .2em .9em;
+  font-size: .85em;
+  border-radius: .2em;
+}
+
+/* étape 2 : le body prend un dégradé */
+.pv[data-step="2"], .pv[data-step="3"], .pv[data-step="4"], .pv[data-step="5"] {
+  background: linear-gradient(135deg, #7c5cff, #22d3ee);
+  align-items: center;
+  justify-content: center;
+}
+/* étape 3 : la carte devient une vraie carte */
+.pv[data-step="3"] .pv-carte,
+.pv[data-step="4"] .pv-carte,
+.pv[data-step="5"] .pv-carte {
+  background: #fff;
+  border-radius: 1.1em;
+  box-shadow: 0 1.4em 2.8em rgba(0, 0, 0, .35);
+  padding: 1.3em 1.2em;
+  width: 12.5em;
+  margin: 0 auto;
+  text-align: center;
+  font-family: system-ui, sans-serif;
+}
+/* étape 4 : avatar rond + bordure */
+.pv[data-step="4"] .pv-avatar,
+.pv[data-step="5"] .pv-avatar {
+  border-radius: 50%;
+  border: .22em solid #7c5cff;
+  margin: 0 auto;
+  background: radial-gradient(circle at 35% 30%, #fde68a, #f472b6 70%);
+}
+/* étape 5 : bouton stylé */
+.pv[data-step="5"] .pv-btn {
+  background: #7c5cff;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: .45em 1.4em;
+  font-weight: 700;
+  box-shadow: 0 .5em 1.2em rgba(124, 92, 255, .45);
+}
+
+/* ============================================================
+   SCÈNE : erreur (symptôme / cause / fix)
+   ============================================================ */
+.err-title { color: var(--warn, #ffc857); }
+.err-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  width: min(96%, 58em);
+  text-align: left;
+}
+.err-card {
+  border-radius: 1em;
+  padding: 1.1em 1.2em;
+  background: var(--win);
+  border: 1px solid var(--line);
+  border-top: .3em solid;
+}
+.err-card.bad { border-top-color: #ff5f57; }
+.err-card.mid { border-top-color: #febc2e; }
+.err-card.good { border-top-color: #28c840; }
+.err-h { font-weight: 800; margin-bottom: .4em; }
+.err-card.bad .err-h { color: #ff8a84; }
+.err-card.mid .err-h { color: #ffd166; }
+.err-card.good .err-h { color: #7ee787; }
+.err-card p { margin: 0; color: var(--muted); font-size: 1.05em; }
+
+@media (max-width: 700px) {
+  .lab { grid-template-columns: 1fr; }
+  .err-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- badge REC + bouton export ---------- */
+.rec-badge {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  z-index: 9;
+  background: rgba(0, 0, 0, .68);
+  color: #ff5f57;
+  font-weight: 800;
+  letter-spacing: .1em;
+  padding: .35em .85em;
+  border-radius: .6em;
+  animation: recBlink 1.2s steps(1) infinite;
+  pointer-events: none;
+}
+@keyframes recBlink { 50% { opacity: .35; } }
+#btn-rec.rec { color: #ff5f57; opacity: 1; }
+
+/* ============================================================
    SOUS-TITRES
    ============================================================ */
 .subs {
