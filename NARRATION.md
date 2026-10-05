@@ -97,6 +97,23 @@ l'animation.
 
 ---
 
+## ÉPISODE 5 — « Docker : les conteneurs »
+
+| Scène | Fichier | Texte à faire lire |
+|---|---|---|
+| Intro | s01.mp3 | Docker. Un mot que tu entends partout. Et pourtant, l'idée tient en une phrase : expédier ton code comme un conteneur au port de Cotonou. |
+| Métaphore | s02.mp3 | Au port de Cotonou, ananas, coton ou électronique : tout voyage dans des conteneurs standardisés. Le navire ne les ouvre pas. Docker, c'est pareil, mais pour ton code. |
+| Image vs conteneur | s03.mp3 | Deux mots à retenir. L'image, c'est le modèle : un conteneur scellé, préparé au quai. Le conteneur, c'est ce même conteneur une fois en route. Une image, plusieurs conteneurs. |
+| Premier conteneur | s04.mp3 | Installe Docker, puis tape docker run hello-world. Docker récupère une petite image, la lance, et affiche hello. Ton premier conteneur vient de tourner. |
+| nginx | s05.mp3 | Plus utile : docker run, moins d, moins p 8080 deux-points 80, nginx. Moins d, c'est en arrière-plan. Moins p, c'est le port 8080 de ta machine vers le port 80 du conteneur. Ouvre localhost 8080 : nginx tourne. |
+| Dockerfile | s06.mp3 | Ta propre application ? Écris un Dockerfile. FROM : la base. COPY : ton code. RUN : les installations. CMD : le démarrage. Une recette de cinq lignes, toujours la même. |
+| build + run | s07.mp3 | Ensuite, deux commandes. docker build moins t mon-app point : ça fabrique l'image. docker run moins p 3000 deux-points 3000 mon-app : ça la lance. Même résultat sur toutes les machines : c'est ça, la magie. |
+| Au quotidien | s08.mp3 | Au quotidien : docker ps montre les conteneurs en route. docker logs lit leurs journaux. docker stop les pose au quai. Simple comme un registre de port. |
+| Erreur | s09.mp3 | L'erreur classique : port already in use. Deux conteneurs sur le même quai, impossible. La solution : change le port local, moins p 8081 deux-points 80, et c'est réglé. |
+| Outro | s10.mp3 | À toi de jouer : prends ta carte de profil de l'épisode 4, et mets-la dans un conteneur. FROM nginx, COPY tes fichiers, run. Et montre-moi le résultat. À bientôt ! |
+
+---
+
 ## Conseils pour la génération externe
 
 - Voix : française, masculine ou feminine selon ton goût, ton « jeune / pédagogue ».

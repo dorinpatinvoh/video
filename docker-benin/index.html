@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Docker : les conteneurs — vidéo animée</title>
+  <link rel="stylesheet" href="../assets/core.css">
+  <link rel="stylesheet" href="../assets/player.css">
+  <link rel="stylesheet" href="../assets/themes.css">
+</head>
+<body class="theme-docker">
+
+  <header class="site-head">
+    <a class="brand" href="../index.html"><span class="brand-dot">▶</span> vidéos<em>.animées</em></a>
+    <a class="back" href="../index.html">← Toutes les vidéos</a>
+  </header>
+
+  <main class="page">
+    <div class="player" id="player">
+      <div class="stage" id="stage">
+        <div id="scenes"></div>
+        <div class="subs" id="subs" hidden></div>
+
+        <div class="overlay bigplay" id="bigplay">
+          <div class="bp-kicker" id="bp-kicker">vidéo animée · avec sous-titres</div>
+          <h1 class="bp-title" id="bp-title"></h1>
+          <p class="bp-meta" id="bp-meta"></p>
+          <button class="bp-btn" id="bp-btn" type="button" aria-label="Lancer la vidéo">
+            <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </button>
+          <p class="bp-hint">Espace : lecture/pause · ← → : naviguer · C : sous-titres · S : son · F : plein écran</p>
+        </div>
+
+        <div class="overlay endcard" id="endcard" hidden>
+          <div class="ec-title">Terminé ! 🎉</div>
+          <div class="ec-row">
+            <a class="btn" id="btn-replay" href="#">↺ Revoir</a>
+            <a class="btn primary" id="btn-next" href="#" hidden>→ <span>Vidéo suivante</span></a>
+          </div>
+        </div>
+
+        <div class="chapters" id="chapters" hidden>
+          <div class="chap-head">Chapitres</div>
+          <div id="chap-list"></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="ctl" id="btn-play" title="Lecture / pause (Espace)"></button>
+        <div class="progress" id="progress">
+          <div class="marks" id="marks"></div>
+          <div class="fill" id="fill"></div>
+          <div class="handle" id="handle"></div>
+        </div>
+        <span class="time"><span id="t-now">0:00</span> / <span id="t-dur">0:00</span></span>
+        <button class="ctl" id="btn-chap" title="Chapitres">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4 6h2v2H4zm4 0h12v2H8zM4 11h2v2H4zm4 0h12v2H8zM4 16h2v2H4zm4 0h12v2H8z"/></svg>
+        </button>
+        <button class="ctl snd on" id="btn-snd" title="Son : voix off + effets (S)"></button>
+        <input class="vol" id="vol" type="range" min="0" max="1" step="0.05" value="0.9" title="Volume">
+        <button class="ctl cc on" id="btn-cc" title="Sous-titres (C)">CC</button>
+        <select class="speed" id="speed" title="Vitesse de lecture">
+          <option value="0.75">0.75×</option>
+          <option value="1" selected>1×</option>
+          <option value="1.25">1.25×</option>
+          <option value="1.5">1.5×</option>
+          <option value="2">2×</option>
+        </select>
+        <button class="ctl" id="btn-full" title="Plein écran (F)">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4 4h6v2H6v4H4zm10 0h6v6h-2V6h-4zM4 14h2v4h4v2H4zm14 14h2v6h-6v-2h4z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <section class="desc">
+      <h2 id="desc-title"></h2>
+      <p id="desc-text"></p>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    Vidéo web animée · 100 % HTML / CSS · sous-titres intégrés pour la voix off.
+  </footer>
+
+  <script type="application/json" id="video-data">
+  {
+    "title": "Docker : les conteneurs",
+    "tagline": "épisode 5 · docker",
+    "kicker": "Épisode 5 · Docker",
+    "description": "Docker expliqué avec les conteneurs du port de Cotonou : la métaphore du cargo, image vs conteneur, premier docker run, nginx sur un port, ton propre Dockerfile en 5 lignes, les commandes du quotidien et l'erreur « port already in use » avec son fix.",
+    "scenes": [
+      {
+        "type": "title",
+        "dur": 11.8,
+        "chapter": "Intro",
+        "bg": "img/intro-bg.jpg",
+        "kicker": "Épisode 5 · Docker",
+        "title": "Docker : les conteneurs",
+        "sub": "Expédie ton code comme au port de Cotonou",
+        "badge": "🐳",
+        "audio": "audio/s01.mp3",
+        "subs": [
+          [0.3, 10.6, "Docker. Un mot que tu entends partout. Et pourtant, l'idée tient en une phrase : expédier ton code comme un conteneur au port de Cotonou."]
+        ]
+      },
+      {
+        "type": "split",
+        "dur": 14.2,
+        "chapter": "La métaphore du port",
+        "title": "La métaphore du port",
+        "left": {
+          "emoji": "🚢",
+          "title": "Au port de Cotonou",
+          "items": [
+            "Ananas, coton, électronique : tout voyage en conteneurs",
+            "Format standard : le navire ne les ouvre pas",
+            "La marchandise part partout, protégée"
+          ]
+        },
+        "right": {
+          "emoji": "🐳",
+          "title": "Avec Docker",
+          "items": [
+            "Ton app + ses dépendances dans un conteneur",
+            "Standard : il tourne sur n'importe quelle machine",
+            "« Ça marche chez moi » → ça marche partout"
+          ]
+        },
+        "audio": "audio/s02.mp3",
+        "subs": [
+          [0.3, 13.2, "Au port de Cotonou, ananas, coton ou électronique : tout voyage dans des conteneurs standardisés. Le navire ne les ouvre pas. Docker, c'est pareil, mais pour ton code."]
+        ]
+      },
+      {
+        "type": "split",
+        "dur": 15.9,
+        "chapter": "Image vs conteneur",
+        "title": "Image vs conteneur",
+        "left": {
+          "emoji": "📦",
+          "title": "L'image",
+          "items": [
+            "Le modèle, scellé, prêt au quai",
+            "Construite une fois, réutilisée partout",
+            "Exemples : nginx, node:20, mon-app"
+          ]
+        },
+        "right": {
+          "emoji": "▶️",
+          "title": "Le conteneur",
+          "items": [
+            "L'image en cours d'exécution",
+            "On en lance autant qu'on veut",
+            "docker run = le départ du conteneur"
+          ]
+        },
+        "audio": "audio/s03.mp3",
+        "subs": [
+          [0.3, 14.9, "Deux mots à retenir. L'image, c'est le modèle : un conteneur scellé, préparé au quai. Le conteneur, c'est ce même conteneur une fois en route. Une image, plusieurs conteneurs."]
+        ]
+      },
+      {
+        "type": "terminal",
+        "dur": 13.3,
+        "chapter": "Premier conteneur",
+        "num": "01",
+        "name": "premier conteneur",
+        "hint": "Docker récupère l'image, puis la lance",
+        "host": "dorin@docker: ~",
+        "cmd": "docker run hello-world",
+        "out": [
+          "Unable to find image 'hello-world:latest'… pull ✔",
+          "Hello from Docker! 👋"
+        ],
+        "audio": "audio/s04.mp3",
+        "subs": [
+          [0.3, 12.3, "Installe Docker, puis tape docker run hello-world. Docker récupère une petite image, la lance, et affiche hello. Ton premier conteneur vient de tourner."]
+        ]
+      },
+      {
+        "type": "terminal",
+        "dur": 22.7,
+        "chapter": "nginx sur ton port",
+        "num": "02",
+        "name": "nginx sur ton port",
+        "hint": "-d : arrière-plan · -p : port local : port du conteneur",
+        "host": "dorin@docker: ~",
+        "cmd": "docker run -d -p 8080:80 nginx",
+        "out": [
+          "a3f5e31c21d8… (id du conteneur)",
+          "➜ http://localhost:8080 → « Welcome to nginx! » ✔"
+        ],
+        "audio": "audio/s05.mp3",
+        "subs": [
+          [0.3, 21.7, "Plus utile : docker run, moins d, moins p 8080 deux-points 80, nginx. Moins d, c'est en arrière-plan. Moins p, c'est le port 8080 de ta machine vers le port 80 du conteneur. Ouvre localhost 8080 : nginx tourne."]
+        ]
+      },
+      {
+        "type": "code",
+        "dur": 18.6,
+        "chapter": "Ton Dockerfile",
+        "file": "Dockerfile",
+        "note": "5 lignes = ta propre image, reproductible partout",
+        "lines": [
+          { "parts": [["FROM", "kw"], [" node:20", "txt"], ["   # la base", "cmt"]] },
+          { "parts": [["WORKDIR", "kw"], [" /app", "txt"]] },
+          { "parts": [["COPY", "kw"], [" . .", "txt"], ["        # ton code", "cmt"]] },
+          { "parts": [["RUN", "kw"], [" npm install", "txt"]] },
+          { "parts": [["CMD", "kw"], [" [", "pun"], ["\"node\"", "str"], [", ", "pun"], ["\"server.js\"", "str"], ["]", "pun"]] }
+        ],
+        "audio": "audio/s06.mp3",
+        "subs": [
+          [0.3, 17.5, "Ta propre application ? Écris un Dockerfile. FROM : la base. COPY : ton code. RUN : les installations. CMD : le démarrage. Une recette de cinq lignes, toujours la même."]
+        ]
+      },
+      {
+        "type": "terminal",
+        "dur": 19.6,
+        "chapter": "build + run",
+        "num": "03",
+        "name": "build + run",
+        "hint": "build fabrique l'image · run la lance",
+        "host": "dorin@docker: ~",
+        "cmd": "docker build -t mon-app . && docker run -p 3000:3000 mon-app",
+        "out": [
+          "Step 5/5 : CMD [\"node\",\"server.js\"] → image créée ✔",
+          "● mon-app écoute sur http://localhost:3000"
+        ],
+        "audio": "audio/s07.mp3",
+        "subs": [
+          [0.3, 18.6, "Ensuite, deux commandes. docker build moins t mon-app point : ça fabrique l'image. docker run moins p 3000 deux-points 3000 mon-app : ça la lance. Même résultat sur toutes les machines : c'est ça, la magie."]
+        ]
+      },
+      {
+        "type": "grid",
+        "dur": 15.2,
+        "chapter": "Au quotidien",
+        "title": "Les commandes du quotidien",
+        "items": [
+          ["docker ps", "voir les conteneurs en route"],
+          ["docker logs", "lire le journal de bord"],
+          ["docker stop", "poser le conteneur au quai"],
+          ["docker rm", "le retirer définitivement"]
+        ],
+        "audio": "audio/s08.mp3",
+        "subs": [
+          [0.3, 14.2, "Au quotidien : docker ps montre les conteneurs en route. docker logs lit leurs journaux. docker stop les pose au quai. Simple comme un registre de port."]
+        ]
+      },
+      {
+        "type": "error",
+        "dur": 16.0,
+        "chapter": "Erreur classique",
+        "title": "Port already in use",
+        "see": "« Error: port is already allocated » dès le docker run.",
+        "why": "Deux conteneurs veulent le même port local : comme deux navires sur un seul quai, impossible.",
+        "fix": "Change le port local : docker run -p 8081:80 nginx",
+        "audio": "audio/s09.mp3",
+        "subs": [
+          [0.3, 15.0, "L'erreur classique : port already in use. Deux conteneurs sur le même quai, impossible. La solution : change le port local, moins p 8081 deux-points 80, et c'est réglé."]
+        ]
+      },
+      {
+        "type": "title",
+        "dur": 12.5,
+        "chapter": "Outro",
+        "kicker": "Épisode 5 · terminé",
+        "title": "À toi de jouer !",
+        "sub": "Mets ta carte de profil (épisode 4) dans un conteneur : FROM nginx, COPY, run.",
+        "badge": "🐳",
+        "audio": "audio/s10.mp3",
+        "subs": [
+          [0.3, 11.3, "À toi de jouer : prends ta carte de profil de l'épisode 4, et mets-la dans un conteneur. FROM nginx, COPY tes fichiers, run. Et montre-moi le résultat. À bientôt !"]
+        ]
+      }
+    ]
+  }
+  </script>
+  <script src="../assets/player.js"></script>
+  <script src="../assets/recorder.js"></script>
+</body>
+</html>

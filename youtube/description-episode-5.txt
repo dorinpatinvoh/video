@@ -1,0 +1,31 @@
+🐳 DOCKER : LES CONTENEURS — expliqués avec le port de Cotonou (épisode 5)
+
+Docker en 2:40, sans jargon : la métaphore des conteneurs du port de
+Cotonou, la différence image / conteneur, ton premier docker run,
+nginx accessible sur un port, ton propre Dockerfile en 5 lignes,
+les commandes du quotidien (ps, logs, stop, rm) et le fix de
+l'erreur « port already in use ».
+
+⏱️ CHAPITRES
+0:00  Intro — l'idée en une phrase
+0:12  La métaphore du port
+0:26  Image vs conteneur
+0:42  Premier conteneur : hello-world
+0:55  nginx sur ton port (-d, -p)
+1:18  Ton Dockerfile en 5 lignes
+1:37  build + run
+1:56  Les commandes du quotidien
+2:12  Erreur : port already in use
+2:28  À toi de jouer !
+
+🧰 COMMANDES DE L'ÉPISODE
+docker run hello-world
+docker run -d -p 8080:80 nginx
+docker build -t mon-app .
+docker run -p 3000:3000 mon-app
+docker ps · docker logs · docker stop · docker rm
+
+📚 La série : épisode 1 = 20 commandes Linux · 2 = HTML/CSS ·
+3 = GitHub en équipe · 4 = exo carte de profil · 5 = Docker.
+
+#docker #conteneurs #benin #dev #formation #cotonou #dockerfile #nginx

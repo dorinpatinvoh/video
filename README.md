@@ -61,6 +61,7 @@ cliquable, écran de fin avec rediffusion.
 | 2 | **HTML & CSS : les bases** | 2:01 | éditeur de code |
 | 3 | **Travailler en équipe sur GitHub** | 2:05 | violet GitHub |
 | 4 | **Exercice : ta carte de profil HTML/CSS** | 2:41 | rose créatif |
+| 5 | **Docker : les conteneurs** | 2:40 | bleu Docker |
 
 ## ➕ Créer une nouvelle vidéo
 

@@ -110,7 +110,26 @@ body.theme-cinema {
   --font-mono: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", ui-monospace, monospace;
 }
 
-/* ---------- (exemple) THÈME 6 : ARDOISE CLAIRE ----------
+/* ---------- THÈME 6 : DOCKER (bleu port de Cotonou) ---------- */
+body.theme-docker {
+  --bg: #061a2b;
+  --panel: rgba(36, 150, 237, .08);
+  --line: rgba(36, 150, 237, .25);
+  --text: #eaf4fb;
+  --muted: #8fb0c6;
+  --accent: #2496ed;
+  --accent2: #2dd4bf;
+  --accent-soft: rgba(36, 150, 237, .14);
+  --stage-a: #0a2540;
+  --stage-b: #04121f;
+  --win: #0b2236;
+  --win-bar: #12314a;
+  --term-out: #bfe0f5;
+  --warn: #fb7185;
+  --font-mono: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", ui-monospace, monospace;
+}
+
+/* ---------- (exemple) THÈME 7 : ARDOISE CLAIRE ----------
 body.theme-light {
   --bg: #f3f5f9;
   --panel: #ffffff;
