@@ -62,6 +62,7 @@ cliquable, écran de fin avec rediffusion.
 | 3 | **Travailler en équipe sur GitHub** | 2:05 | violet GitHub |
 | 4 | **Exercice : ta carte de profil HTML/CSS** | 2:41 | rose créatif |
 | 5 | **Docker : les conteneurs** | 2:40 | bleu Docker |
+| 6 | **Le réseau expliqué : IP, DNS, HTTP** | 2:51 | violet réseau |
 
 ## ➕ Créer une nouvelle vidéo
 

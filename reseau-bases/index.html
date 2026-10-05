@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Le réseau expliqué : IP, DNS, HTTP — vidéo animée</title>
+  <link rel="stylesheet" href="../assets/core.css">
+  <link rel="stylesheet" href="../assets/player.css">
+  <link rel="stylesheet" href="../assets/themes.css">
+</head>
+<body class="theme-reseau">
+
+  <header class="site-head">
+    <a class="brand" href="../index.html"><span class="brand-dot">▶</span> vidéos<em>.animées</em></a>
+    <a class="back" href="../index.html">← Toutes les vidéos</a>
+  </header>
+
+  <main class="page">
+    <div class="player" id="player">
+      <div class="stage" id="stage">
+        <div id="scenes"></div>
+        <div class="subs" id="subs" hidden></div>
+
+        <div class="overlay bigplay" id="bigplay">
+          <div class="bp-kicker" id="bp-kicker">vidéo animée · avec sous-titres</div>
+          <h1 class="bp-title" id="bp-title"></h1>
+          <p class="bp-meta" id="bp-meta"></p>
+          <button class="bp-btn" id="bp-btn" type="button" aria-label="Lancer la vidéo">
+            <svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </button>
+          <p class="bp-hint">Espace : lecture/pause · ← → : naviguer · C : sous-titres · S : son · F : plein écran</p>
+        </div>
+
+        <div class="overlay endcard" id="endcard" hidden>
+          <div class="ec-title">Terminé ! 🎉</div>
+          <div class="ec-row">
+            <a class="btn" id="btn-replay" href="#">↺ Revoir</a>
+            <a class="btn primary" id="btn-next" href="#" hidden>→ <span>Vidéo suivante</span></a>
+          </div>
+        </div>
+
+        <div class="chapters" id="chapters" hidden>
+          <div class="chap-head">Chapitres</div>
+          <div id="chap-list"></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="ctl" id="btn-play" title="Lecture / pause (Espace)"></button>
+        <div class="progress" id="progress">
+          <div class="marks" id="marks"></div>
+          <div class="fill" id="fill"></div>
+          <div class="handle" id="handle"></div>
+        </div>
+        <span class="time"><span id="t-now">0:00</span> / <span id="t-dur">0:00</span></span>
+        <button class="ctl" id="btn-chap" title="Chapitres">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4 6h2v2H4zm4 0h12v2H8zM4 11h2v2H4zm4 0h12v2H8zM4 16h2v2H4zm4 0h12v2H8z"/></svg>
+        </button>
+        <button class="ctl snd on" id="btn-snd" title="Son : voix off + effets (S)"></button>
+        <input class="vol" id="vol" type="range" min="0" max="1" step="0.05" value="0.9" title="Volume">
+        <button class="ctl cc on" id="btn-cc" title="Sous-titres (C)">CC</button>
+        <select class="speed" id="speed" title="Vitesse de lecture">
+          <option value="0.75">0.75×</option>
+          <option value="1" selected>1×</option>
+          <option value="1.25">1.25×</option>
+          <option value="1.5">1.5×</option>
+          <option value="2">2×</option>
+        </select>
+        <button class="ctl" id="btn-full" title="Plein écran (F)">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4 4h6v2H6v4H4zm10 0h6v6h-2V6h-4zM4 14h2v4h4v2H4zm14 14h2v6h-6v-2h4z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <section class="desc">
+      <h2 id="desc-title"></h2>
+      <p id="desc-text"></p>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    Vidéo web animée · 100 % HTML / CSS · sous-titres intégrés pour la voix off.
+  </footer>
+
+  <script type="application/json" id="video-data">
+  {
+    "title": "Le réseau expliqué : IP, DNS, HTTP",
+    "tagline": "épisode 6 · réseau",
+    "kicker": "Épisode 6 · Réseau",
+    "description": "Ce qui se passe vraiment quand tu ouvres un site : adresse IP (l'adresse de la maison), ping pour tester la route, DNS l'annuaire qui traduit les noms, HTTP la conversation requête/réponse, les codes 200/301/404/500, HTTPS et les ports 80/443, et le fix de ERR_NAME_NOT_RESOLVED.",
+    "scenes": [
+      {
+        "type": "title",
+        "dur": 13.5,
+        "chapter": "Intro",
+        "bg": "img/intro-bg.jpg",
+        "kicker": "Épisode 6 · Réseau",
+        "title": "Le réseau expliqué",
+        "sub": "IP, DNS, HTTP : le voyage d'une page web",
+        "badge": "🌍",
+        "audio": "audio/s01.mp3",
+        "subs": [
+          [0.3, 12.3, "Chaque fois que tu ouvres un site, un voyage invisible commence. De Cotonou vers l'autre bout du monde, et retour. Pour le comprendre, trois idées : adresse IP, DNS, HTTP."]
+        ]
+      },
+      {
+        "type": "split",
+        "dur": 19.5,
+        "chapter": "L'adresse IP",
+        "title": "L'adresse IP",
+        "left": {
+          "emoji": "🏠",
+          "title": "À Cotonou",
+          "items": [
+            "Chaque maison a son adresse",
+            "Le facteur livre grâce à elle",
+            "Pas d'adresse = pas de colis"
+          ]
+        },
+        "right": {
+          "emoji": "🌍",
+          "title": "Sur internet",
+          "items": [
+            "Chaque machine a une adresse IP",
+            "Exemple : 41.85.12.34",
+            "IPv4 et IPv6 : deux formats"
+          ]
+        },
+        "audio": "audio/s02.mp3",
+        "subs": [
+          [0.3, 18.5, "À Cotonou, chaque maison a son adresse, et le facteur livre grâce à elle. Sur internet, c'est pareil : chaque machine connectée a une adresse IP. Par exemple 41.85.12.34. Sans adresse, pas de colis."]
+        ]
+      },
+      {
+        "type": "terminal",
+        "dur": 13.1,
+        "chapter": "Tester la route",
+        "num": "01",
+        "name": "ping : la route est bonne ?",
+        "hint": "un signal aller-retour, mesuré en millisecondes",
+        "host": "dorin@linux: ~",
+        "cmd": "ping -c 3 www.benin.bj",
+        "out": [
+          "64 bytes from 41.85.12.34: time=23.1 ms",
+          "64 bytes from 41.85.12.34: time=22.8 ms",
+          "--- 3 transmitted, 0% loss ---"
+        ],
+        "audio": "audio/s03.mp3",
+        "subs": [
+          [0.3, 11.6, "Avec ping, tu vérifies la route. Tu envoies un petit signal, la machine répond, et tu mesures le temps aller-retour, en millisecondes. Si ça répond, la route est bonne."]
+        ]
+      },
+      {
+        "type": "split",
+        "dur": 25.7,
+        "chapter": "DNS, l'annuaire",
+        "title": "DNS, l'annuaire",
+        "left": {
+          "emoji": "📇",
+          "title": "Le problème",
+          "items": [
+            "Les humains retiennent des noms",
+            "Les machines retiennent des nombres",
+            "Taper 41.85.12.34 chaque jour ? non merci"
+          ]
+        },
+        "right": {
+          "emoji": "🧭",
+          "title": "L'annuaire DNS",
+          "items": [
+            "Traduit le nom → le nombre",
+            "www.mon-site.bj → 41.85.12.34",
+            "Comme l'annuaire du port de Cotonou"
+          ]
+        },
+        "audio": "audio/s04.mp3",
+        "subs": [
+          [0.3, 24.7, "Problème : les humains retiennent des noms, les machines retiennent des nombres. Le DNS, c'est l'annuaire qui traduit : www mon site point bj devient 41.85.12.34. Comme l'annuaire du port, qui retrouve un conteneur par son nom."]
+        ]
+      },
+      {
+        "type": "terminal",
+        "dur": 13.3,
+        "chapter": "Interroger l'annuaire",
+        "num": "02",
+        "name": "nslookup : le nom → l'IP",
+        "hint": "l'annuaire te répond en direct",
+        "host": "dorin@linux: ~",
+        "cmd": "nslookup www.benin.bj",
+        "out": [
+          "Server: 1.1.1.1",
+          "Name: www.benin.bj",
+          "Address: 41.85.12.34"
+        ],
+        "audio": "audio/s05.mp3",
+        "subs": [
+          [0.3, 11.8, "Avec nslookup, tu interroges l'annuaire toi-même. Tape nslookup www point benin point bj : il te rend l'adresse IP. Maintenant, tu sais vraiment à qui tu parles."]
+        ]
+      },
+      {
+        "type": "split",
+        "dur": 18.0,
+        "chapter": "HTTP, la conversation",
+        "title": "HTTP, la conversation",
+        "left": {
+          "emoji": "🙋",
+          "title": "La requête",
+          "items": [
+            "GET /index.html HTTP/1.1",
+            "Host: www.mon-site.bj",
+            "méthode + en-têtes (+ corps parfois)"
+          ]
+        },
+        "right": {
+          "emoji": "📦",
+          "title": "La réponse",
+          "items": [
+            "HTTP/1.1 200 OK",
+            "Content-Type: text/html",
+            "statut + contenu de la page"
+          ]
+        },
+        "audio": "audio/s06.mp3",
+        "subs": [
+          [0.3, 17.0, "Une fois arrivé à destination, il faut parler la même langue : HTTP. Le navigateur envoie une requête : GET, barre, index point html. Le serveur répond : un code de statut, puis le contenu de la page."]
+        ]
+      },
+      {
+        "type": "grid",
+        "dur": 17.6,
+        "chapter": "Les codes de statut",
+        "title": "Les codes de statut",
+        "items": [
+          ["200", "tout va bien"],
+          ["301", "la page a déménagé"],
+          ["404", "introuvable"],
+          ["500", "panne côté serveur"]
+        ],
+        "audio": "audio/s07.mp3",
+        "subs": [
+          [0.3, 16.6, "Les codes à connaître : 200, tout va bien. 301, la page a déménagé. 404, introuvable. 500, panne côté serveur. Avec ces quatre-là, tu lis la moitié d'internet."]
+        ]
+      },
+      {
+        "type": "split",
+        "dur": 17.9,
+        "chapter": "HTTPS et les ports",
+        "title": "HTTPS et les ports",
+        "left": {
+          "emoji": "🔐",
+          "title": "HTTPS",
+          "items": [
+            "La conversation chiffrée (TLS)",
+            "Le cadenas = certificat vérifié",
+            "Personne ne lit en chemin"
+          ]
+        },
+        "right": {
+          "emoji": "🚪",
+          "title": "Les ports",
+          "items": [
+            "80 → HTTP",
+            "443 → HTTPS",
+            "Vu avec Docker : -p local:conteneur"
+          ]
+        },
+        "audio": "audio/s08.mp3",
+        "subs": [
+          [0.3, 16.9, "Par-dessus, HTTPS : la version chiffrée. Le cadenas du navigateur veut dire que personne ne peut lire la conversation en chemin. Et les ports : 80 pour HTTP, 443 pour HTTPS. Les portes numérotées que tu as déjà vues avec Docker."]
+        ]
+      },
+      {
+        "type": "error",
+        "dur": 19.0,
+        "chapter": "Erreur classique",
+        "title": "ERR_NAME_NOT_RESOLVED",
+        "see": "Le navigateur affiche « adresse DNS du serveur introuvable ».",
+        "why": "Ce n'est pas le site qui est mort : c'est l'annuaire DNS qui ne répond plus (connexion faible ou DNS en cause).",
+        "fix": "Vérifie ta connexion, puis passe sur DNS 1.1.1.1 ou 8.8.8.8.",
+        "audio": "audio/s09.mp3",
+        "subs": [
+          [0.3, 18.0, "Erreur classique : ERR NAME NOT RESOLVED. Ce n'est pas le site qui est mort, c'est l'annuaire qui ne répond plus. Premier réflexe : vérifier ta connexion. Deuxième : changer de DNS pour 1.1.1.1 ou 8.8.8.8."]
+        ]
+      },
+      {
+        "type": "title",
+        "dur": 13.2,
+        "chapter": "Outro",
+        "kicker": "Épisode 6 · terminé",
+        "title": "À toi de jouer !",
+        "sub": "ping + nslookup sur 3 sites : note les temps, compare les adresses.",
+        "badge": "🌍",
+        "audio": "audio/s10.mp3",
+        "subs": [
+          [0.3, 12.0, "Défi : ouvre un terminal, fais un ping vers trois sites que tu aimes, puis retrouve leur vraie adresse avec nslookup. Note les temps de réponse, et compare. À l'épisode prochain !"]
+        ]
+      }
+    ]
+  }
+  </script>
+  <script src="../assets/player.js"></script>
+  <script src="../assets/recorder.js"></script>
+</body>
+</html>

@@ -129,7 +129,26 @@ body.theme-docker {
   --font-mono: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", ui-monospace, monospace;
 }
 
-/* ---------- (exemple) THÈME 7 : ARDOISE CLAIRE ----------
+/* ---------- THÈME 7 : RÉSEAU (violet nuit + cyan) ---------- */
+body.theme-reseau {
+  --bg: #100820;
+  --panel: rgba(34, 211, 238, .07);
+  --line: rgba(167, 139, 250, .28);
+  --text: #f0edfa;
+  --muted: #9d93b8;
+  --accent: #22d3ee;
+  --accent2: #a78bfa;
+  --accent-soft: rgba(34, 211, 238, .12);
+  --stage-a: #1b1033;
+  --stage-b: #070312;
+  --win: #160d29;
+  --win-bar: #221640;
+  --term-out: #cfeef7;
+  --warn: #fb7185;
+  --font-mono: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", ui-monospace, monospace;
+}
+
+/* ---------- (exemple) THÈME 8 : ARDOISE CLAIRE ----------
 body.theme-light {
   --bg: #f3f5f9;
   --panel: #ffffff;

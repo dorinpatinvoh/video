@@ -114,6 +114,23 @@ l'animation.
 
 ---
 
+## ÉPISODE 6 — « Le réseau expliqué : IP, DNS, HTTP »
+
+| Scène | Fichier | Texte à faire lire |
+|---|---|---|
+| Intro | s01.mp3 | Chaque fois que tu ouvres un site, un voyage invisible commence. De Cotonou vers l'autre bout du monde, et retour. Pour le comprendre, trois idées : adresse IP, DNS, HTTP. |
+| Adresse IP | s02.mp3 | À Cotonou, chaque maison a son adresse, et le facteur livre grâce à elle. Sur internet, c'est pareil : chaque machine connectée a une adresse IP. Par exemple 41.85.12.34. Sans adresse, pas de colis. |
+| ping | s03.mp3 | Avec ping, tu vérifies la route. Tu envoies un petit signal, la machine répond, et tu mesures le temps aller-retour, en millisecondes. Si ça répond, la route est bonne. |
+| DNS | s04.mp3 | Problème : les humains retiennent des noms, les machines retiennent des nombres. Le DNS, c'est l'annuaire qui traduit : www mon site point bj devient 41.85.12.34. Comme l'annuaire du port, qui retrouve un conteneur par son nom. |
+| nslookup | s05.mp3 | Avec nslookup, tu interroges l'annuaire toi-même. Tape nslookup www point benin point bj : il te rend l'adresse IP. Maintenant, tu sais vraiment à qui tu parles. |
+| HTTP | s06.mp3 | Une fois arrivé à destination, il faut parler la même langue : HTTP. Le navigateur envoie une requête : GET, barre, index point html. Le serveur répond : un code de statut, puis le contenu de la page. |
+| Codes | s07.mp3 | Les codes à connaître : 200, tout va bien. 301, la page a déménagé. 404, introuvable. 500, panne côté serveur. Avec ces quatre-là, tu lis la moitié d'internet. |
+| HTTPS/ports | s08.mp3 | Par-dessus, HTTPS : la version chiffrée. Le cadenas du navigateur veut dire que personne ne peut lire la conversation en chemin. Et les ports : 80 pour HTTP, 443 pour HTTPS. Les portes numérotées que tu as déjà vues avec Docker. |
+| Erreur | s09.mp3 | Erreur classique : ERR NAME NOT RESOLVED. Ce n'est pas le site qui est mort, c'est l'annuaire qui ne répond plus. Premier réflexe : vérifier ta connexion. Deuxième : changer de DNS pour 1.1.1.1 ou 8.8.8.8. |
+| Outro | s10.mp3 | Défi : ouvre un terminal, fais un ping vers trois sites que tu aimes, puis retrouve leur vraie adresse avec nslookup. Note les temps de réponse, et compare. À l'épisode prochain ! |
+
+---
+
 ## Conseils pour la génération externe
 
 - Voix : française, masculine ou feminine selon ton goût, ton « jeune / pédagogue ».

@@ -1,0 +1,29 @@
+🌍 LE RÉSEAU EXPLIQUÉ : IP, DNS, HTTP (épisode 6)
+
+Ce qui se passe vraiment quand tu ouvres une page web, expliqué
+avec des images de chez nous : l'adresse IP comme l'adresse d'une
+maison à Cotonou, le DNS comme l'annuaire du port, et HTTP comme
+une conversation requête / réponse. Plus les codes de statut,
+HTTPS, les ports 80/443, et le fix de ERR_NAME_NOT_RESOLVED.
+
+⏱️ CHAPITRES
+0:00  Intro — le voyage d'une page
+0:14  L'adresse IP
+0:33  ping : tester la route
+0:46  DNS, l'annuaire
+1:12  nslookup : interroger l'annuaire
+1:25  HTTP : requête / réponse
+1:43  Les codes 200 / 301 / 404 / 500
+2:01  HTTPS et les ports 80 / 443
+2:19  Erreur : ERR_NAME_NOT_RESOLVED
+2:38  À toi de jouer !
+
+🧰 COMMANDES DE L'ÉPISODE
+ping -c 3 www.benin.bj
+nslookup www.benin.bj
+DNS publics : 1.1.1.1 (Cloudflare) · 8.8.8.8 (Google)
+
+📚 La série : 1 = 20 commandes Linux · 2 = HTML/CSS · 3 = GitHub ·
+4 = exo carte de profil · 5 = Docker · 6 = le réseau.
+
+#reseau #dns #http #ip #benin #dev #formation #cotonou #https
