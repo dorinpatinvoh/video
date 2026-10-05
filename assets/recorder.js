@@ -48,9 +48,12 @@
     if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
       alert(
         'Export vidéo indisponible dans ce contexte.\n\n' +
-        'Ouvre la page via un serveur local, par exemple :\n' +
-        '  python -m http.server 8000\n' +
-        'puis va sur http://localhost:8000 et réessaie.'
+        'Solution la plus simple (tu as déjà VS Code) :\n' +
+        '1. Extensions VS Code (Ctrl+Maj+X) → cherche « Live Server » → Installer\n' +
+        '2. Clic droit sur index.html → « Open with Live Server »\n' +
+        '3. Reviens ici et reclique sur ⬇\n\n' +
+        'Sinon, installe Python depuis le Microsoft Store,\n' +
+        'puis tape : python -m http.server 8000'
       );
       return;
     }

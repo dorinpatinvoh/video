@@ -25,12 +25,20 @@ code .
 Ouvre simplement **`index.html`** (la galerie) dans ton navigateur, ou une vidéo
 directement (`linux-20-commandes/index.html`, `html-css-bases/index.html`).
 
-Optionnel — serveur local (pratique pour le rechargement à chaud) :
+Optionnel — serveur local (utile pour le bouton ⬇ et le rechargement à chaud) :
 
 ```powershell
+# Solution 1 (recommandée, tu as déjà VS Code) :
+# Extensions (Ctrl+Maj+X) → « Live Server » → Installer
+# puis clic droit sur index.html → « Open with Live Server »
+
+# Solution 2 (si Python est installé un jour) :
 python -m http.server 8000
 # puis ouvre http://localhost:8000
 ```
+
+> Le bouton ⬇ « Télécharger la vidéo » a besoin d'un serveur local
+> (Live Server ou http://localhost). Tout le reste fonctionne en double-clic.
 
 ### Raccourcis du lecteur
 
