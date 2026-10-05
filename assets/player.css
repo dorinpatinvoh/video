@@ -64,6 +64,15 @@
 /* ============================================================
    SCÈNE : écran-titre
    ============================================================ */
+.t-img {
+  width: 8.5em;
+  border-radius: 1.2em;
+  border: 2px solid var(--line);
+  box-shadow: 0 14px 40px -12px rgba(0, 0, 0, .8);
+}
+.t-img.show { animation: imgFloat 4s ease-in-out infinite alternate 1s; }
+@keyframes imgFloat { to { transform: translateY(-.5em) rotate(1.5deg); } }
+
 .t-kicker {
   font-size: .95em;
   font-weight: 800;
@@ -412,6 +421,33 @@
    ANIMATIONS AVANCÉES
    ============================================================ */
 
+/* image de fond de scène avec zoom lent (effet Ken Burns) */
+.scene-bg {
+  position: absolute;
+  inset: -4%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.scene-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: .5;
+  filter: saturate(1.15);
+  animation: kenburns 14s ease-in-out infinite alternate;
+}
+.scene-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(85% 75% at 50% 45%, transparent 0%, var(--stage-b) 90%);
+}
+@keyframes kenburns {
+  from { transform: scale(1) translate(0, 0); }
+  to { transform: scale(1.1) translate(1.6%, -1.4%); }
+}
+.scene > *:not(.scene-bg) { position: relative; z-index: 1; }
+
 /* fondu sombre rapide entre deux scènes */
 .stage::after {
   content: '';
@@ -448,9 +484,11 @@
 .overlay { z-index: 10; }
 .chapters { z-index: 12; }
 
-/* entrée 3D du terminal / de l'éditeur */
+/* entrée 3D du terminal / de l'éditeur, puis flottement léger */
 .scene.active .term {
-  animation: termIn .6s cubic-bezier(.2, .9, .25, 1.15) .3s both;
+  animation:
+    termIn .6s cubic-bezier(.2, .9, .25, 1.15) .3s both,
+    termFloat 4.5s ease-in-out 1.4s infinite alternate;
 }
 @keyframes termIn {
   from {
@@ -458,6 +496,18 @@
     transform: perspective(900px) rotateX(8deg) translateY(2em) scale(.94);
   }
 }
+@keyframes termFloat {
+  to { transform: translateY(-.4em); }
+}
+/* invite qui pulse doucement */
+.ps1 { animation: psPulse 2.2s ease-in-out infinite; }
+@keyframes psPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .55; }
+}
+/* les résultats glissent depuis la gauche */
+.term-body [data-show] { transform: translateX(-1.2em); }
+.term-body [data-show].show { transform: none; }
 .scene.active .editor,
 .scene.active .rule-card {
   animation: riseIn .6s cubic-bezier(.2, .9, .3, 1.12) .25s both;
@@ -492,6 +542,14 @@
 /* badge : arrive en flottant */
 .t-badge.show { animation: badgeFloat 3s ease-in-out infinite alternate 1.8s; }
 @keyframes badgeFloat { to { transform: translateY(-.35em); } }
+
+/* emojis des panneaux split : petit rebond espiègle */
+.s-card.show .s-emoji { animation: emojiBounce 2.6s ease-in-out infinite; }
+@keyframes emojiBounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-.25em) rotate(-4deg); }
+  60% { transform: translateY(-.1em) rotate(3deg); }
+}
 
 /* sortie importante : pulse lumineux */
 .tl.out.hl.show { animation: hlPulse 1.3s ease .15s 2; }

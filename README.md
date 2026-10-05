@@ -102,6 +102,31 @@ html-css-bases/         ← épisode 2
 modele/                 ← modèle commenté pour un nouvel épisode
 ```
 
+## 🎵 Musique de fond (pour YouTube)
+
+Le lecteur joue automatiquement le fichier indiqué par le champ `"music"` du
+JSON (`../assets/music.mp3`) en boucle, à volume réduit, sous la voix off.
+
+1. Va dans **YouTube Studio → Bibliothèque audio** (musiques 100 % gratuites
+   et monétisables) et télécharge un morceau calme / lo-fi.
+2. Renomme-le `assets/music.mp3`.
+3. C'est tout : il démarre avec la lecture, se coupe avec la pause et le
+   bouton 🔊, et suit le curseur de volume.
+
+> Pas de musique = pas de musique, tout le reste fonctionne pareil.
+> ⚠️ N'utilise **jamais** un MP3 commercial (problèmes de droits sur YouTube).
+
+## 🖼️ Images & miniatures
+
+- Chaque épisode a sa **miniature YouTube** dans `<episode>/img/thumb.jpg`
+  (générée par IA, libre de droits) et un fond animé `intro-bg.jpg`
+  (effet zoom lent derrière l'intro et l'outro).
+- Pour en mettre une sur une scène : ajoute simplement
+  `"bg": "img/intro-bg.jpg"` (fond) ou `"img": "..."` (vignette sur un
+  écran-titre) dans le JSON de la scène.
+- Les **descriptions YouTube prêtes à coller** (titre + chapitres minutés)
+  sont dans le dossier `youtube/`.
+
 ## 🎥 Astuce pour transformer en vraie vidéo
 
 Lance la page en plein écran (`F`), règle la vitesse si besoin, puis capture

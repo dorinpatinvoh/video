@@ -1,0 +1,24 @@
+HTML & CSS : LES BASES en 2 minutes (tuto débutant)
+
+Comprendre enfin le HTML et le CSS : la structure d'une page,
+l'anatomie d'une règle CSS, le box model et le flexbox.
+Le code se tape tout seul à l'écran, avec sous-titres.
+
+📺 VIDÉO ANIMÉE : chaque scène est une page web (HTML/CSS), enregistrée
+avec les sous-titres en prompteur. Dépôt : github.com/dorinpatinvoh/video
+
+⏱️ CHAPITRES
+00:00 Intro
+00:08 Deux langages, deux rôles
+00:24 Une page HTML complète
+00:42 Anatomie d'une règle CSS
+00:59 Exemple concret
+01:11 Le box model
+01:26 Le flexbox
+01:41 Récap
+01:52 Outro
+
+🧠 À RETENIR : <h1> <p> <a> <img> · color · background · padding
+margin · display: flex
+
+#html #css #webdev #debutant #tuto #code

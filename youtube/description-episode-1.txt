@@ -1,0 +1,38 @@
+20 COMMANDES LINUX à connaître ABSOLUMENT (tuto débutant)
+
+Les 20 commandes Linux indispensables quand on débute dans le terminal,
+expliquées simplement : chaque commande est tapée à l'écran avec son
+résultat, en moins de 4 minutes.
+
+📺 VIDÉO ANIMÉE : chaque scène est une page web (HTML/CSS), enregistrée
+avec les sous-titres en prompteur. Dépôt : github.com/dorinpatinvoh/video
+
+⏱️ CHAPITRES
+00:00 Intro
+00:08 01 · pwd
+00:19 02 · ls
+00:31 03 · cd
+00:43 04 · mkdir
+00:53 05 · touch
+01:02 06 · cp
+01:12 07 · mv
+01:24 08 · rm
+01:32 09 · cat
+01:43 10 · tail
+01:55 11 · grep
+02:06 12 · find
+02:16 13 · echo
+02:25 14 · man
+02:35 15 · sudo
+02:44 16 · chmod
+02:54 17 · df
+03:05 18 · du
+03:14 19 · ps
+03:24 20 · tar
+03:34 Récap
+03:47 Outro
+
+💻 LES COMMANDES : pwd · ls · cd · mkdir · touch · cp · mv · rm · cat
+tail · grep · find · echo · man · sudo · chmod · df · du · ps · tar
+
+#linux #terminal #commandes #debutant #tuto #informatique

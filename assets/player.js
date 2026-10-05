@@ -41,6 +41,8 @@
     vol: 0.9,          // volume général
     audioCache: new Map(),
     currentAudio: null,
+    music: null,        // musique de fond (optionnelle)
+    musicBaseVol: 0.18,
     active: -1,        // index de la scène active
     started: false,    // la lecture a-t-elle commencé ?
     ended: false,
@@ -219,13 +221,14 @@
   function buildScene(sc) {
     const el = document.createElement('section');
     el.className = 'scene sc-' + sc.type;
-    let h = '';
+    let h = sc.bg ? `<div class="scene-bg"><img src="${esc(sc.bg)}" alt=""></div>` : '';
 
     switch (sc.type) {
 
       /* --- écran-titre (intro / outro) --- */
       case 'title':
-        h = `${sc.kicker ? `<div class="t-kicker" data-show="0.1">${esc(sc.kicker)}</div>` : ''}
+        h = `${sc.img ? `<img class="t-img" src="${esc(sc.img)}" alt="" data-show="0.2">` : ''}
+             ${sc.kicker ? `<div class="t-kicker" data-show="0.1">${esc(sc.kicker)}</div>` : ''}
              <h1 class="t-main" data-show="0.45">${esc(sc.title || '')}</h1>
              ${sc.sub ? `<p class="t-sub" data-show="1.05">${esc(sc.sub)}</p>` : ''}
              ${sc.badge ? `<div class="t-badge" data-show="1.6">${sc.badge}</div>` : ''}`;
@@ -457,12 +460,14 @@
     S.playing = true;
     els.player.classList.add('playing');
     resumeNarration();
+    if (S.soundOn && S.music) { try { S.music.play().catch(() => {}); } catch (e) {} }
     syncPlayBtn();
   }
   function pause() {
     S.playing = false;
     els.player.classList.remove('playing');
     pauseNarration();
+    if (S.music) { try { S.music.pause(); } catch (e) {} }
     syncPlayBtn();
   }
   const togglePlay = () => (S.playing ? pause() : play());
@@ -476,6 +481,7 @@
   function showEnd() {
     S.ended = true;
     stopNarration();
+    if (S.music) { try { S.music.pause(); } catch (e) {} }
     els.endcard.hidden = false;
   }
 
@@ -543,14 +549,23 @@
     // son (voix off + effets)
     els.btnSnd.addEventListener('click', () => {
       S.soundOn = !S.soundOn;
-      if (S.soundOn) { FX.ensure(); if (S.playing) resumeNarration(); }
-      else pauseNarration();
+      if (S.soundOn) {
+        FX.ensure();
+        if (S.playing) {
+          resumeNarration();
+          if (S.music) { try { S.music.play().catch(() => {}); } catch (e) {} }
+        }
+      } else {
+        pauseNarration();
+        if (S.music) { try { S.music.pause(); } catch (e) {} }
+      }
       syncSoundBtn();
     });
     els.vol.addEventListener('input', () => {
       S.vol = parseFloat(els.vol.value);
       FX.setVol(S.vol);
       if (S.currentAudio) S.currentAudio.volume = S.vol;
+      if (S.music) S.music.volume = S.musicBaseVol * S.vol;
     });
 
     // sous-titres
@@ -625,6 +640,14 @@
 
     S.data = loadData();
     document.title = S.data.title + ' — vidéo animée';
+
+    // musique de fond optionnelle (fichier indiqué par "music" dans le JSON)
+    if (S.data.music) {
+      S.music = new Audio(S.data.music);
+      S.music.loop = true;
+      S.musicBaseVol = S.data.musicVolume != null ? S.data.musicVolume : 0.18;
+      S.music.volume = S.musicBaseVol * S.vol;
+    }
 
     // écran de démarrage
     $('#bp-title').textContent = S.data.title;
