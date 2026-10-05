@@ -1,0 +1,25 @@
+DOSSIER DES WALLPAPERS GOKU ORIGINAUX
+=====================================
+
+1. Copie ici tes 10 wallpapers Goku, SANS les renommer :
+   - Goku Wallpaper.jpg
+   - Goku Fusion HD wallpaper.jpg
+   - 206180489187014320.jpg
+   - 179018153933336019.jpg
+   - 169025792263979920.jpg
+   - goku.jpg
+   - 545287467407818656.jpg
+   - son goku.jpg
+   - 40039884186159983.jpg
+   - 4644405861726082.jpg
+
+2. Puis pousse-les sur la branche (PowerShell) :
+   git add goku-clip/originaux
+   git commit -m "Goku : wallpapers originaux pour le rendu final"
+   git push origin arena/01a1092f-video
+
+3. Dis-le dans le chat : l'agent récupère les fichiers, relance le
+   rendu avec TES images exactes et te livre le MP4 final.
+
+(Le MP4 rendu, lui, reste hors de git : il est livré en téléchargement
+direct dans le chat.)
