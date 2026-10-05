@@ -51,6 +51,7 @@ cliquable, écran de fin avec rediffusion.
 |---|---|---|---|
 | 1 | **20 commandes Linux à connaître** | 3:57 | terminal vert |
 | 2 | **HTML & CSS : les bases** | 2:01 | éditeur de code |
+| 3 | **Travailler en équipe sur GitHub** | 3:00 | violet GitHub |
 
 ## ➕ Créer une nouvelle vidéo
 

@@ -58,6 +58,25 @@ l'animation.
 
 ---
 
+## ÉPISODE 3 — « Travailler en équipe sur GitHub »
+
+| Scène | Fichier | Texte à faire lire |
+|---|---|---|
+| Intro | s01.mp3 | Épisode 3 ! Aujourd'hui, le vrai sujet : travailler en équipe sur GitHub, sans jamais écraser le travail des autres. |
+| Le problème | s02.mp3 | Sans méthode, coder à plusieurs, c'est le chaos : fichiers écrasés, versions partout. Avec GitHub, chacun travaille dans sa branche, et tout fusionne proprement. |
+| clone | s03.mp3 | Étape 1 : git clone. Ça télécharge tout le projet sur ton ordinateur, avec tout l'historique. Une seule fois, au début. |
+| branche | s04.mp3 | Étape 2 : crée ta branche avec git checkout moins b. Une branche, c'est ta bulle : tu peux tout casser sans rien abîmer. |
+| commit | s05.mp3 | Étape 3 : commit. Chaque commit est une photo de ton travail, avec un petit message qui explique ce que tu as fait. |
+| push | s06.mp3 | Étape 4 : push. Ta branche part sur GitHub, en sécurité, visible par toute l'équipe. Ton PC peut brûler, rien n'est perdu. |
+| pull request | s07.mp3 | Étape 5 : la pull request, ou PR. C'est ta demande officielle : venez voir mon travail, et fusionnez-le. Tout se passe sur GitHub, dans le navigateur. |
+| code review | s08.mp3 | Étape 6 : le code review. Un collègue lit ton code, commente, propose. Tu améliores, il approuve. C'est comme ça que toute l'équipe progresse. |
+| merge | s09.mp3 | Étape 7 : merge. Le travail validé rejoint la branche principale. Dans le terminal, ou d'un clic sur le bouton vert de GitHub. |
+| conflits | s10.mp3 | Et si deux personnes modifient la même ligne ? C'est un conflit. Git te montre les deux versions, tu choisis la bonne, tu commit, et c'est réglé. |
+| Récap | s11.mp3 | Le récap : clone, branche, commit, push, pull request, review, merge. Et le réflexe à prendre : git pull chaque matin, pour toujours partir du travail le plus récent. |
+| Outro | s12.mp3 | Voilà, tu sais maintenant travailler en équipe sur GitHub. Le meilleur moyen d'apprendre : un vrai projet, à plusieurs. À bientôt ! |
+
+---
+
 ## Conseils pour la génération externe
 
 - Voix : française, masculine ou feminine selon ton goût, ton « jeune / pédagogue ».

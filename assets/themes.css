@@ -53,7 +53,26 @@ body.theme-editor {
   --font-mono: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", ui-monospace, monospace;
 }
 
-/* ---------- (exemple) THÈME 3 : ARDOISE CLAIRES ----------
+/* ---------- THÈME 3 : GITHUB (violet sur nuit) ---------- */
+body.theme-github {
+  --bg: #0d1117;
+  --panel: rgba(163, 113, 247, .06);
+  --line: rgba(163, 113, 247, .22);
+  --text: #f0f6fc;
+  --muted: #8d96a0;
+  --accent: #a371f7;
+  --accent2: #58a6ff;
+  --accent-soft: rgba(163, 113, 247, .13);
+  --stage-a: #171226;
+  --stage-b: #0a0d12;
+  --win: #161b22;
+  --win-bar: #21262d;
+  --term-out: #c9d1d9;
+  --warn: #d29922;
+  --font-mono: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", ui-monospace, monospace;
+}
+
+/* ---------- (exemple) THÈME 4 : ARDOISE CLAIRES ----------
 body.theme-light {
   --bg: #f3f5f9;
   --panel: #ffffff;
