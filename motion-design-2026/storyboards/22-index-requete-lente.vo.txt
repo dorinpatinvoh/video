@@ -4,7 +4,7 @@ Version ENREGISTRÉE (calée à la durée de chaque scène).
 Un clip WAV par scène → public/audio/vo-index-<scene>.wav
 
 BUDGET : ~120 mots pour 60 s — la voix lit à ~2,4 mots/s (mesuré sur ACID).
-STATUT : ✅ enregistré (voix off générée).
+STATUT : ✅ enregistré (voix off générée, 7/7 chunks calés — tous à vitesse naturelle).
 
 [hook — 3,0 s]  (00:00 → 00:03)
 Un million de lignes… quatre secondes.
