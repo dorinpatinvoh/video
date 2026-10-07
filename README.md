@@ -28,12 +28,30 @@ npm run browser:setup
 npm run render -- Index-Vue2-Index out/index-vue2.mp4
 ```
 
-Exemple vérifié dans cet environnement :
+### Exporter les films (copier-coller)
+
+```bash
+# les trois films complets : 60 s, 1080×1920 @60 fps, voix off + SFX inclus
+npm run render -- ACID-transactions-60s  out/acid-transactions.mp4
+npm run render -- INDEX-requete-lente-60s out/index-requete-lente.mp4
+npm run render -- CACHE-CDN-60s           out/cache-cdn.mp4
+
+# une seule scène (revue rapide, ~2 min pour 3 s)
+npm run render -- Cache-Hook out/cache-hook.mp4
+
+# une image fixe (QA plan par plan)
+npx remotion still src/index.ts Cache-Hook out/frames/hook.png --frame=40
+```
+
+Exemples vérifiés dans cet environnement :
 
 ```
-▶ Export : Acid-Hook → out/hook.mp4
-Rendered 180/180 · Encoded 180/180
-+ out/hook.mp4  815.4 kB      # 1080×1920 @60 fps, audio inclus
+▶ Export : Cache-Hook → out/cache-hook.mp4
+Encoded 180/180 · + out/cache-hook.mp4   518.8 kB   (3,0 s)
+
+▶ Export : CACHE-CDN-60s → out/cache-cdn.mp4
+Encoded 3600/3600 · + out/cache-cdn.mp4   15.3 MB
+  h264 1080×1920 @60 fps · aac 48 kHz stéréo · 60,01 s
 ```
 
 ## 🎬 Les vidéos en production
