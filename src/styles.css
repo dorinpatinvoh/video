@@ -1,0 +1,84 @@
+/* ---------------------------------------------------------------------------
+   STANDARD MOTION 2026 — styles globaux du canvas 1080x1920
+   Polices : déposer Inter-Regular.woff2 / Inter-Bold.woff2 / JetBrainsMono-*.woff2
+   dans public/fonts/ puis décommenter. En leur absence, on retombe proprement
+   sur les polices système (aucune casse de rendu).
+--------------------------------------------------------------------------- */
+
+/*
+@font-face{font-family:'Inter';src:local('Inter'),url('/fonts/Inter-Regular.woff2') format('woff2');font-weight:400;font-display:block;}
+@font-face{font-family:'Inter';src:local('Inter Medium'),url('/fonts/Inter-Medium.woff2') format('woff2');font-weight:500;font-display:block;}
+@font-face{font-family:'Inter';src:local('Inter'),url('/fonts/Inter-Bold.woff2') format('woff2');font-weight:700 800;font-display:block;}
+@font-face{font-family:'JetBrains Mono';src:local('JetBrains Mono'),url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');font-weight:400;font-display:block;}
+@font-face{font-family:'JetBrains Mono';src:local('JetBrains Mono Medium'),url('/fonts/JetBrainsMono-Medium.woff2') format('woff2');font-weight:500;font-display:block;}
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-base: #0b0f19;
+  --bg-alt: #0d1117;
+  --bg-glass: rgba(255, 255, 255, 0.045);
+  --border-glass: rgba(255, 255, 255, 0.09);
+  --indigo: #6366f1;
+  --cyan: #22d3ee;
+  --emerald: #34d399;
+  --amber: #fbbf24;
+  --rose: #f43f5e;
+  --text: #e6edf3;
+  --text-dim: #9ba7b4;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #05070c;
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+/* ---------------------------------------------------------------- surfaces */
+.glass {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.mono {
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-variant-ligatures: contextual common-ligatures;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------- typo */
+.t-hook {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+
+.t-caption {
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.t-ui {
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.t-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}

@@ -1,0 +1,47 @@
+VOIX OFF — « ACID / transactions bancaires » (60 s, 9:16)
+========================================================
+Débit visé : ~145 mots (2,4 mots/s) · dynamique, sans jargon inutile.
+Enregistrer en une prise courte par ligne (facilite la synchro), ou en TTS.
+Déposer le fichier final dans : public/audio/vo.mp3
+puis décommenter la ligne <Audio src={staticFile('audio/vo.mp3')} /> dans src/remotion/Root.tsx
+
+[00:00.0 → 00:01.5]  100 euros partent du compte A…
+[00:01.5 → 00:03.0]  …et n'arrivent jamais sur le compte B.
+
+— DÉCORTICAGE —
+
+[00:03.0 → 00:05.0]  Pour comprendre, regarde ce qui se passe vraiment.
+[00:05.0 → 00:07.0]  Étape une : débiter le compte A. Réussi.
+[00:07.0 → 00:09.0]  Étape deux : créditer le compte B. Le serveur plante avant.
+[00:09.0 → 00:12.0]  50 euros évaporés, sans trace. Personne ne peut les récupérer.
+
+[00:12.0 → 00:15.0]  La solution tient en un mot : atomique. Tout, ou rien.
+[00:15.0 → 00:18.0]  Si une seule étape échoue, on annule tout. La base revient exactement à son état d'avant.
+[00:18.0 → 00:21.0]  Un virement, c'est tout ou rien. Jamais la moitié.
+
+[00:21.0 → 00:24.0]  Deuxième lettre : la cohérence.
+[00:24.0 → 00:27.0]  Aucune opération ne peut laisser la base dans un état incohérent : un solde négatif est refusé.
+[00:27.0 → 00:30.0]  Les règles sont vérifiées avant et après chaque transaction.
+
+[00:30.0 → 00:33.0]  Troisième lettre : l'isolation. Deux virements en même temps.
+[00:33.0 → 00:36.0]  Sans isolation, deux opérations lisent le même solde et dépensent deux fois le même argent.
+[00:36.0 → 00:39.0]  La base fait la queue : la deuxième attend son tour, et tout reste juste.
+[00:39.0 → 00:42.0]  Dernière lettre : la durabilité. Le courant se coupe.
+[00:42.0 → 00:45.0]  Une fois validée, la transaction est écrite sur disque. Elle survit au redémarrage.
+
+— RÉSOLUTION —
+
+[00:45.0 → 00:49.0]  En pratique, tu n'écris jamais ça à la main : une seule fonction.
+[00:49.0 → 00:52.0]  Tout réussit, ou rien ne s'applique. Et la base le garantit pour toi.
+[00:52.0 → 00:55.0]  Même code, même panne. Une seule différence : le résultat.
+
+— OUTRO —
+
+[00:55.0 → 00:57.5]  Atomicité, cohérence, isolation, durabilité : ACID.
+[00:57.5 → 01:00.0]  Abonne-toi : la prochaine vidéo décortique les index.
+
+--------------------------------------------------------
+CONSEILS DE PRISE
+- Garder 60–80 ms de silence en tête de chaque ligne (la synchro est faite sur les beats du storyboard).
+- La ligne 00:39–00:42 doit être dite plus lentement : l'image passe au noir avec 200 ms de silence total.
+- Ne pas lire « A-C-I-D » en anglais : dire « acid » à la française, une seule fois, clairement.

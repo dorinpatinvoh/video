@@ -1,0 +1,12 @@
+# dépendances
+node_modules/
+
+# sorties de build & rendus
+dist/
+out/
+*.mp4
+.remotion/
+
+# divers
+.DS_Store
+*.log
