@@ -10,6 +10,7 @@ import { Cursor } from '../../components/Cursor';
 import { GlassCard, Highlight } from '../../components/GlassCard';
 import { Caption } from '../../components/Caption';
 import { SceneSfx } from '../../components/Sfx';
+import { SceneVo } from '../../components/VoiceOver';
 import { C, FONT } from '../../tokens';
 import { eur, ip, useRoll } from '../../hooks';
 
@@ -206,6 +207,7 @@ export const Vue2Atomicite: React.FC = () => {
           }}
         />
       )}
+      <SceneVo clip="acid-vue2" />
       <SceneSfx scene="vue2" />
     </Stage>
   );

@@ -11,6 +11,7 @@ import { GlassCard } from '../../components/GlassCard';
 import { Sweep } from '../../components/Annotation';
 import { Caption } from '../../components/Caption';
 import { SceneSfx } from '../../components/Sfx';
+import { SceneVo } from '../../components/VoiceOver';
 import { C, FONT } from '../../tokens';
 import { eur, ip, useRoll } from '../../hooks';
 
@@ -185,6 +186,7 @@ export const Vue3Coherence: React.FC = () => {
           }}
         />
       )}
+      <SceneVo clip="acid-vue3" />
       <SceneSfx scene="vue3" />
     </Stage>
   );

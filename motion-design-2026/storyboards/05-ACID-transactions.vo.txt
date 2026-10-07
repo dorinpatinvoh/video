@@ -5,10 +5,11 @@ Un clip WAV par scène → public/audio/vo-acid-<scene>.wav
 Le lecteur ajuste automatiquement la vitesse (playbackRate) pour que chaque
 chunk remplisse exactement sa scène : la synchro est garantie.
 
-BUDGET : ~140 mots pour 60 s (≈2,4 mots/s). Ne pas dépasser.
+BUDGET : ~140 mots pour 60 s — mesuré : la voix lit à ~2,4 mots/s. Ne pas dépasser.
+STATUT : ✅ enregistré (voix off générée) — durées réelles mesurées par `npm run vo:fit`.
 
 [hook — 3,0 s]  (00:00 → 00:03)
-Cent euros partent du compte A. Ils n'arrivent jamais sur le compte B.
+Cent euros partent du compte A… et n'arrivent jamais.
 
 [vue1 — 9,0 s]  (00:03 → 00:12)
 Sous le capot. Étape une : débiter le compte A. Réussi.
@@ -33,8 +34,7 @@ En pratique, une seule fonction : tout réussit, ou rien ne s'applique.
 La base s'en charge. Même panne, un seul changement : la transaction.
 
 [outro — 5,0 s]  (00:55 → 01:00)
-Atomicité, cohérence, isolation, durabilité : ACID.
-Abonne-toi : la suite décortique les index.
+Atomicité, cohérence, isolation, durabilité. Abonne-toi.
 
 --------------------------------------------------------
 CONSEILS DE PRISE (si relecture humaine)

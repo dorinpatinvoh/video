@@ -3,28 +3,29 @@ VOIX OFF — « Les index / requête lente » (60 s, 9:16)
 Version ENREGISTRÉE (calée à la durée de chaque scène).
 Un clip WAV par scène → public/audio/vo-index-<scene>.wav
 
-BUDGET : ~125 mots pour 60 s (≈2,3 mots/s).
+BUDGET : ~120 mots pour 60 s — la voix lit à ~2,4 mots/s (mesuré sur ACID).
+STATUT : ✅ enregistré (voix off générée).
 
 [hook — 3,0 s]  (00:00 → 00:03)
-Chercher un client dans un million de lignes : quatre secondes.
+Un million de lignes… quatre secondes.
 
 [vue1 — 9,0 s]  (00:03 → 00:12)
 Sous le capot, la base lit chaque ligne. Une par une.
 Un million de comparaisons, pour un seul résultat.
 
 [vue2 — 9,0 s]  (00:12 → 00:21)
-Un index, c'est l'annuaire de la table : les mêmes données, triées.
+Un index, c'est l'annuaire de la table.
 On ouvre au milieu, on élimine la moitié. Vingt étapes suffisent.
 
 [vue3 — 9,0 s]  (00:21 → 00:30)
-Mais l'index a un prix. Chaque écriture met à jour la table, et tous ses index.
-Lire dix mille fois plus vite, écrire trois fois plus lentement.
+Mais l'index a un prix : chaque écriture met à jour la table et ses index.
+Lire plus vite, écrire moins vite.
 
 [vue4 — 15,0 s]  (00:30 → 00:45)
-Piège un : une fonction sur la colonne, et l'index est ignoré.
+Piège un : une fonction sur la colonne.
 Piège deux : un LIKE qui commence par un pourcent.
-Piège trois : l'ordre des colonnes dans un index composite.
-Piège quatre : trop d'index. La bonne nouvelle : EXPLAIN te dit tout.
+Piège trois : l'ordre des colonnes.
+Piège quatre : trop d'index. EXPLAIN te dit lequel est utilisé.
 
 [demo — 10,0 s]  (00:45 → 00:55)
 Une ligne suffit, on crée l'index une fois.
@@ -32,8 +33,7 @@ Quatre mille deux cents millisecondes… zéro virgule quatre.
 Mille fois plus rapide.
 
 [outro — 5,0 s]  (00:55 → 01:00)
-Indexe ce que tu filtres. Vérifie avec EXPLAIN.
-Abonne-toi : la prochaine parle du cache.
+Indexe ce que tu filtres, vérifie avec EXPLAIN. Abonne-toi.
 
 --------------------------------------------------------
 CONSEILS DE PRISE

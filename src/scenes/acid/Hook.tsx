@@ -8,6 +8,7 @@ import { Cursor } from '../../components/Cursor';
 import { TotalBadge } from '../../components/DataTable';
 import { Caption } from '../../components/Caption';
 import { SceneSfx } from '../../components/Sfx';
+import { SceneVo } from '../../components/VoiceOver';
 import { C, EASE, FONT, GLOW } from '../../tokens';
 import { eur, useRoll, useShake } from '../../hooks';
 
@@ -154,6 +155,7 @@ export const HookScene: React.FC = () => {
         emphasize={[4, 5, 6]}
         style={{ top: 1490 }}
       />
+      <SceneVo clip="acid-hook" />
       <SceneSfx scene="hook" />
     </Stage>
   );

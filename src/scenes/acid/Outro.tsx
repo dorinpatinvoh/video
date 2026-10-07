@@ -7,6 +7,7 @@ import { GlassCard } from '../../components/GlassCard';
 import { StatusCodeBadge } from '../../components/StatusCodeBadge';
 import { Cursor } from '../../components/Cursor';
 import { SceneSfx } from '../../components/Sfx';
+import { SceneVo } from '../../components/VoiceOver';
 import { C, FONT, GLOW } from '../../tokens';
 import { Caption } from '../../components/Caption';
 import { ip } from '../../hooks';
@@ -168,6 +169,7 @@ export const OutroScene: React.FC = () => {
 
       <Caption text="Atomicité, cohérence, isolation, durabilité." at={20} until={168} size={54} style={{ top: 1490 }} />
       <Caption text="ACID. C'est ce qui protège ton argent." at={186} size={58} emphasize={[0]} style={{ top: 1490 }} />
+      <SceneVo clip="acid-outro" />
       <SceneSfx scene="outro" />
     </Stage>
   );

@@ -27,18 +27,30 @@ const SCENES = {
   outro: 300,
 };
 
-/** durée d'un WAV PCM 16 bits mono/stéréo, lue dans l'en-tête */
+/** durée d'un WAV PCM, lue en parcourant les chunks (LIST/fact possibles avant « data ») */
 const wavDuration = (buf) => {
-  const channels = buf.readUInt16LE(22);
-  const sampleRate = buf.readUInt32LE(24);
-  const bitsPerSample = buf.readUInt16LE(34);
-  const byteRate = buf.readUInt32LE(28) || (sampleRate * channels * bitsPerSample) / 8;
-  const dataSize = buf.readUInt32LE(40);
-  return dataSize / byteRate;
+  let off = 12;
+  let byteRate = 0;
+  let dataSize = 0;
+  while (off + 8 <= buf.length) {
+    const id = buf.toString('ascii', off, off + 4);
+    const size = buf.readUInt32LE(off + 4);
+    if (id === 'fmt ') {
+      const channels = buf.readUInt16LE(off + 8 + 2);
+      const sampleRate = buf.readUInt32LE(off + 8 + 4);
+      const bits = buf.readUInt16LE(off + 8 + 14);
+      byteRate = buf.readUInt32LE(off + 8 + 8) || (sampleRate * channels * bits) / 8;
+    }
+    if (id === 'data') {
+      dataSize = size;
+      break;
+    }
+    off += 8 + size + (size % 2); // les chunks sont alignés sur 2 octets
+  }
+  return byteRate ? dataSize / byteRate : 0;
 };
 
-const MIN = 0.8;
-const MAX = 1.25;
+const MAX = 1.18;
 
 const clips = readdirSync(AUDIO).filter((f) => /^vo-.*\.wav$/.test(f));
 if (clips.length === 0) {
@@ -59,17 +71,18 @@ for (const file of clips.sort()) {
   }
   const duration = wavDuration(readFileSync(join(AUDIO, file)));
   const sceneSeconds = sceneFrames / FPS;
-  // marge de 2 % : on préfère laisser respirer la fin de scène
+  // Règle : on ne touche JAMAIS à la vitesse quand le clip tient dans sa scène
+  // (aucun artefact de pitch). On accélère légèrement — et seulement — s'il dépasse.
   const raw = duration / (sceneSeconds * 0.98);
-  const rate = Math.min(MAX, Math.max(MIN, raw));
-  const finalRate = Math.abs(rate - 1) < 0.02 ? 1 : Number(rate.toFixed(3));
+  const rate = raw > 1.02 ? Math.min(MAX, raw) : 1;
+  const finalRate = rate === 1 ? 1 : Number(rate.toFixed(3));
   rates[clip] = finalRate;
   rows.push({
     clip,
     clipSec: duration.toFixed(2),
     sceneSec: sceneSeconds.toFixed(1),
     rate: finalRate,
-    flag: raw > MAX ? '⚠ trop long (accéléré au max)' : raw < MIN ? '⚠ trop court (ralenti au max)' : '',
+    flag: raw > MAX ? '⚠ trop long : raccourcir le texte' : '',
   });
 }
 

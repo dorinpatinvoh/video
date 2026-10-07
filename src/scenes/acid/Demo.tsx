@@ -9,6 +9,7 @@ import { StatusCodeBadge } from '../../components/StatusCodeBadge';
 import { GlassCard } from '../../components/GlassCard';
 import { Caption } from '../../components/Caption';
 import { SceneSfx } from '../../components/Sfx';
+import { SceneVo } from '../../components/VoiceOver';
 import { C, FONT, GLOW } from '../../tokens';
 import { eur, ip, useRoll } from '../../hooks';
 
@@ -140,6 +141,7 @@ export const DemoScene: React.FC = () => {
         emphasize={[6, 7]}
         style={{ top: 1490 }}
       />
+      <SceneVo clip="acid-demo" />
       <SceneSfx scene="demo" />
     </Stage>
   );

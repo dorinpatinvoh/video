@@ -12,6 +12,7 @@ import { GlassCard } from '../../components/GlassCard';
 import { Arrow, Circle } from '../../components/Annotation';
 import { Caption } from '../../components/Caption';
 import { SceneSfx } from '../../components/Sfx';
+import { SceneVo } from '../../components/VoiceOver';
 import { C, FONT } from '../../tokens';
 import { eur, ip, useRoll } from '../../hooks';
 
@@ -236,6 +237,7 @@ export const Vue4IsolationDurabilite: React.FC = () => {
         style={{ top: 1490 }}
       />
 
+      <SceneVo clip="acid-vue4" />
       <SceneSfx scene="vue4" />
     </Stage>
   );

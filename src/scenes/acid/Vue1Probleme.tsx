@@ -11,6 +11,7 @@ import { Cursor } from '../../components/Cursor';
 import { Arrow, Circle } from '../../components/Annotation';
 import { Caption } from '../../components/Caption';
 import { SceneSfx } from '../../components/Sfx';
+import { SceneVo } from '../../components/VoiceOver';
 import { C, FONT } from '../../tokens';
 import { eur, useRoll } from '../../hooks';
 
@@ -162,6 +163,7 @@ export const Vue1Probleme: React.FC = () => {
           }}
         />
       )}
+      <SceneVo clip="acid-vue1" />
       <SceneSfx scene="vue1" />
     </Stage>
   );
