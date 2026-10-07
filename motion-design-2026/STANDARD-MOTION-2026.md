@@ -307,6 +307,20 @@ pas de la théorie. Elles s'appliquent à partir de maintenant.
 | Le focus de la ligne clé arrivait **avant la fin de la frappe** | La machine à écrire se termine **avant** le focus : viser 45–55 car/s pour un bloc de 5–6 lignes montré en 10 s |
 | Des flèches d'annotation longues et courbes encombraient la scène | Connecteurs **courts (≤ 60 px) et droits** (`curve: 0`) quand ils relient deux éléments proches |
 
+## 9bis. Leçons du QA « Le cache & les CDN » (2ᵉ vague)
+
+| Constat observé | Règle ajoutée |
+|---|---|
+| Dans un chronogramme, l'étiquette de ligne passait **sous** la barre et l'étiquette d'état par-dessus | Un graphe se dessine en **deux zones** : une **colonne d'étiquettes fixe** (largeur calculée sur le plus long libellé) puis une **piste** pour les barres. L'étiquette d'état (`HIT`/`MISS`) se pose **après la fin de la barre**, avec un clamp anti-débordement |
+| Le total annoncé (4,12 s) ne tombait pas sur la dernière barre (chronogramme dessiné en 3 vagues) | **La somme doit être visible** : les 10 requêtes sont dessinées **en série** (10 × 412 ms = 4 120 ms), le compteur et le total du panneau tombent exactement sur la fin de la dernière barre |
+| Un cercle d'annotation tournait autour de **rien** (il visait une position d'avant-refonte) | Une annotation **vise un contenu réel** — après tout changement de mise en page, on revérifie ses coordonnées. Un cercle qui n'entoure rien est un bug, pas une décoration |
+| Les étiquettes d'une carte se chevauchaient (`EDGE · NEW YORK` sous `TES VISITEURS`) | Sur une carte : **libellés courts**, ancrages opposés de part et d'autre du point, et on vérifie la collision à la frame (pas au feeling) |
+| Un kicker de 38 caractères percutait le badge d'état | Kicker **≤ ~26 caractères** dès qu'un badge de droite est présent |
+| Une ligne de code de 56 caractères débordait de l'éditeur (900 px, 25 px) | Dimensionner l'éditeur **sur la ligne la plus longue** : `fontSize ≈ (largeur − 80) / (longueur × 0,62)`, soit 20–22 px pour 50–56 caractères |
+| L'éditeur et le chronogramme étaient **visibles en même temps** (superposition) | Les beats d'une scène sont **séquencés sans recouvrement** : on écrit la timeline en frames (code 0–300 → fondu → chrono 316–460 → verdict 470+) avant de coder |
+| Des emphases de captions tombaient **sur le mauvais mot** (décalage d'un indice) | Vérifier l'emphase **sur le découpage réel** de la phrase (`text.split(' ')`) — un script de contrôle de 10 lignes vaut mieux qu'une relecture oculaire |
+| Une scène de 15 s restait **statique** entre deux beats | Même en « beats posés » : **une pulsation de caméra par beat** (1,00 ↔ 1,05) suffit à tenir le rythme sans couper le contenu |
+
 ### La boucle QA obligatoire avant tout export
 
 ```bash
@@ -323,5 +337,5 @@ caption > 2 lignes ? élément hors safe zone ? Un « oui » = correction avant 
 
 ---
 
-*Dernière mise à jour : 2026-10-07 — enrichi par le QA du premier rendu réel (voir `qa/`).*
+*Dernière mise à jour : 2026-10-07 — enrichi par les QA des rendus réels (§9 et §9bis, voir `qa/`).*
 *À faire évoluer à chaque vidéo, jamais à contourner.*
