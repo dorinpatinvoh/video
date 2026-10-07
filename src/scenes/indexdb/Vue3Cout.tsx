@@ -10,6 +10,7 @@ import { Arrow } from '../../components/Annotation';
 import { Caption } from '../../components/Caption';
 import { CodeEditor } from '../../components/CodeEditor';
 import { SceneSfx } from '../../components/Sfx';
+import { SceneVo } from '../../components/VoiceOver';
 import { C, FONT } from '../../tokens';
 import { ip, useRoll } from '../../hooks';
 
@@ -201,6 +202,7 @@ export const IndexVue3Cout: React.FC = () => {
       />
       <Caption text="" at={0} until={0} size={40} style={{ top: 1490 }} />
 
+      <SceneVo clip="index-vue3" />
       <SceneSfx scene="idx-vue3" />
     </Stage>
   );

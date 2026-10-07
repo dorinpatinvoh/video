@@ -7,6 +7,7 @@ import { StatusCodeBadge } from '../../components/StatusCodeBadge';
 import { Cursor } from '../../components/Cursor';
 import { Caption } from '../../components/Caption';
 import { SceneSfx } from '../../components/Sfx';
+import { SceneVo } from '../../components/VoiceOver';
 import { CodeEditor } from '../../components/CodeEditor';
 import { C, FONT, GLOW } from '../../tokens';
 import { ip, useShake } from '../../hooks';
@@ -131,6 +132,7 @@ export const IndexHook: React.FC = () => {
         />
       )}
 
+      <SceneVo clip="index-hook" />
       <SceneSfx scene="idx-hook" />
     </Stage>
   );

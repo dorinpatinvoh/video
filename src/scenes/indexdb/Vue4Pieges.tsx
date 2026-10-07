@@ -10,6 +10,7 @@ import { Caption } from '../../components/Caption';
 import { CodeEditor } from '../../components/CodeEditor';
 import { Terminal } from '../../components/Terminal';
 import { SceneSfx } from '../../components/Sfx';
+import { SceneVo } from '../../components/VoiceOver';
 import { C, FONT } from '../../tokens';
 import { ip } from '../../hooks';
 
@@ -241,6 +242,7 @@ export const IndexVue4Pieges: React.FC = () => {
         style={{ top: 1490 }}
       />
 
+      <SceneVo clip="index-vue4" />
       <SceneSfx scene="idx-vue4" />
     </Stage>
   );

@@ -9,6 +9,7 @@ import { Arrow, Circle } from '../../components/Annotation';
 import { StatusCodeBadge } from '../../components/StatusCodeBadge';
 import { Caption } from '../../components/Caption';
 import { SceneSfx } from '../../components/Sfx';
+import { SceneVo } from '../../components/VoiceOver';
 import { C, FONT } from '../../tokens';
 import { ip } from '../../hooks';
 
@@ -111,6 +112,7 @@ export const IndexVue1Scan: React.FC = () => {
         />
       )}
 
+      <SceneVo clip="index-vue1" />
       <SceneSfx scene="idx-vue1" />
     </Stage>
   );

@@ -8,6 +8,7 @@ import { StatusCodeBadge } from '../../components/StatusCodeBadge';
 import { Cursor } from '../../components/Cursor';
 import { Caption } from '../../components/Caption';
 import { SceneSfx } from '../../components/Sfx';
+import { SceneVo } from '../../components/VoiceOver';
 import { C, FONT, GLOW } from '../../tokens';
 import { ip } from '../../hooks';
 
@@ -138,6 +139,7 @@ export const IndexOutro: React.FC = () => {
       <Caption text="Trois réflexes : filtrer, se méfier des fonctions, EXPLAIN." at={24} until={168} size={52} style={{ top: 1490 }} />
       <Caption text="Un bon index change tout." at={186} size={58} style={{ top: 1490 }} />
 
+      <SceneVo clip="index-outro" />
       <SceneSfx scene="idx-outro" />
     </Stage>
   );

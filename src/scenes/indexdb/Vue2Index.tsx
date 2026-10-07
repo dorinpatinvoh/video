@@ -8,6 +8,7 @@ import { StatusCodeBadge } from '../../components/StatusCodeBadge';
 import { GlassCard } from '../../components/GlassCard';
 import { Caption } from '../../components/Caption';
 import { SceneSfx } from '../../components/Sfx';
+import { SceneVo } from '../../components/VoiceOver';
 import { C, FONT } from '../../tokens';
 import { ip } from '../../hooks';
 
@@ -147,6 +148,7 @@ export const IndexVue2Index: React.FC = () => {
       />
       <Caption text="Vingt étapes suffisent." at={372} size={68} emphasize={[0, 1]} style={{ top: 1490 }} />
 
+      <SceneVo clip="index-vue2" />
       <SceneSfx scene="idx-vue2" />
     </Stage>
   );

@@ -9,6 +9,7 @@ import { CompareBars } from '../../components/SortedLookup';
 import { StatusCodeBadge } from '../../components/StatusCodeBadge';
 import { Caption } from '../../components/Caption';
 import { SceneSfx } from '../../components/Sfx';
+import { SceneVo } from '../../components/VoiceOver';
 import { C, FONT, GLOW } from '../../tokens';
 import { ip } from '../../hooks';
 
@@ -161,6 +162,7 @@ export const IndexDemo: React.FC = () => {
         style={{ top: 1490 }}
       />
 
+      <SceneVo clip="index-demo" />
       <SceneSfx scene="idx-demo" />
     </Stage>
   );
