@@ -21,7 +21,16 @@ npm run check        # typecheck + test de fumée (toutes les scènes, toutes le
 > **Rendu vidéo** : nécessite Chrome/Chromium (Remotion le télécharge au premier `npm run render`).
 > Le sandbox de dev n'a pas de navigateur : utilisez `preview:live` pour la revue, `render` sur votre machine.
 
-## 🎬 La vidéo en production : « ACID / transactions bancaires »
+## 🎬 Les vidéos en production
+
+Deux films complets (60 s, 9:16, 3600 frames chacun) branchés sur le même moteur :
+
+| Vidéo | Composition | Storyboard |
+|-------|-------------|------------|
+| **ACID · transactions bancaires** | `ACID-transactions-60s` | `motion-design-2026/storyboards/05-ACID-transactions.md` |
+| **Les index · requête lente** | `INDEX-requete-lente-60s` | `motion-design-2026/storyboards/22-index-requete-lente.md` |
+
+### ACID — détail des scènes
 
 | # | Scène | Fichier | Durée |
 |---|-------|---------|-------|
@@ -36,10 +45,22 @@ npm run check        # typecheck + test de fumée (toutes les scènes, toutes le
 📄 Storyboard détaillé seconde par seconde : [`motion-design-2026/storyboards/05-ACID-transactions.md`](motion-design-2026/storyboards/05-ACID-transactions.md)
 🎙️ Texte de la voix off, timecodé : [`motion-design-2026/storyboards/05-ACID-transactions.vo.txt`](motion-design-2026/storyboards/05-ACID-transactions.vo.txt)
 
+### Les index — détail des scènes
+
+| # | Scène | Fichier | Durée |
+|---|-------|---------|-------|
+| 1 | Hook — 4,21 s pour trouver 1 client | `src/scenes/indexdb/Hook.tsx` | 0–3 s |
+| 2 | Vue 1 — le scan complet (1 048 576 lignes) | `src/scenes/indexdb/Vue1Scan.tsx` | 3–12 s |
+| 3 | Vue 2 — l'annuaire trié (dichotomie, 20 étapes) | `src/scenes/indexdb/Vue2Index.tsx` | 12–21 s |
+| 4 | Vue 3 — le prix de l'index (écriture ×4) | `src/scenes/indexdb/Vue3Cout.tsx` | 21–30 s |
+| 5 | Vue 4 — les 4 pièges qui annulent un index | `src/scenes/indexdb/Vue4Pieges.tsx` | 30–45 s |
+| 6 | Démo — `CREATE INDEX` + EXPLAIN (4 210 ms → 0,42 ms) | `src/scenes/indexdb/Demo.tsx` | 45–55 s |
+| 7 | Outro / CTA | `src/scenes/indexdb/Outro.tsx` | 55–60 s |
+
 Export d'une seule scène (itération rapide) :
 
 ```bash
-npx remotion render src/index.ts Acid-Vue2-Atomicite out/atomicite.mp4
+npx remotion render src/index.ts Index-Vue2-Index out/index-vue2.mp4
 ```
 
 ## 🧱 Architecture
@@ -52,9 +73,11 @@ src/tokens.ts                Design tokens : couleurs, typos, durées, easings, 
 src/hooks.ts                 Primitives de motion : typewriter, shake, pop, roll, entrées UI
 src/components/              Bibliothèque de composants animés réutilisables
   Stage · Camera · Cursor · GlassCard · BrowserFrame · CodeEditor · Terminal
-  DataTable · StatusCodeBadge · Annotation · Caption · SceneHeader · Sfx
+  DataTable · StatusCodeBadge · Annotation · Caption · SceneHeader · Sfx · VoiceOver
+  ScanStream (parcours séquentiel) · SortedLookup (dichotomie) · CompareBars
 src/scenes/acid/             Les 7 scènes de la vidéo ACID
-src/remotion/Root.tsx        Compositions (vidéo complète + une par scène)
+src/scenes/indexdb/          Les 7 scènes de la vidéo « Les index »
+src/remotion/Root.tsx        Catalogue VIDEOS → compositions (film complet + une par scène)
 preview/main.tsx             Aperçu web live (@remotion/player)
 scripts/gen-sfx.mjs          Synthèse + mixage du sound design
 scripts/smoke.mjs            Test de fumée : scrube toutes les scènes dans jsdom
@@ -86,6 +109,20 @@ npm run sfx   # 9 SFX unitaires + ambience + 1 fichier mixé par scène
 dizaines de balises `<audio>` et rend le rendu déterministe. Pour changer un son : éditer
 `cues.json` (ou les réglages dans `scripts/gen-sfx.mjs`) puis relancer `npm run sfx`.
 
+## 🎙️ Voix off
+
+La narration est découpée **un clip par scène** (`public/audio/vo-<video>-<scene>.wav`) et calée
+automatiquement : `npm run vo:fit` mesure chaque clip et écrit `audio/vo-rates.json`, que
+`<SceneVo clip="acid-vue4" />` applique comme `playbackRate`. Résultat : chaque chunk remplit
+exactement sa scène, sans découpe manuelle.
+
+```bash
+npm run vo:fit     # après avoir déposé les clips vo-*.wav
+```
+
+Scripts de tournage (débit, intentions, budget de mots) :
+`motion-design-2026/storyboards/05-ACID-transactions.vo.txt` et `22-index-requete-lente.vo.txt`.
+
 ## ✍️ Polices (optionnel)
 
 L'aperçu et l'export fonctionnent avec les polices système. Pour un rendu **exactement** conforme au
@@ -103,10 +140,9 @@ npm run check
 
 ## 🗺️ Suite
 
-1. Valider le storyboard ACID (rythme, captions, code montré).
-2. Enregistrer la voix off (`public/audio/vo.mp3`, le branchement est prêt dans `Root.tsx`).
-3. `npm run render` → publier, puis décliner 2–3 shorts depuis la même matière.
-4. Concept suivant de la liste : **Les index** (concept 22 · thème 5) — le CTA de l'outro l'annonce déjà.
+1. Enregistrer / générer la voix off de chaque scène puis `npm run vo:fit` (calage automatique).
+2. `npm run render` → publier, puis décliner 2–3 shorts depuis la même matière.
+3. Concept suivant : **le cache / les CDN** (concept bonus B3) — le CTA de l'outro des index l'annonce.
 
 ## 📚 Le catalogue d'idées
 

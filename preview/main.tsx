@@ -1,20 +1,13 @@
 /**
  * Aperçu live — @remotion/player dans une page web.
- * C'est le « bac à sable » de révision : on scrube scène par scène, exactement
- * le même code que celui exporté par `npm run render`.
+ * Le bac à sable de révision : on scrube vidéo ou scène, exactement le même code
+ * que celui exporté par `npm run render`.
  */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Player, type PlayerRef } from '@remotion/player';
-import { SCENES } from '../src/remotion/Root';
-import { AcidTransactions } from '../src/remotion/Root';
+import { VIDEOS } from '../src/remotion/Root';
 import '../src/styles.css';
-
-const OFFSETS: number[] = [];
-SCENES.reduce((acc, s) => {
-  OFFSETS.push(acc);
-  return acc + s.duration;
-}, 0);
 
 type Deck = {
   id: string;
@@ -22,31 +15,40 @@ type Deck = {
   sub: string;
   Comp: React.FC;
   duration: number;
-  offset: number;
+  group: string;
 };
 
-const DECKS: Deck[] = [
-  {
-    id: 'full',
-    label: '▶︎  Vidéo complète',
-    sub: '60,0 s · 3600 frames · 1080×1920 @60',
-    Comp: AcidTransactions,
-    duration: 3600,
-    offset: 0,
-  },
-  ...SCENES.map((s, i) => ({
-    id: s.id,
-    label: s.label,
-    sub: `${(s.duration / 60).toFixed(1)} s · ${s.duration} f · début ${(OFFSETS[i] / 60).toFixed(1)} s`,
-    Comp: s.Comp as unknown as React.FC,
-    duration: s.duration,
-    offset: OFFSETS[i],
-  })),
-];
+const DECKS: Deck[] = VIDEOS.flatMap((v) => {
+  const offsets: number[] = [];
+  v.scenes.reduce((acc, s) => {
+    offsets.push(acc);
+    return acc + s.duration;
+  }, 0);
+  return [
+    {
+      id: v.compositionId,
+      label: `▶︎  ${v.title}`,
+      sub: '60,0 s · 3600 frames · 1080×1920 @60',
+      Comp: v.Component as React.FC,
+      duration: 3600,
+      group: v.title,
+    },
+    ...v.scenes.map((s, i) => ({
+      id: s.id,
+      label: `${i + 1}. ${s.label.replace(/^\d+ · /, '')}`,
+      sub: `${(s.duration / 60).toFixed(1)} s · début ${(offsets[i] / 60).toFixed(1)} s`,
+      Comp: s.Comp as unknown as React.FC,
+      duration: s.duration,
+      group: v.title,
+    })),
+  ];
+});
 
 const App: React.FC = () => {
-  const [active, setActive] = useState<Deck>(DECKS[0]);
+  const [activeId, setActiveId] = useState(DECKS[0].id);
+  const active = useMemo(() => DECKS.find((d) => d.id === activeId) ?? DECKS[0], [activeId]);
   const player = useRef<PlayerRef>(null);
+  const groups = Array.from(new Set(DECKS.map((d) => d.group)));
 
   // API exposée pour le test de fumée (scripts/smoke.mjs)
   useEffect(() => {
@@ -62,24 +64,26 @@ const App: React.FC = () => {
       <aside className="side">
         <div className="brand">Motion Design 2026</div>
         <div className="sub">
-          ACID / transactions bancaires
+          {VIDEOS.length} vidéos · {DECKS.length - VIDEOS.length} scènes
           <br />
-          Standard &amp; storyboard : motion-design-2026/
+          Standard : motion-design-2026/
         </div>
 
-        <div className="group">
-          <div className="group-title">Pistes</div>
-          {DECKS.map((d) => (
-            <button
-              key={d.id}
-              className={`deck ${active.id === d.id ? 'active' : ''}`}
-              onClick={() => setActive(d)}
-            >
-              {d.label}
-              <small>{d.sub}</small>
-            </button>
-          ))}
-        </div>
+        {groups.map((g) => (
+          <div className="group" key={g}>
+            <div className="group-title">{g}</div>
+            {DECKS.filter((d) => d.group === g).map((d) => (
+              <button
+                key={d.id}
+                className={`deck ${active.id === d.id ? 'active' : ''}`}
+                onClick={() => setActiveId(d.id)}
+              >
+                {d.label}
+                <small>{d.sub}</small>
+              </button>
+            ))}
+          </div>
+        ))}
 
         <div className="group">
           <div className="group-title">Repères du standard</div>
@@ -117,13 +121,11 @@ const App: React.FC = () => {
             (<code>npm run render</code>) : mêmes tokens, mêmes easings, mêmes SFX.
           </p>
           <p>
-            Scène isolée : <code>{active.id}</code> — {active.sub}. Pour l'export d'une seule scène :
+            Scène isolée : <code>{active.id}</code> — {active.sub}.
             <br />
-            <code>npx remotion render src/index.ts {active.id}</code>
+            Export d'une scène : <code>npx remotion render src/index.ts {active.id}</code>
           </p>
-          <p>
-            Audio : clique sur ▶︎ pour autoriser la lecture des SFX (nappe, pop, whoosh, clacks).
-          </p>
+          <p>Audio : clique sur ▶︎ pour autoriser les SFX (nappe, pop, whoosh, clacks).</p>
         </div>
       </main>
     </div>

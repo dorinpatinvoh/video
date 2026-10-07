@@ -13,7 +13,9 @@ import { Audio, Sequence, staticFile } from 'remotion';
  *
  * Le mixage reste donc : voix −6 dBFS · SFX −12 à −18 dB sous la voix.
  */
-export type SceneId = 'hook' | 'vue1' | 'vue2' | 'vue3' | 'vue4' | 'demo' | 'outro';
+export type SceneId =
+  | 'hook' | 'vue1' | 'vue2' | 'vue3' | 'vue4' | 'demo' | 'outro'
+  | 'idx-hook' | 'idx-vue1' | 'idx-vue2' | 'idx-vue3' | 'idx-vue4' | 'idx-demo' | 'idx-outro';
 
 /** Piste SFX d'une scène (fichier mixé, volume nominal 1). */
 export const SceneSfx: React.FC<{ scene: SceneId; volume?: number }> = ({ scene, volume = 1 }) => (
