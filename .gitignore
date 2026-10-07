@@ -1,0 +1,12 @@
+# binaire ffmpeg (symlink recree par bin/setup.sh)
+bin/ffmpeg
+bin/ffprobe
+
+# rushes deposes : on ne versionne pas les sources lourdes
+incoming/*
+!incoming/.gitkeep
+!incoming/README.md
+
+# fichiers de travail
+work/
+*.log
