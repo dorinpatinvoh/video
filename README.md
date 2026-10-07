@@ -38,12 +38,29 @@ Rendered 180/180 · Encoded 180/180
 
 ## 🎬 Les vidéos en production
 
-Deux films complets (60 s, 9:16, 3600 frames chacun) branchés sur le même moteur :
+Trois films complets (60 s, 9:16, 3600 frames chacun) branchés sur le même moteur :
 
 | Vidéo | Composition | Storyboard |
 |-------|-------------|------------|
 | **ACID · transactions bancaires** | `ACID-transactions-60s` | `motion-design-2026/storyboards/05-ACID-transactions.md` |
 | **Les index · requête lente** | `INDEX-requete-lente-60s` | `motion-design-2026/storyboards/22-index-requete-lente.md` |
+| **Le cache & les CDN** | `CACHE-CDN-60s` | `motion-design-2026/storyboards/B3-cache-cdn.md` |
+
+### Le cache & les CDN — détail des scènes
+
+| # | Scène | Fichier | Durée |
+|---|-------|---------|-------|
+| 1 | Hook — 4,12 s, et ce n'est pas le code (CPU 4 %) | `src/scenes/cache/Hook.tsx` | 0–3 s |
+| 2 | Vue 1 — le voyage : 5 837 km par requête | `src/scenes/cache/Vue1Voyage.tsx` | 3–12 s |
+| 3 | Vue 2 — le cache : MISS 412 ms vs HIT 2 ms (×200) | `src/scenes/cache/Vue2Cache.tsx` | 12–21 s |
+| 4 | Vue 3 — le CDN : 300 edges, TTFB 28 ms (÷15) | `src/scenes/cache/Vue3CDN.tsx` | 21–30 s |
+| 5 | Vue 4 — les 4 pièges + les 3 en-têtes | `src/scenes/cache/Vue4Pieges.tsx` | 30–45 s |
+| 6 | Démo — `Cache-Control` : 4,12 s → 0,31 s (÷13) | `src/scenes/cache/Demo.tsx` | 45–55 s |
+| 7 | Outro / CTA | `src/scenes/cache/Outro.tsx` | 55–60 s |
+
+Nouveaux composants réutilisables : `Waterfall` (chronogramme réseau type DevTools, colonne
+d'étiquettes + piste), `CacheBox` (la mémoire qui répond à ta place), `WorldMap` (carte en points,
+nœuds, routes et paquets animés).
 
 ### ACID — détail des scènes
 
@@ -123,8 +140,8 @@ npx remotion still src/index.ts Acid-Hook out/frames/hook.png --frame=148 \
   --browser-executable=tools/browser/chrome-wrapper.sh --gl=swangle
 ```
 
-Planches de contrôle livrées : `motion-design-2026/qa/acid-contact-sheet.png` et
-`index-contact-sheet.png`. Les règles apprises sont consignées dans le
+Planches de contrôle livrées : `motion-design-2026/qa/acid-contact-sheet.png`,
+`index-contact-sheet.png`, `cache-contact-sheet.png` (+ `cache-demo-sheet.png`). Les règles apprises sont consignées dans le
 [STANDARD §9](motion-design-2026/STANDARD-MOTION-2026.md) — elles s'appliquent aux prochains concepts.
 
 ## 🎧 Sound design
@@ -151,7 +168,8 @@ npm run vo:fit     # après avoir déposé les clips vo-*.wav
 ```
 
 Scripts de tournage (débit, intentions, budget de mots) :
-`motion-design-2026/storyboards/05-ACID-transactions.vo.txt` et `22-index-requete-lente.vo.txt`.
+`motion-design-2026/storyboards/05-ACID-transactions.vo.txt`, `22-index-requete-lente.vo.txt` et
+`B3-cache-cdn.vo.txt`.
 
 ## ✍️ Polices (optionnel)
 
@@ -172,20 +190,21 @@ npm run check
 
 | Élément | État |
 |---|---|
-| Moteur de scènes 9:16 (Remotion) | ✅ 14 scènes, 2 films complets de 3600 frames |
+| Moteur de scènes 9:16 (Remotion) | ✅ 21 scènes, 3 films complets de 3600 frames |
 | Standard Motion 2026 | ✅ + retours du premier rendu réel (§9) |
-| Sound design | ✅ 9 SFX synthétisés + 1 mix par scène (14 fichiers) |
-| Voix off | ✅ 14 chunks générés et calés automatiquement (aucune vitesse dénaturée) |
+| Sound design | ✅ 9 SFX synthétisés + 1 mix par scène (21 fichiers) |
+| Voix off | ✅ 21 chunks générés et calés automatiquement (aucune vitesse dénaturée) |
 | Export MP4 | ✅ pipeline vérifié (navigateur conteneur fourni) |
-| QA visuelle | ✅ planches contact des 14 scènes |
+| QA visuelle | ✅ planches contact des 21 scènes |
+| Vidéo 3 — « Le cache & les CDN » | ✅ storyboard v2, 7 scènes, VO, SFX, QA |
 
 ## 🗺️ Suite
 
 1. Écoute la voix off et arbitre le texte (`motion-design-2026/storyboards/*.vo.txt`).
-2. `npm run render` sur ta machine → publier ACID puis Les index (ou l'inverse : l'outro des index
-   annonce déjà « le cache », il faudra ajuster un teaser si tu inverses l'ordre).
+2. `npm run render` sur ta machine → publier ACID, Les index, puis Le cache & les CDN (l'ordre est
+   libre : l'outro des index annonce « le cache », celui du cache annonce « le trajet d'une URL »).
 3. Décliner 2–3 shorts par vidéo depuis la même matière (reprendre une scène = une compo).
-4. Concept suivant : **le cache / les CDN** (concept bonus B3).
+4. Concept suivant : **le trajet d'une URL** (teaser posé à la fin de la vidéo 3).
 
 ## 📚 Le catalogue d'idées
 

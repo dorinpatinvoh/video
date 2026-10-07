@@ -1,0 +1,50 @@
+VOIX OFF — « LE CACHE & LES CDN » (60 s, 9:16)
+========================================================
+Version ENREGISTRÉE (calée à la durée de chaque scène).
+Un clip WAV par scène → public/audio/vo-cache-<scene>.wav
+Le lecteur ajuste automatiquement la vitesse (playbackRate) pour que chaque
+chunk remplisse exactement sa scène : la synchro est garantie.
+
+BUDGET : ~140 mots pour 60 s — mesuré : la voix lit à ~2,4 mots/s. Ne pas dépasser.
+STATUT : ✅ enregistré (voix off générée) — durées réelles mesurées par `npm run vo:fit`.
+
+[hook — 3,0 s]  (00:00 → 00:03)
+Ta page met quatre secondes. Et ce n'est pas ton code.
+
+[vue1 — 9,0 s]  (00:03 → 00:12)
+Chaque requête traverse six mille kilomètres.
+Le signal va vite, les allers-retours non.
+Quatre cents millisecondes, dix fois. Le coupable : la distance.
+
+[vue2 — 9,0 s]  (00:12 → 00:21)
+La première fois, il faut aller le chercher.
+La fois suivante, la réponse est déjà là.
+Deux millisecondes, pas quatre cents.
+
+[vue3 — 9,0 s]  (00:21 → 00:30)
+Tes visiteurs sont à New York, ton serveur à Paris.
+Le CDN garde une copie tout près : vingt-huit millisecondes.
+
+[vue4 — 15,0 s]  (00:30 → 00:45)
+Le cache fige ce qu'il garde.
+Un an, c'est bien si le nom change.
+Jamais de cache partagé sur une page personnelle.
+Le plus dur, c'est de le vider.
+Trois en-têtes suffisent.
+
+[demo — 10,0 s]  (00:45 → 00:55)
+Ce qui ne change jamais se cache un an.
+Ce qui est personnel ne se cache pas.
+Résultat : dix requêtes, une seule sortie réseau.
+
+[outro — 5,0 s]  (00:55 → 01:00)
+Cache long, empreinte, no-store.
+Abonne-toi : la prochaine, c'est le trajet d'une URL.
+
+--------------------------------------------------------
+CONSEILS DE PRISE
+- « Quatre cents millisecondes, dix fois. » : détacher les deux blocs, le chiffre porte le beat.
+- « Le coupable : la distance. » : chute descendante, c'est la thèse de la vidéo.
+- Vue 4 : chaque piège est une phrase autonome, une respiration entre chaque.
+- « Deux millisecondes, pas quatre cents. » : contraste net, sans emphase inutile.
+- Outro : « Abonne-toi » posé, puis le teaser plus bas et plus vite.

@@ -746,6 +746,383 @@
           "name": "chime"
         }
       ]
+    },
+    "cache-hook": {
+      "durationInFrames": 180,
+      "cues": [
+        {
+          "at": 0,
+          "name": "whoosh"
+        },
+        {
+          "at": 10,
+          "name": "clack",
+          "repeat": {
+            "to": 60,
+            "count": 12
+          }
+        },
+        {
+          "at": 16,
+          "name": "pop",
+          "volume": 0.6
+        },
+        {
+          "at": 124,
+          "name": "error"
+        },
+        {
+          "at": 130,
+          "name": "glitch",
+          "volume": 0.7
+        }
+      ]
+    },
+    "cache-vue1": {
+      "durationInFrames": 540,
+      "cues": [
+        {
+          "at": 4,
+          "name": "whoosh"
+        },
+        {
+          "at": 44,
+          "name": "riser",
+          "volume": 0.4
+        },
+        {
+          "at": 96,
+          "name": "whoosh",
+          "volume": 0.7
+        },
+        {
+          "at": 96,
+          "name": "pop",
+          "volume": 0.6
+        },
+        {
+          "at": 118,
+          "name": "pop",
+          "volume": 0.6
+        },
+        {
+          "at": 140,
+          "name": "pop",
+          "volume": 0.6
+        },
+        {
+          "at": 162,
+          "name": "pop",
+          "volume": 0.6
+        },
+        {
+          "at": 190,
+          "name": "whoosh"
+        },
+        {
+          "at": 200,
+          "name": "clack",
+          "repeat": {
+            "to": 330,
+            "count": 22
+          }
+        },
+        {
+          "at": 366,
+          "name": "error",
+          "volume": 0.7
+        },
+        {
+          "at": 430,
+          "name": "pop",
+          "volume": 0.7
+        },
+        {
+          "at": 452,
+          "name": "whoosh",
+          "volume": 0.6
+        }
+      ]
+    },
+    "cache-vue2": {
+      "durationInFrames": 540,
+      "cues": [
+        {
+          "at": 4,
+          "name": "whoosh"
+        },
+        {
+          "at": 40,
+          "name": "whoosh",
+          "volume": 0.7
+        },
+        {
+          "at": 120,
+          "name": "error",
+          "volume": 0.6
+        },
+        {
+          "at": 250,
+          "name": "pop",
+          "volume": 0.8
+        },
+        {
+          "at": 258,
+          "name": "pop",
+          "volume": 0.8
+        },
+        {
+          "at": 266,
+          "name": "pop",
+          "volume": 0.8
+        },
+        {
+          "at": 286,
+          "name": "chime"
+        },
+        {
+          "at": 372,
+          "name": "error",
+          "volume": 0.6
+        },
+        {
+          "at": 396,
+          "name": "riser",
+          "volume": 0.6
+        },
+        {
+          "at": 420,
+          "name": "chime"
+        }
+      ]
+    },
+    "cache-vue3": {
+      "durationInFrames": 540,
+      "cues": [
+        {
+          "at": 4,
+          "name": "whoosh"
+        },
+        {
+          "at": 40,
+          "name": "whoosh",
+          "volume": 0.7
+        },
+        {
+          "at": 100,
+          "name": "whoosh",
+          "volume": 0.6
+        },
+        {
+          "at": 152,
+          "name": "pop",
+          "repeat": {
+            "to": 320,
+            "count": 26
+          }
+        },
+        {
+          "at": 344,
+          "name": "pop",
+          "volume": 0.9
+        },
+        {
+          "at": 366,
+          "name": "whoosh",
+          "volume": 0.7
+        },
+        {
+          "at": 414,
+          "name": "chime"
+        }
+      ]
+    },
+    "cache-vue4": {
+      "durationInFrames": 900,
+      "cues": [
+        {
+          "at": 4,
+          "name": "whoosh"
+        },
+        {
+          "at": 16,
+          "name": "pop",
+          "volume": 0.6
+        },
+        {
+          "at": 120,
+          "name": "error",
+          "volume": 0.7
+        },
+        {
+          "at": 136,
+          "name": "pop",
+          "volume": 0.7
+        },
+        {
+          "at": 190,
+          "name": "pop",
+          "volume": 0.6
+        },
+        {
+          "at": 272,
+          "name": "pop",
+          "volume": 0.8
+        },
+        {
+          "at": 290,
+          "name": "chime",
+          "volume": 0.7
+        },
+        {
+          "at": 370,
+          "name": "whoosh"
+        },
+        {
+          "at": 420,
+          "name": "error",
+          "volume": 0.6
+        },
+        {
+          "at": 470,
+          "name": "pop",
+          "volume": 0.8
+        },
+        {
+          "at": 488,
+          "name": "error"
+        },
+        {
+          "at": 494,
+          "name": "glitch"
+        },
+        {
+          "at": 550,
+          "name": "pop",
+          "repeat": {
+            "to": 620,
+            "count": 10
+          }
+        },
+        {
+          "at": 626,
+          "name": "click"
+        },
+        {
+          "at": 646,
+          "name": "whoosh",
+          "volume": 0.7
+        },
+        {
+          "at": 730,
+          "name": "pop",
+          "volume": 0.7
+        },
+        {
+          "at": 780,
+          "name": "pop",
+          "volume": 0.7
+        },
+        {
+          "at": 830,
+          "name": "pop",
+          "volume": 0.7
+        },
+        {
+          "at": 850,
+          "name": "chime"
+        }
+      ]
+    },
+    "cache-demo": {
+      "durationInFrames": 600,
+      "cues": [
+        {
+          "at": 4,
+          "name": "whoosh"
+        },
+        {
+          "at": 30,
+          "name": "clack",
+          "repeat": {
+            "to": 180,
+            "count": 26
+          }
+        },
+        {
+          "at": 196,
+          "name": "pop",
+          "volume": 0.8
+        },
+        {
+          "at": 224,
+          "name": "pop",
+          "volume": 0.6
+        },
+        {
+          "at": 240,
+          "name": "pop",
+          "repeat": {
+            "to": 320,
+            "count": 10
+          }
+        },
+        {
+          "at": 350,
+          "name": "chime"
+        },
+        {
+          "at": 406,
+          "name": "error",
+          "volume": 0.7
+        },
+        {
+          "at": 444,
+          "name": "riser",
+          "volume": 0.6
+        },
+        {
+          "at": 470,
+          "name": "chime"
+        }
+      ]
+    },
+    "cache-outro": {
+      "durationInFrames": 300,
+      "cues": [
+        {
+          "at": 4,
+          "name": "pop",
+          "volume": 0.7
+        },
+        {
+          "at": 10,
+          "name": "pop",
+          "volume": 0.7
+        },
+        {
+          "at": 16,
+          "name": "pop",
+          "volume": 0.7
+        },
+        {
+          "at": 130,
+          "name": "whoosh"
+        },
+        {
+          "at": 168,
+          "name": "riser",
+          "volume": 0.6
+        },
+        {
+          "at": 200,
+          "name": "click"
+        },
+        {
+          "at": 208,
+          "name": "chime"
+        }
+      ]
     }
   }
 }

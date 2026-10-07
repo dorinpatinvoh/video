@@ -184,11 +184,21 @@ export const CompareBars: React.FC<{
   width?: number;
   barHeight?: number;
   minWidth?: number;
+  /** décimales affichées sous 10 (défaut 2 — 0 pour les durées entières en ms) */
+  decimals?: number;
   style?: React.CSSProperties;
-}> = ({ items, at = 0, width = 840, barHeight = 56, minWidth = 3, style }) => (
+}> = ({ items, at = 0, width = 840, barHeight = 56, minWidth = 3, decimals = 2, style }) => (
   <div style={{ width, ...style }}>
     {items.map((it) => (
-      <Bar key={it.label} {...it} at={at === 0 ? it.at : it.at} width={width} barHeight={barHeight} minWidth={minWidth} />
+      <Bar
+        key={it.label}
+        {...it}
+        at={at === 0 ? it.at : it.at}
+        width={width}
+        barHeight={barHeight}
+        minWidth={minWidth}
+        decimals={decimals}
+      />
     ))}
   </div>
 );
@@ -204,7 +214,8 @@ const Bar: React.FC<{
   width: number;
   barHeight: number;
   minWidth: number;
-}> = ({ label, value, unit, max, tone, at, note, width, barHeight, minWidth }) => {
+  decimals: number;
+}> = ({ label, value, unit, max, tone, at, note, width, barHeight, minWidth, decimals }) => {
   const frame = useCurrentFrame();
   const p = interpolate(frame, [at, at + 36], [0, 1], {
     extrapolateLeft: 'clamp',
@@ -229,7 +240,7 @@ const Bar: React.FC<{
       >
         <span>{label}</span>
         <span className="tnum" style={{ color: tone, fontWeight: 700, fontSize: 30, fontVariantNumeric: 'tabular-nums' }}>
-          {shown < 10 ? shown.toFixed(2).replace('.', ',') : Math.round(shown).toLocaleString('fr-FR')} {unit}
+          {shown < 10 ? shown.toFixed(decimals).replace('.', ',') : Math.round(shown).toLocaleString('fr-FR')} {unit}
         </span>
       </div>
       <div

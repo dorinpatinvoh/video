@@ -15,7 +15,8 @@ import { Audio, Sequence, staticFile } from 'remotion';
  */
 export type SceneId =
   | 'hook' | 'vue1' | 'vue2' | 'vue3' | 'vue4' | 'demo' | 'outro'
-  | 'idx-hook' | 'idx-vue1' | 'idx-vue2' | 'idx-vue3' | 'idx-vue4' | 'idx-demo' | 'idx-outro';
+  | 'idx-hook' | 'idx-vue1' | 'idx-vue2' | 'idx-vue3' | 'idx-vue4' | 'idx-demo' | 'idx-outro'
+  | 'cache-hook' | 'cache-vue1' | 'cache-vue2' | 'cache-vue3' | 'cache-vue4' | 'cache-demo' | 'cache-outro';
 
 /** Piste SFX d'une scène (fichier mixé, volume nominal 1). */
 export const SceneSfx: React.FC<{ scene: SceneId; volume?: number }> = ({ scene, volume = 1 }) => (
