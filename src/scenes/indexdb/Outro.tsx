@@ -13,9 +13,9 @@ import { C, FONT, GLOW } from '../../tokens';
 import { ip } from '../../hooks';
 
 const REFLEXES = [
-  { k: '01', t: 'Indexe ce que tu filtres', s: "et ce que tu joins" },
-  { k: '02', t: 'Attention aux fonctions', s: 'LOWER(), LIKE \'%…\' → scan complet' },
-  { k: '03', t: 'Vérifie avec EXPLAIN', s: 'Index Scan visé, pas Seq Scan' },
+  { k: '01', t: 'Indexe ce que tu filtres', s: 'et ce que tu joins', short: 'FILTRER' },
+  { k: '02', t: 'Attention aux fonctions', s: 'LOWER(), LIKE \'%…\' → scan complet', short: 'SE MÉFIER' },
+  { k: '03', t: 'Vérifie avec EXPLAIN', s: 'Index Scan visé, pas Seq Scan', short: 'EXPLAIN' },
 ];
 
 /**
@@ -70,7 +70,7 @@ export const IndexOutro: React.FC = () => {
                 className="mono"
                 style={{
                   fontFamily: FONT.mono,
-                  fontSize: 40,
+                  fontSize: 38,
                   fontWeight: 700,
                   color: C.cyan400,
                   textShadow: `0 0 30px ${hexA(C.cyan400, 0.5)}`,
@@ -79,7 +79,7 @@ export const IndexOutro: React.FC = () => {
                 }}
               >
                 {i > 0 && <span style={{ color: C.textMuted, marginRight: 18 }}>·</span>}
-                {r.k}
+                {r.short}
               </span>
             ))}
           </div>

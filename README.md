@@ -11,15 +11,30 @@ Concept  →  Storyboard (motion-design-2026/)  →  Scènes Remotion (src/)  �
 
 ```bash
 npm install
-npm run sfx          # synthétise le sound design (public/audio)
-npm run preview:live # aperçu live dans le navigateur → http://localhost:5173
-npm run studio       # Remotion Studio (timeline, revue scène par scène)
-npm run render       # export MP4 final → out/acid-transactions.mp4
-npm run check        # typecheck + test de fumée (toutes les scènes, toutes les frames clés)
+npm run sfx            # synthétise le sound design (public/audio) + 1 mix par scène
+npm run preview:live   # aperçu live dans le navigateur → http://localhost:5173
+npm run studio         # Remotion Studio (timeline, revue scène par scène)
+npm run render         # export MP4 : ACID par défaut → out/ACID-transactions-60s.mp4
+npm run check          # typecheck + test de fumée (toutes les scènes, toutes les frames clés)
 ```
 
-> **Rendu vidéo** : nécessite Chrome/Chromium (Remotion le télécharge au premier `npm run render`).
-> Le sandbox de dev n'a pas de navigateur : utilisez `preview:live` pour la revue, `render` sur votre machine.
+Sur une machine normale, `npm run render` utilise votre Chrome (ou le télécharge au premier lancement).
+
+**Conteneur sans root ni Chrome ?** Un script prépare un navigateur de rendu complet
+(Chromium packagé + bibliothèques de compatibilité compilées, sans `apt`) :
+
+```bash
+npm run browser:setup
+npm run render -- Index-Vue2-Index out/index-vue2.mp4
+```
+
+Exemple vérifié dans cet environnement :
+
+```
+▶ Export : Acid-Hook → out/hook.mp4
+Rendered 180/180 · Encoded 180/180
++ out/hook.mp4  815.4 kB      # 1080×1920 @60 fps, audio inclus
+```
 
 ## 🎬 Les vidéos en production
 
@@ -97,6 +112,21 @@ L'essentiel :
 - **Sound design** : 1 SFX par action visuelle, voix prioritaire, mix par scène (voir `audio/cues.json`).
 - **Perf** : uniquement `transform`/`opacity`, `backdrop-blur` ≤ 3 surfaces, `prefers-reduced-motion` géré.
 
+## 🔍 QA visuelle (le réflexe « Motion Design Pro »)
+
+Le moteur sait produire des **images d'inspection** frame par frame — c'est ce qui a permis de
+corriger les vrais défauts (zoom qui coupait l'UI, compteurs de monnaie illisibles, captions sur
+3 lignes, emojis non rendus, badges qui écrasaient les titres) :
+
+```bash
+npx remotion still src/index.ts Acid-Hook out/frames/hook.png --frame=148 \
+  --browser-executable=tools/browser/chrome-wrapper.sh --gl=swangle
+```
+
+Planches de contrôle livrées : `motion-design-2026/qa/acid-contact-sheet.png` et
+`index-contact-sheet.png`. Les règles apprises sont consignées dans le
+[STANDARD §9](motion-design-2026/STANDARD-MOTION-2026.md) — elles s'appliquent aux prochains concepts.
+
 ## 🎧 Sound design
 
 Les SFX sont **synthétisés** (aucune banque de sons externe, aucun asset sous licence) :
@@ -138,11 +168,24 @@ npm run check
 - `scripts/smoke.mjs` : monte le Player dans **jsdom** et scrute **toutes** les compositions
   (y compris la vidéo complète de 3600 frames) en échouant sur la moindre exception JS/React.
 
+## 📌 Statut
+
+| Élément | État |
+|---|---|
+| Moteur de scènes 9:16 (Remotion) | ✅ 14 scènes, 2 films complets de 3600 frames |
+| Standard Motion 2026 | ✅ + retours du premier rendu réel (§9) |
+| Sound design | ✅ 9 SFX synthétisés + 1 mix par scène (14 fichiers) |
+| Voix off | ✅ 14 chunks générés et calés automatiquement (aucune vitesse dénaturée) |
+| Export MP4 | ✅ pipeline vérifié (navigateur conteneur fourni) |
+| QA visuelle | ✅ planches contact des 14 scènes |
+
 ## 🗺️ Suite
 
-1. Enregistrer / générer la voix off de chaque scène puis `npm run vo:fit` (calage automatique).
-2. `npm run render` → publier, puis décliner 2–3 shorts depuis la même matière.
-3. Concept suivant : **le cache / les CDN** (concept bonus B3) — le CTA de l'outro des index l'annonce.
+1. Écoute la voix off et arbitre le texte (`motion-design-2026/storyboards/*.vo.txt`).
+2. `npm run render` sur ta machine → publier ACID puis Les index (ou l'inverse : l'outro des index
+   annonce déjà « le cache », il faudra ajuster un teaser si tu inverses l'ordre).
+3. Décliner 2–3 shorts par vidéo depuis la même matière (reprendre une scène = une compo).
+4. Concept suivant : **le cache / les CDN** (concept bonus B3).
 
 ## 📚 Le catalogue d'idées
 

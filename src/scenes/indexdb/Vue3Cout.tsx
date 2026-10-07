@@ -117,18 +117,18 @@ export const IndexVue3Cout: React.FC = () => {
               })}
             </div>
 
-            {/* flèches d'écriture */}
-            <Arrow from={[540, 810]} to={[210, 870]} at={132} dur={22} color={C.emerald400} width={4} curve={0.16} />
+            {/* connecteurs d'écriture : courts, droits, sous la carte */}
+            <Arrow from={[220, 852]} to={[220, 884]} at={132} dur={14} color={C.emerald400} width={4} curve={0} />
             {[1, 2, 3].map((i) => (
               <Arrow
                 key={i}
-                from={[540, 810]}
-                to={[TARGETS[i].x + 100, 870]}
+                from={[TARGETS[i].x - 10, 852]}
+                to={[TARGETS[i].x - 10, 884]}
                 at={196 + i * 12}
-                dur={22}
+                dur={14}
                 color={C.amber400}
                 width={4}
-                curve={0.12 + i * 0.04}
+                curve={0}
               />
             ))}
 

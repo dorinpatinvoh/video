@@ -10,3 +10,6 @@ out/
 # divers
 .DS_Store
 *.log
+
+# navigateur de rendu (conteneur sans root) — généré localement
+tools/

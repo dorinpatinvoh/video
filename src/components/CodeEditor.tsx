@@ -98,7 +98,7 @@ export const CodeEditor: React.FC<{
         background: C.bgAlt,
         border: '1px solid rgba(255,255,255,0.07)',
         borderRadius: 0,
-        padding: '26px 0 30px',
+        padding: '26px 26px 30px 0',
         fontFamily: FONT.mono,
         fontSize,
         lineHeight: 1.6,
@@ -184,6 +184,7 @@ export const CodeEditor: React.FC<{
                 style={{
                   marginLeft: 'auto',
                   alignSelf: 'center',
+                  whiteSpace: 'nowrap',
                   fontSize: fontSize * 0.72,
                   color: note.tone ?? C.textMuted,
                   borderLeft: `2px solid ${note.tone ?? C.textMuted}`,

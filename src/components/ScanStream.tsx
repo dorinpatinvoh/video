@@ -24,6 +24,8 @@ export const ScanStream: React.FC<{
   match?: string;
   accent?: string;
   hud?: boolean;
+  /** étiquette affichée en haut du flux (évite tout chevauchement avec le reste) */
+  label?: string;
   style?: React.CSSProperties;
 }> = ({
   at = 0,
@@ -36,6 +38,7 @@ export const ScanStream: React.FC<{
   match = 'a.dupont@mail.fr',
   accent = C.cyan400,
   hud = true,
+  label,
   style,
 }) => {
   const frame = useCurrentFrame();
@@ -53,6 +56,8 @@ export const ScanStream: React.FC<{
     [],
   );
   const matchIndex = 30;
+  // liste dupliquée : le défilement boucle proprement (sans trou ni saut)
+  const stream = React.useMemo(() => [...rows, ...rows.map((r) => ({ ...r, id: r.id + ROWS }))], [rows]);
 
   const entered = ip(frame, [at, at + 16], [0, 1]);
   const scanning = frame >= scanFrom && frame < stopAt;
@@ -66,10 +71,11 @@ export const ScanStream: React.FC<{
   const read = stopped ? total : Math.floor(total * progress);
   const timer = stopped ? seconds : seconds * progress;
 
-  // à l'arrêt : on cale la ligne trouvée sous la tête de lecture
+  // à l'arrêt : la ligne trouvée se cale sous la tête de lecture ;
+  // en scan : défilement continu (modulo la hauteur d'une copie de la liste)
   const translate = stopped
     ? center - stopOffset
-    : center - stopOffset + (scanning ? 0 : 0) - (scrolled % (ROWS * ROW)) + ROWS * ROW * 2;
+    : center - stopOffset - (scrolled % (ROWS * ROW));
 
   const flash = interpolate(frame, [stopAt, stopAt + 10, stopAt + 40], [0, 1, 0], {
     extrapolateLeft: 'clamp',
@@ -103,7 +109,7 @@ export const ScanStream: React.FC<{
             filter: scanning ? 'blur(0.4px)' : 'none',
           }}
         >
-          {rows.map((r) => {
+          {stream.map((r) => {
             const isMatch = r.id === matchIndex;
             const highlight = isMatch && stopped;
             return (
@@ -117,15 +123,15 @@ export const ScanStream: React.FC<{
                   gap: 22,
                   padding: '0 26px',
                   fontFamily: FONT.mono,
-                  fontSize: 25,
-                  color: highlight ? C.emerald400 : C.textSecondary,
-                  borderBottom: '1px solid rgba(255,255,255,0.035)',
+                  fontSize: 26,
+                  color: highlight ? C.emerald400 : C.textCode,
+                  borderBottom: '1px solid rgba(255,255,255,0.06)',
                   background: highlight ? `rgba(52,211,153,${0.10 + flash * 0.16})` : 'transparent',
                   boxShadow: highlight ? `inset 0 0 60px rgba(52,211,153,${0.25 + flash * 0.3})` : 'none',
-                  opacity: highlight ? 1 : 0.55,
+                  opacity: highlight ? 1 : 0.88,
                 }}
               >
-                <span style={{ width: 92, color: C.textMuted }}>#{100000 + r.id * 7}</span>
+                <span style={{ width: 96, color: C.textMuted }}>#{100000 + r.id * 7}</span>
                 <span style={{ flex: 1 }}>{r.email}</span>
                 <span style={{ width: 130, textAlign: 'right', color: C.textMuted }}>{r.city}</span>
                 {highlight && (
@@ -163,6 +169,31 @@ export const ScanStream: React.FC<{
               background: `linear-gradient(180deg, ${hexA(accent, 0.16)}, transparent)`,
             }}
           />
+        )}
+
+        {/* bandeau d'étiquette : les lignes passent dessous, sans collision */}
+        {label && (
+          <div
+            style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top: 0,
+              height: 46,
+              padding: '0 26px',
+              display: 'flex',
+              alignItems: 'center',
+              background: 'linear-gradient(180deg, rgba(6,9,15,0.98) 55%, rgba(6,9,15,0))',
+              fontFamily: FONT.mono,
+              fontSize: 20,
+              letterSpacing: '0.14em',
+              color: C.textMuted,
+              opacity: ip(frame, [at + 6, at + 22], [0, 1]),
+              zIndex: 2,
+            }}
+          >
+            {label}
+          </div>
         )}
 
         {/* masques haut/bas */}

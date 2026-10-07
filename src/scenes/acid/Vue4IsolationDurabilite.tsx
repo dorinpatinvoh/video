@@ -41,7 +41,7 @@ export const Vue4IsolationDurabilite: React.FC = () => {
       <Camera
         keys={[
           { at: 0, scale: 1 },
-          { at: 176, scale: 1.16, origin: '50% 48%' },
+          { at: 176, scale: 1.10, origin: '50% 48%' },
           { at: 356, scale: 1.0 },
           { at: 552, scale: 0.96 },
           { at: 700, scale: 1.0 },
@@ -61,7 +61,7 @@ export const Vue4IsolationDurabilite: React.FC = () => {
               tone={doubleSpend ? C.rose400 : C.emerald400}
               pulse={doubleSpend}
               size={42}
-              label={doubleSpend ? 'DOUBLE DÉPENSE' : 'TOTAL'}
+              label={doubleSpend ? 'INCOHÉRENT' : 'TOTAL'}
             />
           }
         />

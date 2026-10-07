@@ -10,7 +10,7 @@ import { Caption } from '../../components/Caption';
 import { SceneSfx } from '../../components/Sfx';
 import { SceneVo } from '../../components/VoiceOver';
 import { C, EASE, FONT, GLOW } from '../../tokens';
-import { eur, useRoll, useShake } from '../../hooks';
+import { eur, eurRoll, useRoll, useShake } from '../../hooks';
 
 /**
  * SCÈNE 1 — HOOK VISUEL · 0–3 s (180 frames)
@@ -24,8 +24,8 @@ export const HookScene: React.FC = () => {
   // --- soldes
   const a = useRoll(100, 0, 48, 20); // débit instantané (le curseur a cliqué)
   const b = 50;
-  const total = useRoll(150, 50, 104, 26);
   const incohérent = frame >= 104;
+  const total = incohérent ? 50 : 150;
 
   const shake = useShake(126, 3);
   const glitch = frame >= 126 && frame <= 140;
@@ -45,7 +45,7 @@ export const HookScene: React.FC = () => {
             <AccountCard
               name="Compte A"
               iban="•• 4821"
-              value={eur(a)}
+              value={eurRoll(a, 100, 0)}
               tone={incohérent ? C.rose400 : C.emerald400}
               flashAt={50}
               shakeX={shake.x}
@@ -100,6 +100,48 @@ export const HookScene: React.FC = () => {
             <span style={{ fontFamily: FONT.mono, fontSize: 24, color: C.textMuted }}>
               transaction ouverte…
             </span>
+          </div>
+
+          {/* journal de la transaction : l'espace se remplit et le récit se précise */}
+          <div
+            style={{
+              marginTop: 8,
+              borderRadius: 16,
+              border: '1px solid rgba(255,255,255,0.07)',
+              background: 'rgba(255,255,255,0.02)',
+              padding: '18px 22px',
+              fontFamily: FONT.mono,
+              fontSize: 24,
+              lineHeight: 1.9,
+              minHeight: 190,
+            }}
+          >
+            <div style={{ fontSize: 19, letterSpacing: '0.12em', color: C.textMuted, marginBottom: 8 }}>
+              JOURNAL DE LA TRANSACTION
+            </div>
+            {[
+              { at: 62, text: '✓ debit   compte A   -100,00 €', tone: C.emerald400 },
+              { at: 96, text: '… credit  compte B   en attente', tone: C.amber400 },
+              { at: 128, text: '✕ credit  compte B   jamais exécuté', tone: C.rose400 },
+            ].map((l, i) => {
+              const p2 = interpolate(frame, [l.at, l.at + 10], [0, 1], {
+                extrapolateLeft: 'clamp',
+                extrapolateRight: 'clamp',
+                easing: EASE.outExpo,
+              });
+              return (
+                <div
+                  key={i}
+                  style={{
+                    color: l.tone,
+                    opacity: p2,
+                    transform: `translateX(${(1 - p2) * 10}px)`,
+                  }}
+                >
+                  {l.text}
+                </div>
+              );
+            })}
           </div>
         </div>
       </BrowserFrame>

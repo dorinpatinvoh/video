@@ -17,110 +17,132 @@ import { eur, ip, useRoll } from '../../hooks';
 
 /**
  * VUE 3/4 — C · COHÉRENCE · 9 s (540 frames)
- * Aucune opération ne peut laisser la base dans un état invalide.
- * Beats : 0–180 (règles + pan latéral) · 180–360 (contrainte qui refuse) · 360–540 (vérification balayée)
+ *
+ * Mise en page : deux colonnes fixes (table à gauche, règles à droite) — plus de
+ * pan latéral : à l'écran, une caméra qui balaie coupait les bords de l'interface.
+ * Beats : 0–180 (les règles) · 180–360 (la contrainte refuse) · 360–540 (vérification balayée)
  */
 export const Vue3Coherence: React.FC = () => {
   const frame = useCurrentFrame();
   const refuse = frame >= 200;
-  const total = useRoll(150, 40, 208, 20);
-  const tot = refuse ? 40 : total;
   const restored = frame >= 392;
-  const totalFinal = useRoll(40, 150, 400, 26);
+  const invalidLeaving = frame >= 224 && frame < 372;
+
+  const total = useRoll(150, 40, 208, 20);
+  const tot = refuse && !restored ? total : 150;
 
   return (
     <Stage accent={C.cyan400}>
       <Camera
         keys={[
-          { at: 0, scale: 1, x: 0 },
-          // pan latéral vers le panneau de règles (parallaxe retenue, jamais de zoom simultané)
-          { at: 150, x: 180, scale: 1 },
-          { at: 330, x: 180, scale: 1 },
-          { at: 366, x: 0, scale: 1.0 },
+          { at: 0, scale: 1 },
+          // zoom léger uniquement : recentre la table pendant la vérification
+          { at: 380, scale: 1.05, origin: '40% 50%' },
+          { at: 470, scale: 1 },
         ]}
       >
         <SceneHeader
-          kicker="C · Cohérence — les règles tiennent"
+          kicker="C · Cohérence"
           at={4}
           accent={C.cyan400}
           right={
             <TotalBadge
               at={10}
-              value={eur(restored ? totalFinal : tot)}
+              value={eur(tot)}
               tone={refuse && !restored ? C.rose400 : C.emerald400}
               pulse={refuse && !restored}
-              size={44}
+              size={40}
               label={refuse && !restored ? 'CONTRAINTE' : 'TOTAL'}
             />
           }
         />
 
-        <DataTable
-          at={0}
-          columns={['id', 'owner', 'balance']}
-          colWidths={[110, 300, 0]}
-          fontSize={30}
-          style={{ position: 'absolute', left: 120, top: 640, width: 840 }}
-          rows={[
-            {
-              id: 'a',
-              cells: ['1', 'Alice', refuse && !restored ? eur(0) : eur(100)],
-              flashes: refuse ? [{ at: 208, color: C.rose400 }] : [],
-              exitAt: 224, // la ligne invalide quitte la table
-            },
-            { id: 'b', cells: ['2', 'Bob', eur(50)] },
-          ]}
-        />
+        {/* --- colonne gauche : la table / colonne droite : les règles --- */}
+        <div style={{ position: 'absolute', left: 120, top: 640, width: 840, display: 'flex', gap: 20 }}>
+          {/* table */}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <DataTable
+              at={0}
+              columns={['id', 'owner', 'balance']}
+              colWidths={[70, 0, 0]}
+              fontSize={27}
+              rows={[
+                {
+                  id: 'a',
+                  cells: ['1', 'Alice', refuse && !restored ? eur(0) : eur(100)],
+                  flashes: refuse ? [{ at: 208, color: C.rose400 }] : [],
+                  exitAt: invalidLeaving ? 224 : undefined,
+                },
+                { id: 'b', cells: ['2', 'Bob', eur(50)] },
+              ]}
+            />
+            {/* la ligne de contrôle revient après la vérification */}
+            {restored && (
+              <div
+                style={{
+                  marginTop: 16,
+                  opacity: ip(frame, [392, 412], [0, 1]),
+                  fontFamily: FONT.mono,
+                  fontSize: 22,
+                  color: C.textMuted,
+                }}
+              >
+                0 ligne sur 2 modifiée — base intacte
+              </div>
+            )}
+          </div>
 
-        {/* requête invalide refusée par la contrainte */}
-        <div style={{ position: 'absolute', left: 300, top: 900, width: 840 }}>
+          {/* règles */}
+          <GlassCard
+            at={26}
+            accent={C.cyan400}
+            style={{ position: 'relative', width: 380, flex: '0 0 380px' }}
+            label="RÈGLES DE LA BASE"
+            labelTone={C.cyan400}
+            padding={24}
+          >
+            <Rule text="CHECK (balance >= 0)" at={60} />
+            <Rule text="SUM = 150,00 €" at={84} />
+            <Rule text="FOREIGN KEY (owner_id)" at={108} />
+            <div style={{ marginTop: 16, fontFamily: FONT.mono, fontSize: 21, lineHeight: 1.6, color: C.textMuted }}>
+              vérifiées avant et après chaque transaction
+            </div>
+          </GlassCard>
+        </div>
+
+        {/* --- requête invalide : sous la table, pleine largeur utile --- */}
+        <div style={{ position: 'absolute', left: 120, top: 990, width: 840 }}>
           <CodeEditor
-            code={`UPDATE accounts SET balance = -20 WHERE id = 1;   -- interdit`}
+            code="UPDATE accounts SET balance = -20 WHERE id = 1;  -- refusé"
             at={186}
             cps={34}
-            fontSize={25}
+            fontSize={24}
             showLineNumbers={false}
             minimap={false}
             accent={C.rose400}
-            style={{ borderRadius: 14, border: `1px solid ${hexA(C.rose400, 0.35)}` }}
-          />
-        </div>
-        <div style={{ position: 'absolute', left: 620, top: 1010 }}>
-          <StatusCodeBadge
-            at={226}
-            variant="error"
-            label="CONSTRAINT VIOLATION — refusé"
-            size={25}
-            shake
+            style={{
+              borderRadius: 14,
+              border: `1px solid ${hexA(C.rose400, refuse ? 0.45 : 0.2)}`,
+              boxShadow: refuse && !restored ? `0 0 40px ${hexA(C.rose500, 0.25)}` : 'none',
+            }}
           />
         </div>
 
-        {/* panneau des règles (cible du pan latéral) */}
-        <GlassCard
-          at={26}
-          accent={C.cyan400}
-          style={{ left: 980, top: 640, width: 620 }}
-          label="RÈGLES DE LA BASE"
-          labelTone={C.cyan400}
-        >
-          <Rule text="CHECK (balance >= 0)" at={60} />
-          <Rule text="SUM(balance) = 150,00 €" at={84} />
-          <Rule text="FOREIGN KEY (owner_id)" at={108} />
-          <div style={{ marginTop: 22, fontFamily: FONT.mono, fontSize: 23, color: C.textMuted }}>
-            vérifiées avant ET après chaque transaction
+        {refuse && !restored && (
+          <div style={{ position: 'absolute', left: 470, top: 1090 }}>
+            <StatusCodeBadge at={226} variant="error" label="CONSTRAINT VIOLATION" size={24} shake />
           </div>
-        </GlassCard>
+        )}
 
         {/* balayage de vérification */}
-        <Sweep x={130} y={640} h={210} at={406} dur={40} color={C.emerald400} />
+        <Sweep x={128} y={640} h={220} at={406} dur={40} color={C.emerald400} />
 
-        {/* mini-coches de validation */}
         {frame >= 380 && (
-          <div style={{ position: 'absolute', left: 880, top: 646, display: 'flex', flexDirection: 'column', gap: 14 }}>
-            {[0, 1, 2, 3].map((i) => {
+          <div style={{ position: 'absolute', left: 560, top: 700, display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {[0, 1].map((i) => {
               const p = ip(frame, [380 + i * 8, 398 + i * 8], [0, 1]);
               return (
-                <svg key={i} width={30} height={30} viewBox="0 0 24 24">
+                <svg key={i} width={26} height={26} viewBox="0 0 24 24">
                   <path
                     d="M4 12.5 L9.5 18 L20 6"
                     fill="none"
@@ -139,53 +161,55 @@ export const Vue3Coherence: React.FC = () => {
 
       <Cursor
         keys={[
-          { at: 10, x: 900, y: 900 },
-          { at: 40, x: 1180, y: 760, act: 'hover' },
-          { at: 200, x: 1220, y: 900, act: 'click' },
-          { at: 300, x: 420, y: 1000 },
+          { at: 10, x: 900, y: 1250 },
+          { at: 46, x: 800, y: 800, act: 'hover' },
+          { at: 200, x: 640, y: 1030, act: 'click' },
+          { at: 300, x: 420, y: 1180 },
         ]}
         enterAt={8}
-        hideAt={340}
+        hideAt={356}
+        size={32}
       />
 
       <Caption
         text="Cohérence : aucune opération ne peut casser une règle."
         at={60}
         until={186}
-        size={58}
+        size={54}
         emphasize={[0]}
         style={{ top: 1490 }}
       />
       <Caption
-        text="Un solde négatif ? La base refuse. Point."
+        text="Un solde négatif ? La base refuse."
         at={196}
         until={372}
-        size={62}
-        emphasize={[7, 8]}
+        size={60}
+        emphasize={[5, 6]}
         style={{ top: 1490 }}
       />
       <Caption
         text="Les règles sont vérifiées avant et après chaque transaction."
         at={382}
-        size={58}
+        size={54}
         style={{ top: 1490 }}
       />
 
-      {/* flash de rejet pleine surface */}
-      {frame >= 226 && frame < 250 && (
+      {/* flash de rejet */}
+      {frame >= 226 && frame < 252 && (
         <div
           style={{
             position: 'absolute',
-            left: 0,
-            right: 0,
-            top: 620,
-            height: 180,
-            background: `linear-gradient(90deg, transparent, ${hexA(C.rose500, 0.22)}, transparent)`,
-            opacity: 1 - (frame - 226) / 24,
+            left: 120,
+            width: 840,
+            top: 985,
+            height: 96,
+            background: `linear-gradient(90deg, transparent, ${hexA(C.rose500, 0.25)}, transparent)`,
+            opacity: 1 - (frame - 226) / 26,
             pointerEvents: 'none',
           }}
         />
       )}
+
       <SceneVo clip="acid-vue3" />
       <SceneSfx scene="vue3" />
     </Stage>
@@ -200,13 +224,13 @@ const Rule: React.FC<{ text: string; at: number }> = ({ text, at }) => {
       style={{
         display: 'flex',
         alignItems: 'center',
-        gap: 14,
+        gap: 12,
         fontFamily: FONT.mono,
-        fontSize: 25,
+        fontSize: 22,
         color: C.textPrimary,
         opacity: p,
         transform: `translateX(${(1 - p) * -14}px)`,
-        marginBottom: 12,
+        marginBottom: 10,
       }}
     >
       <SvLock />
@@ -216,7 +240,7 @@ const Rule: React.FC<{ text: string; at: number }> = ({ text, at }) => {
 };
 
 const SvLock = () => (
-  <svg width={22} height={22} viewBox="0 0 24 24" fill="none">
+  <svg width={20} height={20} viewBox="0 0 24 24" fill="none">
     <rect x="4.5" y="10.5" width="15" height="10" rx="2.5" stroke={C.cyan400} strokeWidth="1.8" />
     <path d="M8 10.5V8a4 4 0 018 0v2.5" stroke={C.cyan400} strokeWidth="1.8" />
   </svg>

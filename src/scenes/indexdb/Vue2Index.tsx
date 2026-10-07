@@ -53,7 +53,7 @@ export const IndexVue2Index: React.FC = () => {
       <Camera
         keys={[
           { at: 0, scale: 1 },
-          { at: 300, scale: 1.08, origin: '50% 46%' },
+          { at: 300, scale: 1.05, origin: '50% 48%' },
           { at: 372, scale: 1.0 },
         ]}
       >
@@ -61,7 +61,7 @@ export const IndexVue2Index: React.FC = () => {
           kicker="L'index = l'annuaire de la table"
           at={4}
           accent={C.cyan400}
-          right={<StatusCodeBadge at={20} variant="info" label="TRIÉ PAR EMAIL" size={26} />}
+          right={<StatusCodeBadge at={20} variant="info" label="trié par email" size={22} />}
         />
 
         <SortedLookup
@@ -142,7 +142,7 @@ export const IndexVue2Index: React.FC = () => {
         text="On ouvre au milieu, on élimine la moitié."
         at={196}
         until={352}
-        size={60}
+        size={56}
         emphasize={[3, 4]}
         style={{ top: 1490 }}
       />

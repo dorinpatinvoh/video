@@ -290,4 +290,38 @@ Et pour **chaque scène**, les 5 champs obligatoires :
 
 ---
 
-*Dernière mise à jour : 2026-10-07 — à faire évoluer à chaque vidéo, jamais à contourner.*
+## 9. Leçons du premier rendu réel (QA à la frame)
+
+Ces règles viennent de l'inspection des **premières images réellement rendues** (remotion still, 1080×1920),
+pas de la théorie. Elles s'appliquent à partir de maintenant.
+
+| Constat observé | Règle ajoutée |
+|---|---|
+| Un zoom de 1,28 sur un panneau entier **coupe les bords** de l'UI au format 9:16 | **Zoom de focus ≤ 1,15** (1,10 en général). Le « dramatique » 1,25+ est réservé à **un élément isolé** (une valeur, une barre), jamais à un panneau |
+| Un pan latéral (+200 px) fait **sortir le contenu du cadre** | Pour montrer deux contenus côte à côte : **deux colonnes fixes** plutôt qu'un balayage de caméra. Le pan reste réservé aux fonds larges |
+| Un compteur de monnaie qui « roule » affiche des valeurs absurdes (ex. « 1,20 € » en plein débit) | **Aucun compteur financier ne roule** : arrondir à l'unité pendant l'animation, valeurs rondes (0, 50, 100, 150) à l'arrivée |
+| Une caption longue passe sur **3 lignes** et sort de la zone lisible | **2 lignes maximum** → viser **≤ 60 caractères** ; raccourcir le texte plutôt que réduire la taille |
+| Les **emojis** (✅ ❌) ne sont pas rendus par le moteur | **Icônes vectorielles SVG uniquement** (coche/croix tracées, cf. `Annotation`) |
+| Un badge d'état en haut à droite **écrasait le kicker** de la scène | Le bloc de gauche du `SceneHeader` est protégé (`minWidth: 0`) et le badge de droite est court (≤ 18 caractères, `flexShrink: 0`) |
+| Une note dans l'éditeur de code passait à la ligne et percutait la minimap | Notes **courtes (≤ 14 caractères)**, `whiteSpace: nowrap`, minimap supprimée quand une note est présente |
+| Le focus de la ligne clé arrivait **avant la fin de la frappe** | La machine à écrire se termine **avant** le focus : viser 45–55 car/s pour un bloc de 5–6 lignes montré en 10 s |
+| Des flèches d'annotation longues et courbes encombraient la scène | Connecteurs **courts (≤ 60 px) et droits** (`curve: 0`) quand ils relient deux éléments proches |
+
+### La boucle QA obligatoire avant tout export
+
+```bash
+# 1 image par scène, aux frames clés (hook 2,5 s · chaque vue à ~50/80 % · démo · outro)
+npx remotion still src/index.ts <Composition> out/frames/<scene>.png --frame=<n> \
+  --browser-executable=tools/browser/chrome-wrapper.sh --gl=swangle
+
+# 2 inspection en planche contact (les défauts de composition sautent aux yeux)
+convert frame1.png frame2.png frame3.png +append -resize 1600x planche.png
+```
+
+Règles de lecture d'une planche : bords coupés ? texte qui se chevauche ? valeur incohérente ?
+caption > 2 lignes ? élément hors safe zone ? Un « oui » = correction avant export.
+
+---
+
+*Dernière mise à jour : 2026-10-07 — enrichi par le QA du premier rendu réel (voir `qa/`).*
+*À faire évoluer à chaque vidéo, jamais à contourner.*

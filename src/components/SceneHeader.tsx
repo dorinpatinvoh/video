@@ -33,19 +33,19 @@ export const SceneHeader: React.FC<{
         position: 'absolute',
         left: SAFE.sideMargin,
         width: SAFE.contentWidth,
-        top: 470,
+        top: 444,
         display: 'flex',
         alignItems: 'flex-end',
         justifyContent: 'space-between',
-        gap: 20,
+        gap: 16,
         ...style,
       }}
     >
-      <div>
+      <div style={{ minWidth: 0 }}>
         <div
           style={{
             fontFamily: FONT.mono,
-            fontSize: 26,
+            fontSize: 25,
             letterSpacing: '0.14em',
             textTransform: 'uppercase',
             color: accent,
@@ -53,6 +53,7 @@ export const SceneHeader: React.FC<{
             display: 'flex',
             alignItems: 'center',
             gap: 12,
+            whiteSpace: 'nowrap',
           }}
         >
           <span
@@ -82,7 +83,7 @@ export const SceneHeader: React.FC<{
           </div>
         )}
       </div>
-      {right}
+      {right && <div style={{ flexShrink: 0 }}>{right}</div>}
     </div>
   );
 };

@@ -13,7 +13,7 @@ import { SceneVo } from '../../components/VoiceOver';
 import { C, FONT, GLOW } from '../../tokens';
 import { ip } from '../../hooks';
 
-const SQL = `-- migration.sql — l'index se crée une fois, pour toutes les requêtes
+const SQL = `-- migration.sql — une fois pour toutes
 CREATE INDEX idx_customers_email ON customers (email);`;
 
 /**
@@ -51,13 +51,12 @@ export const IndexDemo: React.FC = () => {
           <CodeEditor
             code={SQL}
             at={30}
-            cps={30}
+            cps={46}
             fontSize={26}
             focusLine={1}
-            focusAt={232}
+            focusAt={214}
             accent={C.indigo400}
             showLineNumbers
-            minimap
             style={{ border: 'none', borderRadius: 0 }}
             notes={[{ line: 1, text: '← une fois', tone: C.indigo400 }]}
           />

@@ -95,17 +95,17 @@ export const SortedLookup: React.FC<{
                 fontFamily: FONT.mono,
                 fontSize,
                 border: `1px solid ${
-                  isTarget ? hexA(C.emerald400, 0.8) : isMid ? hexA(accent, 0.85) : inWindow ? hexA(accent, 0.28) : 'rgba(255,255,255,0.06)'
+                  isTarget ? hexA(C.emerald400, 0.9) : isMid ? hexA(accent, 0.95) : inWindow ? hexA(accent, 0.55) : 'rgba(255,255,255,0.06)'
                 }`,
                 background: isTarget
                   ? hexA(C.emerald400, 0.16)
                   : isMid
                     ? hexA(accent, 0.14 + pulse * 0.1)
                     : inWindow
-                      ? 'rgba(255,255,255,0.045)'
+                      ? hexA(accent, 0.10)
                       : 'rgba(255,255,255,0.015)',
                 color: isTarget ? C.emerald400 : eliminated ? C.textMuted : inWindow ? C.textPrimary : C.textMuted,
-                opacity: eliminated ? 0.18 : 1,
+                opacity: eliminated ? 0.34 : 1,
                 boxShadow: isTarget
                   ? GLOW.emerald
                   : isMid
@@ -114,7 +114,7 @@ export const SortedLookup: React.FC<{
                 transform: `scale(${isTarget ? 1.06 : 1})`,
               }}
             >
-              {e}
+              <span style={{ textDecoration: eliminated ? 'line-through' : 'none' }}>{e}</span>
               {isTarget && (
                 <span style={{ position: 'absolute', right: 6, top: 4 }}>
                   <svg width={18} height={18} viewBox="0 0 24 24">

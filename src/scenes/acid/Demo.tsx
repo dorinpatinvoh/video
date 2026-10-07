@@ -13,16 +13,38 @@ import { SceneVo } from '../../components/VoiceOver';
 import { C, FONT, GLOW } from '../../tokens';
 import { eur, ip, useRoll } from '../../hooks';
 
-const CODE = `// transfer.ts — tout réussit, ou rien ne s'applique
+const CODE = `// transfer.ts — tout ou rien
 await db.transaction(async (tx) => {
   await tx.debit(from, 100);   // -100 €  (compte A)
   await tx.credit(to, 100);    // +100 €  (compte B)
-});                            // COMMIT … ou ROLLBACK`;
+});                            // COMMIT ou ROLLBACK`;
 
 /**
  * BLOC 3 — DÉMO DE CODE · 10 s (600 frames)
  * Beats : 0–240 (frappe du pattern) · 240–420 (focus ligne clé + COMMIT) · 420–600 (comparatif SANS/AVEC)
  */
+/** coche / croix vectorielles (les emojis ne sont pas rendus sur le canvas) */
+const Mark: React.FC<{ ok: boolean; draw: number; color: string }> = ({ ok, draw, color }) => (
+  <svg width={26} height={26} viewBox="0 0 24 24">
+    {ok ? (
+      <path
+        d="M4 12.5 L9.5 18 L20 6"
+        fill="none"
+        stroke={color}
+        strokeWidth={2.8}
+        strokeLinecap="round"
+        strokeDasharray={30}
+        strokeDashoffset={(1 - draw) * 30}
+      />
+    ) : (
+      <>
+        <path d="M6 6 L18 18" fill="none" stroke={color} strokeWidth={2.8} strokeLinecap="round" strokeDasharray={18} strokeDashoffset={(1 - draw) * 18} />
+        <path d="M18 6 L6 18" fill="none" stroke={color} strokeWidth={2.8} strokeLinecap="round" strokeDasharray={18} strokeDashoffset={(1 - draw) * 18} />
+      </>
+    )}
+  </svg>
+);
+
 export const DemoScene: React.FC = () => {
   const frame = useCurrentFrame();
   const a = useRoll(100, 0, 320, 20);
@@ -34,7 +56,7 @@ export const DemoScene: React.FC = () => {
       <Camera
         keys={[
           { at: 0, scale: 1 },
-          { at: 250, scale: 1.12, origin: '50% 42%' },
+          { at: 250, scale: 1.08, origin: '50% 44%' },
           { at: 430, scale: 1 },
         ]}
       >
@@ -51,6 +73,7 @@ export const DemoScene: React.FC = () => {
             left: 90,
             top: 620,
             width: 900,
+            opacity: 1 - ip(frame, [430, 448], [0, 1]),
             borderRadius: 22,
             overflow: 'hidden',
             border: '1px solid rgba(255,255,255,0.08)',
@@ -62,15 +85,14 @@ export const DemoScene: React.FC = () => {
           <CodeEditor
             code={CODE}
             at={40}
-            cps={30}
+            cps={54}
             fontSize={27}
             focusLine={1}
-            focusAt={252}
+            focusAt={250}
             accent={C.indigo400}
             showLineNumbers
-            minimap
             style={{ border: 'none', borderRadius: 0 }}
-            notes={[{ line: 1, text: '← la garantie est ici', tone: C.indigo400 }]}
+            notes={[{ line: 1, text: '← garantie', tone: C.indigo400 }]}
           />
         </div>
 
@@ -135,10 +157,10 @@ export const DemoScene: React.FC = () => {
         style={{ top: 1490 }}
       />
       <Caption
-        text="Même panne. Une seule différence : la transaction."
+        text="Même panne, une seule différence."
         at={470}
-        size={58}
-        emphasize={[6, 7]}
+        size={54}
+        emphasize={[4, 5]}
         style={{ top: 1490 }}
       />
       <SceneVo clip="acid-demo" />
@@ -217,8 +239,9 @@ const Compare: React.FC<{
         filter: ok ? 'none' : 'saturate(0.6)',
       }}
     >
-      <div style={{ fontFamily: FONT.mono, fontSize: 22, letterSpacing: '0.08em', color: tone }}>
-        {title} {ok ? '✅' : '❌'}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, fontFamily: FONT.mono, fontSize: 22, letterSpacing: '0.08em', color: tone }}>
+        {title}
+        <Mark ok={ok} draw={ip(frame, [at + 12, at + 34], [0, 1])} color={tone} />
       </div>
       <div
         className="mono"

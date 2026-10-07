@@ -90,6 +90,14 @@ export const useRoll = (from: number, to: number, at: number, durFrames = 18) =>
 /** montant formaté à la française : 150,00 € */
 export const eur = (v: number) => `${v.toFixed(2).replace('.', ',')} €`;
 
+/**
+ * Montant pendant une animation de compteur.
+ * Pendant le roulement on arrondit à l'euro (sinon on lit des valeurs absurdes
+ * du genre « 1,20 € » en plein débit) ; aux valeurs d'arrivée on garde les centimes.
+ */
+export const eurRoll = (v: number, from: number, to: number) =>
+  v <= Math.min(from, to) + 0.001 || v >= Math.max(from, to) - 0.001 ? eur(v) : eur(Math.round(v));
+
 /** opacité décroissante après un événement (pour faire disparaître un élément animé) */
 export const useFadeAfter = (at: number, hold = 20, dur = 10) => {
   const frame = useCurrentFrame();

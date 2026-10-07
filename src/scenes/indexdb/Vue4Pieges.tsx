@@ -35,7 +35,7 @@ export const IndexVue4Pieges: React.FC = () => {
     <Stage accent={C.rose500}>
       <SceneHeader kicker={KICKERS[beat]} at={beat === 1 ? 4 : 0} accent={beat === 5 ? C.emerald400 : C.rose400} />
 
-      <Camera keys={[{ at: 0, scale: 1 }, { at: 720, scale: 1.06, origin: '50% 50%' }, { at: 860, scale: 1 }]}>
+      <Camera keys={[{ at: 0, scale: 1 }, { at: 720, scale: 1.05, origin: '50% 50%' }, { at: 860, scale: 1 }]}>
         {/* ---- beat 1 : fonction sur la colonne ---- */}
         {beat === 1 && (
           <>
@@ -169,20 +169,30 @@ export const IndexVue4Pieges: React.FC = () => {
             <Terminal
               width={840}
               height={330}
-              fontSize={26}
+              fontSize={23}
               title="psql — EXPLAIN ANALYZE"
               accent={C.emerald400}
               style={{ position: 'absolute', left: 120, top: 620 }}
               lines={[
-                { text: '$ EXPLAIN ANALYZE SELECT * FROM customers WHERE email = …', at: 720, type: true },
-                { text: 'Seq Scan on customers  (cost=0.00..18432.00 rows=1)  → 4210 ms', at: 800, tone: C.rose400 },
-                { text: 'CREATE INDEX idx_customers_email ON customers (email);', at: 826, tone: C.textMuted },
-                { text: 'Index Scan using idx_customers_email  → 0.42 ms', at: 856, tone: C.emerald400 },
+                { text: '$ EXPLAIN ANALYZE SELECT * FROM customers …', at: 720, type: true },
+                { text: 'Seq Scan on customers  (cost=0.00..18432) → 4210 ms', at: 800, tone: C.rose400 },
+                { text: 'CREATE INDEX idx_customers_email ON customers(email);', at: 826, tone: C.textMuted },
+                { text: 'Index Scan using idx_customers_email → 0.42 ms', at: 856, tone: C.emerald400 },
               ]}
             />
-            <div style={{ position: 'absolute', left: 120, top: 990, display: 'flex', gap: 18, alignItems: 'center' }}>
+            <div style={{ position: 'absolute', left: 120, top: 975, display: 'flex', gap: 20, alignItems: 'center' }}>
               <StatusCodeBadge at={862} variant="success" label="Index Scan · 0,42 ms" size={30} />
-              <span className="mono" style={{ fontFamily: FONT.mono, fontSize: 40, fontWeight: 700, color: C.emerald400 }}>
+              <span
+                className="mono"
+                style={{
+                  fontFamily: FONT.mono,
+                  fontSize: 50,
+                  fontWeight: 700,
+                  color: C.emerald400,
+                  textShadow: `0 0 40px ${hexA(C.emerald400, 0.6)}`,
+                  opacity: ip(frame, [866, 886], [0, 1]),
+                }}
+              >
                 ×10 000
               </span>
             </div>

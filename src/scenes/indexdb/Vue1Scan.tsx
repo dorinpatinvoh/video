@@ -32,13 +32,13 @@ export const IndexVue1Scan: React.FC = () => {
         ]}
       >
         <SceneHeader
-          kicker="Sous le capot — sans index"
+          kicker="Sans index"
           at={4}
           accent={C.rose400}
-          right={<StatusCodeBadge at={12} variant="error" label="1 048 576 LIGNES" size={26} />}
+          right={<StatusCodeBadge at={12} variant="error" label="1 048 576 lignes" size={22} />}
         />
 
-        <div style={{ position: 'absolute', left: 120, top: 620, width: 840 }}>
+        <div style={{ position: 'absolute', left: 120, top: 530, width: 840 }}>
           <ScanStream
             at={0}
             width={840}
@@ -47,29 +47,14 @@ export const IndexVue1Scan: React.FC = () => {
             stopAt={372}
             match="a.dupont@mail.fr"
             accent={C.cyan400}
+            label="LECTURE SÉQUENTIELLE · UNE LIGNE À LA FOIS"
             seconds={4.21}
             total={1048576}
           />
         </div>
 
-        {/* étiquette du flux */}
-        <div
-          style={{
-            position: 'absolute',
-            left: 120,
-            top: 1260,
-            fontFamily: FONT.mono,
-            fontSize: 24,
-            letterSpacing: '0.1em',
-            color: C.textMuted,
-            opacity: ip(frame, [16, 40], [0, 1]),
-          }}
-        >
-          LECTURE SÉQUENTIELLE — LA BASE LIT CHAQUE LIGNE, UNE PAR UNE
-        </div>
-
-        <Circle cx={540} cy={900} rx={300} ry={70} at={392} color={C.rose400} rotate={-2} />
-        <Arrow from={[300, 1230]} to={[470, 1080]} at={412} color={C.rose400} />
+        <Circle cx={540} cy={1128} rx={300} ry={64} at={392} color={C.rose400} rotate={-2} />
+        <Arrow from={[250, 1000]} to={[350, 1085]} at={412} color={C.rose400} />
 
         <Cursor
           keys={[

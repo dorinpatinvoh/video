@@ -120,18 +120,18 @@ export const Cursor: React.FC<{
         }}
       />
       {/* ripple de clic */}
-      {sinceClick >= 0 && sinceClick < 20 && (
+      {sinceClick >= 0 && sinceClick < 14 && (
         <div
           style={{
             position: 'absolute',
             left: -size * 0.5,
             top: -size * 0.5,
-            width: size * 2,
-            height: size * 2,
+            width: size * 1.5,
+            height: size * 1.5,
             borderRadius: 999,
-            border: `2px solid ${accent}`,
-            opacity: interpolate(sinceClick, [0, 20], [0.9, 0], { extrapolateRight: 'clamp' }),
-            transform: `scale(${interpolate(sinceClick, [0, 20], [0.5, 2.4], {
+            border: `1.5px solid ${accent}`,
+            opacity: interpolate(sinceClick, [0, 14], [0.75, 0], { extrapolateRight: 'clamp' }),
+            transform: `scale(${interpolate(sinceClick, [0, 14], [0.45, 1.7], {
               extrapolateRight: 'clamp',
               easing: EASE.outExpo,
             })})`,

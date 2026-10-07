@@ -12,7 +12,7 @@ import { Caption } from '../../components/Caption';
 import { SceneSfx } from '../../components/Sfx';
 import { SceneVo } from '../../components/VoiceOver';
 import { C, FONT } from '../../tokens';
-import { eur, ip, useRoll } from '../../hooks';
+import { eur, eurRoll, ip, useRoll } from '../../hooks';
 
 /**
  * VUE 2/4 — A · ATOMICITÉ · 9 s (540 frames)
@@ -44,17 +44,17 @@ export const Vue2Atomicite: React.FC = () => {
         ]}
       >
         <SceneHeader
-          kicker="A · Atomicité — tout ou rien"
+          kicker="A · Atomicité"
           at={4}
           accent={C.emerald400}
           right={
             <TotalBadge
               at={10}
-              value={eur(tot)}
+              value={eurRoll(tot, 150, 50)}
               tone={failed ? C.emerald400 : C.amber400}
               pulse={!failed}
               size={44}
-              label={failed ? 'ÉTAT INITIAL RESTAURÉ' : 'TOTAL (provisoire)'}
+              label={failed ? 'RESTAURÉ' : 'TOTAL'}
             />
           }
         />
@@ -111,7 +111,7 @@ export const Vue2Atomicite: React.FC = () => {
           rows={[
             {
               id: 'a',
-              cells: ['1', 'Alice', eur(a)],
+              cells: ['1', 'Alice', eurRoll(a, 100, 0)],
               flashes: [
                 { at: 74, color: C.emerald400 },
                 { at: 214, color: C.amber400 },

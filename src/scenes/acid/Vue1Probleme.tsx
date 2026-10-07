@@ -37,13 +37,13 @@ export const Vue1Probleme: React.FC = () => {
         keys={[
           { at: 0, scale: 1 },
           { at: 240, scale: 1 },
-          // zoom-in dramatique sur la ligne qui n'arrive jamais (780 ms, jamais de pan simultané)
-          { at: 300, scale: 1.28, origin: '50% 52%' },
+          // zoom-in sur la ligne qui n'arrive jamais : 1.12 max, sinon on coupe les bords de l'UI
+          { at: 300, scale: 1.12, origin: '50% 50%' },
           { at: 356, scale: 1.0, origin: '50% 50%' },
         ]}
       >
         <SceneHeader
-          kicker="Sous le capot — sans transaction"
+          kicker="Sans transaction"
           at={6}
           accent={C.rose400}
           right={
@@ -97,9 +97,9 @@ export const Vue1Probleme: React.FC = () => {
         </div>
 
         {/* terminal : le processus meurt entre les deux requêtes */}
-        <div style={{ position: 'absolute', left: 120, top: 1180, width: 840 }}>
+        <div style={{ position: 'absolute', left: 120, top: 1108, width: 840 }}>
           <Terminal
-            height={210}
+            height={252}
             fontSize={26}
             title="db — server"
             lines={[
@@ -112,12 +112,16 @@ export const Vue1Probleme: React.FC = () => {
         </div>
 
         {/* badges d'état */}
-        <div style={{ position: 'absolute', left: 700, top: 1140 }}>
-          <StatusCodeBadge at={156} variant="success" label="200 OK" size={26} />
-        </div>
-        <div style={{ position: 'absolute', left: 640, top: 1140 }}>
-          <StatusCodeBadge at={266} variant="error" label="500 · INTERNAL" size={26} shake />
-        </div>
+        {frame < 262 && (
+          <div style={{ position: 'absolute', left: 640, top: 1050 }}>
+            <StatusCodeBadge at={156} variant="success" label="200 OK" size={24} />
+          </div>
+        )}
+        {frame >= 262 && (
+          <div style={{ position: 'absolute', left: 400, top: 1050 }}>
+            <StatusCodeBadge at={266} variant="error" label="500 · INTERNAL ERROR" size={24} shake />
+          </div>
+        )}
 
         {/* annotations fait main */}
         <Arrow

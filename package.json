@@ -6,14 +6,15 @@
   "scripts": {
     "sfx": "node scripts/gen-sfx.mjs",
     "studio": "remotion studio --port 3000",
-    "render": "remotion render src/index.ts ACID-transactions-60s out/acid-transactions.mp4",
-    "render:scene": "remotion render src/index.ts",
+    "render": "node scripts/render.mjs",
+    "render:scene": "node scripts/render.mjs",
     "typecheck": "tsc --noEmit",
     "build": "remotion bundle",
     "preview:live": "vite --host 0.0.0.0 --port 5173",
     "preview:build": "vite build",
     "check": "tsc --noEmit && node scripts/smoke.mjs",
-    "vo:fit": "node scripts/vo-fit.mjs"
+    "vo:fit": "node scripts/vo-fit.mjs",
+    "browser:setup": "node scripts/setup-browser.mjs"
   },
   "repository": {
     "type": "git",
